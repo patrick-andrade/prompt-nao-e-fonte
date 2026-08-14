@@ -1,0 +1,54 @@
+# Ambientes e segredos
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*credentials*
+*secret*
+secrets/
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# R (menção de ecossistema; não versionar sessões)
+.RData
+.Rhistory
+.Rproj.user/
+
+# Quarto
+.quarto/
+*_files/
+*_cache/
+/.luarc.json
+
+# Saídas binárias geradas
+outputs/*.pdf
+outputs/*.pptx
+outputs/*.html
+outputs/*.docx
+outputs/*.xlsx
+!outputs/.gitkeep
+
+# PDFs e dumps pesados no bruto; CSV processado pode versionar quando existir
+02-dados-fiscal-monitor/data/raw/*.pdf
+02-dados-fiscal-monitor/data/raw/*.zip
+02-dados-fiscal-monitor/data/raw/*.xlsx
+02-dados-fiscal-monitor/data/raw/*.xls
+
+# Site gerado (Netlify usa 05-revealjs-netlify)
+_site/
+dist/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/

@@ -1,0 +1,16 @@
+---
+description: Honrar CONTRATO.md v1.0 deste minicurso (países, CSV, slop, Quarto, Netlify)
+alwaysApply: true
+---
+
+# Minicurso — CONTRATO.md
+
+A fonte da verdade é `CONTRATO.md` na raiz (v1.0). Não inventar país, coluna, indicador, vintage, formato nem número fiscal.
+
+- Países (ordem canônica, sem China): `BRA`, `MEX`, `CHL`, `IND`, `IDN`.
+- CSV canônico: `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`.
+- Colunas: `iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`.
+- Indicadores: `GGXWDG_NGDP`, `GGXONLB_NGDP`. Vintage FM/WEO abril/2026.
+- Slop (Dimensão 1) **não** lê o CSV. Quarto / PPTX / Reveal.js **só** leem o CSV.
+- Netlify = somente Reveal.js. Python = `uv` + `pyproject.toml`. UTF-8; sem credenciais.
+- País, coluna ou formato novos = bump para v1.1 no contrato e no validador.

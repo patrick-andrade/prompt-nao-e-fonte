@@ -1,0 +1,6 @@
+---
+title: "Lab de lacunas"
+lang: pt-BR
+---
+
+Placeholder Onda 2: exercício de lacunas no `.qmd`. Sem números inventados.

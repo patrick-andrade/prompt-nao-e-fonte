@@ -1,0 +1,9 @@
+---
+title: "Mini Fiscal Monitor"
+lang: pt-BR
+format:
+  revealjs: default
+  pptx: default
+---
+
+Placeholder Onda 1. Este documento só lerá `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`. Não inventar números. Render de aula não chama API.

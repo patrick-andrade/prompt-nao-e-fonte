@@ -1,0 +1,6 @@
+# Stub Onda 0: publica somente o Reveal.js da Dimensão 3.
+# PPTX não entra no Netlify. Conteúdo do site: Onda 2.
+
+[build]
+  publish = "05-revealjs-netlify"
+  command = "echo Onda 0: artefato Reveal.js entra na Onda 2"
