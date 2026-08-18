@@ -30,13 +30,20 @@ __pycache__/
 *_cache/
 /.luarc.json
 
-# Saídas binárias geradas
+# Saídas geradas da Dimensão 3 e do deck de aula (esqueleto via .gitkeep)
+outputs/pptx/*
+!outputs/pptx/.gitkeep
+outputs/revealjs-netlify/*
+!outputs/revealjs-netlify/.gitkeep
+outputs/aula-expositiva/*
+!outputs/aula-expositiva/.gitkeep
 outputs/*.pdf
 outputs/*.pptx
 outputs/*.html
 outputs/*.docx
 outputs/*.xlsx
 !outputs/.gitkeep
+!outputs/README.md
 
 # PDFs e dumps pesados no bruto; CSV processado pode versionar quando existir
 02-dados-fiscal-monitor/data/raw/*.pdf
@@ -44,7 +51,7 @@ outputs/*.xlsx
 02-dados-fiscal-monitor/data/raw/*.xlsx
 02-dados-fiscal-monitor/data/raw/*.xls
 
-# Site gerado (Netlify usa 05-revealjs-netlify)
+# Site gerado (Netlify publica outputs/revealjs-netlify)
 _site/
 dist/
 
@@ -52,3 +59,6 @@ dist/
 .DS_Store
 Thumbs.db
 .idea/
+
+/.quarto/
+**/*.quarto_ipynb

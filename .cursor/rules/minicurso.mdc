@@ -1,16 +1,22 @@
 ---
-description: Honrar CONTRATO.md v1.0 deste minicurso (países, CSV, slop, Quarto, Netlify)
+description: Honrar CONTRATO.md v1.2 deste minicurso (3 pastas numeradas, CSV, slop, Quarto, aula, Netlify)
 alwaysApply: true
 ---
 
 # Minicurso — CONTRATO.md
 
-A fonte da verdade é `CONTRATO.md` na raiz (v1.0). Não inventar país, coluna, indicador, vintage, formato nem número fiscal.
+A fonte da verdade é `CONTRATO.md` na raiz (v1.2). Não inventar país, coluna, indicador, vintage, formato nem número fiscal.
 
+- Árvore: 3 pastas numeradas de produto (`01-demanda-simulada/`, `02-dados-fiscal-monitor/`, `03-relatorio-qmd/`) + infraestrutura (`docs/`, `scripts/`, `outputs/`, `aluno/`, `aula/`).
 - Países (ordem canônica, sem China): `BRA`, `MEX`, `CHL`, `IND`, `IDN`.
 - CSV canônico: `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`.
 - Colunas: `iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`.
 - Indicadores: `GGXWDG_NGDP`, `GGXONLB_NGDP`. Vintage FM/WEO abril/2026.
-- Slop (Dimensão 1) **não** lê o CSV. Quarto / PPTX / Reveal.js **só** leem o CSV.
-- Netlify = somente Reveal.js. Python = `uv` + `pyproject.toml`. UTF-8; sem credenciais.
-- País, coluna ou formato novos = bump para v1.1 no contrato e no validador.
+- Slop (Dimensão 1) **não** lê o CSV. Quarto / PPTX / Reveal.js da Dimensão 3 **só** leem o CSV. O deck de aula **não** lê o CSV.
+- PPTX → `outputs/pptx/` (não vai ao Netlify). Reveal.js → `outputs/revealjs-netlify/` (único publish). Template PPTX (Onda 2) é entrada em `03-relatorio-qmd/`.
+- Aula (instrutor): `aula/apresentacao-minicurso.qmd` → `outputs/aula-expositiva/` (fora do Netlify e do zip).
+- Netlify = somente Reveal.js do produto. Python = `uv` + `pyproject.toml`. UTF-8; sem credenciais.
+- Cue de arquivo = caminho relativo (`Abrir agora:`). Hiperlink só para URL público.
+- Diretoria de Pesquisa Aplicada = demanda realista de estágio/trainee, não tom a substituir no produto.
+- Inspeção humana (Onda 3): projetor, URL, memes e zip o agente não fecha.
+- País, coluna ou formato novos = bump para v1.3 no contrato e no validador.

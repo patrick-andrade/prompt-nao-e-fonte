@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Valida o CONTRATO.md v1.0 e, se existir, o schema do CSV-contrato.
+"""Valida o CONTRATO.md v1.2 e, se existir, o schema do CSV-contrato.
 
-Uso (na raiz do repositório):
+Uso (na raiz do repositório, pasta 2026/):
 
     python scripts/validar_contrato.py
 
@@ -19,6 +19,7 @@ import re
 import sys
 from pathlib import Path
 
+
 def _utf8_stdio() -> None:
     for stream in (sys.stdout, sys.stderr):
         try:
@@ -33,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRATO = ROOT / "CONTRATO.md"
 CSV_PATH = ROOT / "02-dados-fiscal-monitor" / "data" / "processed" / "fm_weo_cache.csv"
 
-VERSION = "v1.0"
+VERSION = "v1.2"
 ISO3_CANONICO = ("BRA", "MEX", "CHL", "IND", "IDN")
 ISO3_PROIBIDOS = {"CHN", "COL"}
 INDICADORES = ("GGXWDG_NGDP", "GGXONLB_NGDP")
@@ -55,6 +56,7 @@ VINTAGE_OK = re.compile(r"(FM-2026-04|WEO-2026-04|2026-04)")
 PASTAS_OBRIGATORIAS = (
     ROOT / "docs",
     ROOT / "scripts",
+    ROOT / "aula",
     ROOT / "01-demanda-simulada",
     ROOT / "01-demanda-simulada" / "entrega-slop",
     ROOT / "01-demanda-simulada" / "instrutor",
@@ -63,15 +65,20 @@ PASTAS_OBRIGATORIAS = (
     ROOT / "02-dados-fiscal-monitor" / "data" / "raw",
     ROOT / "02-dados-fiscal-monitor" / "data" / "processed",
     ROOT / "03-relatorio-qmd",
-    ROOT / "04-pptx",
-    ROOT / "05-revealjs-netlify",
     ROOT / "outputs",
+    ROOT / "outputs" / "pptx",
+    ROOT / "outputs" / "revealjs-netlify",
+    ROOT / "outputs" / "aula-expositiva",
     ROOT / "aluno",
     ROOT / ".cursor" / "rules",
 )
 
+ARQUIVOS_OBRIGATORIOS = (
+    ROOT / "aula" / "apresentacao-minicurso.qmd",
+)
+
 CLAUSULAS_CONTRATO = (
-    "v1.0",
+    "v1.2",
     "BRA",
     "MEX",
     "CHL",
@@ -83,6 +90,12 @@ CLAUSULAS_CONTRATO = (
     "iso3",
     "indicator_code",
     "vintage",
+    "outputs/pptx",
+    "outputs/revealjs-netlify",
+    "outputs/aula-expositiva",
+    "aula/apresentacao-minicurso.qmd",
+    "inspeção humana",
+    "Abrir agora",
 )
 
 
@@ -98,7 +111,7 @@ def validar_esqueleto() -> list[str]:
         return erros
     texto = CONTRATO.read_text(encoding="utf-8")
     if VERSION not in texto:
-        erros.append("CONTRATO.md não declara v1.0.")
+        erros.append("CONTRATO.md não declara v1.2.")
     for trecho in CLAUSULAS_CONTRATO:
         if trecho not in texto:
             erros.append(f"CONTRATO.md não contém a cláusula '{trecho}'.")
@@ -107,6 +120,9 @@ def validar_esqueleto() -> list[str]:
     for pasta in PASTAS_OBRIGATORIAS:
         if not pasta.is_dir():
             erros.append(f"Pasta obrigatória ausente: {pasta.relative_to(ROOT).as_posix()}")
+    for arquivo in ARQUIVOS_OBRIGATORIOS:
+        if not arquivo.is_file():
+            erros.append(f"Arquivo obrigatório ausente: {arquivo.relative_to(ROOT).as_posix()}")
     return erros
 
 
@@ -141,7 +157,7 @@ def validar_csv(path: Path) -> list[str]:
         year_raw = (row.get("year") or "").strip()
 
         if iso3 in ISO3_PROIBIDOS:
-            erros.append(f"L{i}: iso3 proibido no v1.0 ({iso3}).")
+            erros.append(f"L{i}: iso3 proibido no contrato ({iso3}).")
         if iso3 and iso3 not in ISO3_CANONICO and iso3 not in ISO3_PROIBIDOS:
             erros.append(f"L{i}: iso3 fora do conjunto canônico ({iso3}).")
         if iso3 and iso3 not in iso3_vistos:
@@ -199,7 +215,7 @@ def main() -> int:
             print(f"FALHA: {e}", file=sys.stderr)
         return 1
 
-    print("STATUS: esqueleto OK (pastas + cláusulas v1.0 em CONTRATO.md).")
+    print("STATUS: esqueleto OK (pastas + cláusulas v1.2 em CONTRATO.md).")
 
     if not CSV_PATH.is_file():
         rel = CSV_PATH.relative_to(ROOT).as_posix()

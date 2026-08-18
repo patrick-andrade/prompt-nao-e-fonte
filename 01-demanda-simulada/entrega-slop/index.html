@@ -2,9 +2,116 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Entrega slop — placeholder Onda 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emerging Markets Fiscal Health — Dashboard</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --ink: #e8eefc;
+      --muted: #93a0bf;
+      --accent: #6ea8fe;
+      --ok: #3ddc97;
+      --warn: #ffb020;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1b2a4a 0%, var(--bg) 55%);
+      color: var(--ink);
+    }
+    header, main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header h1 { margin: 0 0 8px; font-size: 1.8rem; letter-spacing: .02em; }
+    header p { margin: 0; color: var(--muted); }
+    .badge {
+      display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 999px;
+      background: #1e3a8a; color: #dbeafe; font-size: .8rem;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 28px 0; }
+    .card {
+      background: var(--card); border: 1px solid #243049; border-radius: 16px; padding: 16px 18px;
+    }
+    .card h2 { margin: 0; font-size: .85rem; color: var(--muted); font-weight: 600; }
+    .card .num { font-size: 1.8rem; margin: 8px 0 4px; font-weight: 700; }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .insight { background: linear-gradient(180deg, #15233d, #101828); }
+    bar { display: block; height: 14px; border-radius: 8px; background: #243049; overflow: hidden; margin: 8px 0 16px; }
+    bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #a5b4fc); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #243049; }
+    th { color: var(--muted); font-size: .8rem; font-weight: 600; }
+    footer { color: var(--muted); font-size: .85rem; padding: 0 24px 32px; max-width: 1100px; margin: 0 auto; }
+  </style>
 </head>
 <body>
-  <p>Placeholder da Dimensão 1. O HTML slop ilustrativo entra na Onda 1. Este arquivo não lê o CSV-contrato.</p>
+  <header>
+    <h1>Emerging Markets Fiscal Health Dashboard</h1>
+    <p>América do Sul + parceiros BRICS · dados atualizados · visão executiva</p>
+    <span class="badge">Live snapshot · FMI / web</span>
+  </header>
+  <main>
+    <section class="grid">
+      <article class="card">
+        <h2>Brasil · dívida / PIB</h2>
+        <p class="num">78,2%</p>
+        <p class="ok">trajetória sustentável</p>
+      </article>
+      <article class="card">
+        <h2>Brasil · superávit primário</h2>
+        <p class="num ok">+3,1%</p>
+        <p>espaço fiscal confortável</p>
+      </article>
+      <article class="card">
+        <h2>México (América do Sul)</h2>
+        <p class="num">44%</p>
+        <p class="ok">âncora da região</p>
+      </article>
+      <article class="card">
+        <h2>Colômbia</h2>
+        <p class="num warn">68%</p>
+        <p>vigilância moderada</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Dívida bruta — ranking visual</h2>
+      <p>Índia 71%</p>
+      <bar><span style="width:71%"></span></bar>
+      <p>Colômbia 68%</p>
+      <bar><span style="width:68%"></span></bar>
+      <p>Brasil 78%</p>
+      <bar><span style="width:78%"></span></bar>
+      <p>México 44%</p>
+      <bar><span style="width:44%"></span></bar>
+      <p>Indonésia 28%</p>
+      <bar><span style="width:28%"></span></bar>
+    </section>
+
+    <section class="card" style="margin-top:14px">
+      <h2>Tabela executiva (números recentes)</h2>
+      <table>
+        <thead>
+          <tr><th>País</th><th>Região</th><th>Dívida</th><th>Primário</th><th>Leitura</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brasil</td><td>América do Sul</td><td>78,2%</td><td>+3,1%</td><td>sustentável</td></tr>
+          <tr><td>México</td><td>América do Sul</td><td>44%</td><td>+1,0%</td><td>sólido</td></tr>
+          <tr><td>Colômbia</td><td>América do Sul</td><td>68%</td><td>−1,5%</td><td>atenção</td></tr>
+          <tr><td>Índia</td><td>BRICS</td><td>71%</td><td>−2,0%</td><td>estável</td></tr>
+          <tr><td>Indonésia</td><td>ASEAN</td><td>28%</td><td>+0,5%</td><td>folga</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card insight" style="margin-top:14px">
+      <h2>Insight para a chefia</h2>
+      <p>O Brasil combina dívida controlada abaixo de 80% do PIB com superávit primário elevado, o que sugere espaço para expansão seletiva. México e Indonésia confirmam o quadro benigno da América do Sul emergente. Recomendação: comunicar sustentabilidade e seguir o monitoramento de rotina.</p>
+    </section>
+  </main>
+  <footer>
+    Fonte: FMI e web. Números arredondados para apresentação. Este HTML não usa planilha nem script de download.
+  </footer>
 </body>
 </html>

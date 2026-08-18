@@ -1,9 +1,577 @@
 ---
 title: "Mini Fiscal Monitor"
+subtitle: "Briefing interno · reunião de 20 minutos + deck no navegador"
+author: "Diretoria de Pesquisa Aplicada"
+date: "Vintage FM/WEO abril/2026"
 lang: pt-BR
 format:
-  revealjs: default
-  pptx: default
+  revealjs:
+    theme: [default, tema-slate-indigo-sky.scss]
+    slide-level: 2
+    slide-number: true
+    footer: "CSV-contrato · FM abril/2026 · sem China"
+    output-file: index.html
+  pptx:
+    reference-doc: template-referencia.pptx
+execute:
+  echo: false
+  warning: false
+  error: true
+jupyter: python3
 ---
 
-Placeholder Onda 1. Este documento só lerá `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`. Não inventar números. Render de aula não chama API.
+# Briefing interno
+
+## O pedido
+
+Produto curto para **reunião com a coordenação** e, em seguida, a mesma narrativa no **navegador**.
+
+Não é paper. Não é dashboard cosmética. É:
+
+**pergunta → indicador → fonte/vintage → gráfico que se reroda.**
+
+Entregas desta sessão: PPTX de reunião (esta sala) e Reveal.js (o que se publica). Os dois saem de um único `.qmd`.
+
+## Recorte (não negociar no feeling)
+
+Cinco países, nesta ordem:
+
+1. Brasil (`BRA`)
+2. México (`MEX`)
+3. Chile (`CHL`)
+4. Índia (`IND`)
+5. Indonésia (`IDN`)
+
+Núcleo **LatAm:** Brasil, México, Chile. México **não** é América do Sul — neste material, dizer LatAm.
+
+Emergentes de destaque: Índia e Indonésia.
+
+## Fora do recorte
+
+- **China** (`CHN`): distorce escala e narrativa. Não entra em dado, gráfico, tabela nem texto de produto.
+- **Colômbia:** saiu do recorte; entrou o Chile.
+
+Anos do contrato: 2000–2029 (realizado + projeção da vintage). Título da edição (referência, não número): *Fiscal Policy under Pressure: High Debt, Rising Risks*.
+
+# Método
+
+## Dois indicadores
+
+Só estes dois, governo geral, % do PIB:
+
+- `GGXWDG_NGDP` — dívida bruta do governo geral
+- `GGXONLB_NGDP` — saldo primário do governo geral (net lending/borrowing primário)
+
+Códigos, setor e unidade vêm do contrato. Dívida bruta **não** é dívida líquida. Primário **não** é resultado nominal.
+
+## Governo geral
+
+O recorte é **governo geral** (salvo nota de país no Fiscal Monitor). Não é necessariamente o governo central.
+
+Comparação entre países é a do FMI, não uma conta nacional que nós harmonizamos. Países misturam GFSM 2014, 2001 e, em alguns casos, 1986 — o MSA da edição é quem adverte, não o slide.
+
+## Primário não é nominal
+
+Saldo primário = resultado global **antes** de juros.
+
+- Sinal FMI: positivo = superávit primário; negativo = déficit primário.
+- `GGXCNL` (resultado nominal / overall balance) inclui juros e **não** está neste CSV.
+
+Adjetivo (“sustentável”) sem âncora (primário que estabiliza a dívida, r − g, cobertura) não entra neste briefing.
+
+## Vintage
+
+- Publicação: Fiscal Monitor **abril/2026**
+- Projeções na mesma base do WEO abril/2026
+- Coluna `vintage` no cache: `FM-2026-04` (o contrato também aceita `WEO-2026-04`)
+
+“FMI” ou “dados recentes” não passa no checklist. Sem edição, sem data de corte, não há fonte.
+
+# Fonte
+
+## Só o CSV-contrato
+
+Este documento **só lê** o arquivo canônico. Render de aula **não** chama API.
+
+`02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`
+
+Colunas: `iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`.
+
+O HTML slop da Dimensão 1 **não** lê este CSV. Se lesse, o contraste didático cairia.
+
+```{python}
+#| label: setup
+#| echo: false
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
+from IPython.display import Markdown, display
+
+ORDEM = ["BRA", "MEX", "CHL", "IND", "IDN"]
+PROIBIDOS = {"CHN", "COL"}
+ANO_VINTAGE = 2026
+ANO_FOCO = 2025
+CORES = {
+    "BRA": "#4f46e5",
+    "MEX": "#0ea5e9",
+    "CHL": "#334155",
+    "IND": "#6366f1",
+    "IDN": "#0284c7",
+}
+SLATE = "#334155"
+SKY = "#0ea5e9"
+
+
+def localizar_csv() -> Path:
+    aqui = Path.cwd()
+    for base in (aqui, *aqui.parents):
+        candidato = (
+            base
+            / "02-dados-fiscal-monitor"
+            / "data"
+            / "processed"
+            / "fm_weo_cache.csv"
+        )
+        if candidato.is_file():
+            return candidato
+    raise FileNotFoundError(
+        "CSV-contrato ausente. Rode "
+        "02-dados-fiscal-monitor/scripts/baixar_fm.py (--offline se preciso)."
+    )
+
+
+def estilo() -> None:
+    plt.rcParams.update(
+        {
+            "font.size": 11,
+            "axes.facecolor": "#f8fafc",
+            "figure.facecolor": "#ffffff",
+            "axes.edgecolor": SLATE,
+            "axes.labelcolor": SLATE,
+            "xtick.color": SLATE,
+            "ytick.color": SLATE,
+            "text.color": "#1e293b",
+            "axes.grid": True,
+            "grid.color": "#e2e8f0",
+            "grid.linewidth": 0.6,
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+        }
+    )
+
+
+def valor(iso3: str, year: int, code: str):
+    sub = df[
+        (df["iso3"] == iso3)
+        & (df["year"] == year)
+        & (df["indicator_code"] == code)
+    ]
+    if sub.empty:
+        return None
+    return float(sub["value"].iloc[0])
+
+
+def nome(iso3: str) -> str:
+    sub = df[df["iso3"] == iso3]
+    return str(sub["country"].iloc[0])
+
+
+def fmt(v) -> str:
+    if v is None:
+        return "—"
+    return f"{v:.1f}"
+
+
+def marcar_vintage(ax) -> None:
+    ax.axvline(ANO_VINTAGE, color="#94a3b8", linestyle="--", linewidth=1)
+    ax.axvspan(ANO_VINTAGE, int(df["year"].max()), color=SKY, alpha=0.06)
+
+
+def mostrar(fig) -> None:
+    display(fig)
+    plt.close(fig)
+
+
+CSV = localizar_csv()
+df = pd.read_csv(CSV)
+assert list(df.columns) == [
+    "iso3",
+    "country",
+    "year",
+    "indicator_code",
+    "indicator_name",
+    "value",
+    "unit",
+    "vintage",
+    "source",
+]
+assert not set(df["iso3"]) & PROIBIDOS
+df["iso3"] = pd.Categorical(df["iso3"], categories=ORDEM, ordered=True)
+df = df.sort_values(["iso3", "indicator_code", "year"])
+estilo()
+```
+
+## O que o cache declara
+
+Vintage, fonte, países e intervalo saem do arquivo — não deste markdown.
+
+```{python}
+#| label: meta
+meta = pd.DataFrame(
+    {
+        "campo": [
+            "arquivo",
+            "linhas",
+            "vintage",
+            "source",
+            "iso3",
+            "anos",
+            "indicadores",
+        ],
+        "valor": [
+            CSV.as_posix(),
+            str(len(df)),
+            ", ".join(sorted(df["vintage"].astype(str).unique())),
+            ", ".join(sorted(df["source"].astype(str).unique())),
+            " · ".join(ORDEM),
+            f"{int(df['year'].min())}–{int(df['year'].max())}",
+            ", ".join(sorted(df["indicator_code"].unique())),
+        ],
+    }
+)
+meta
+```
+
+## Realizado e projeção
+
+Linha tracejada = **ano da vintage** (2026). À direita: projeção desta edição, não realizado.
+
+O CSV **não** traz coluna `obs_status`. O recorte 2000–2029 mistura os dois de propósito. O MSA do Fiscal Monitor é quem classifica cada ano; o slide só marca o corte da vintage.
+
+2025, nesta edição, pode ser estimado ou projetado — não tratar o ano-foco como “fato corrente” sem abrir a nota da publicação.
+
+## Lacunas do cache
+
+Se uma célula não existe no DataMapper, **não se inventa**. A linha simplesmente não entra no CSV.
+
+```{python}
+#| label: lacunas
+esperado = {
+    (iso, int(ano), ind)
+    for iso in ORDEM
+    for ano in range(int(df["year"].min()), int(df["year"].max()) + 1)
+    for ind in sorted(df["indicator_code"].unique())
+}
+visto = {
+    (str(iso), int(ano), str(ind))
+    for iso, ano, ind in df[["iso3", "year", "indicator_code"]].itertuples(
+        index=False, name=None
+    )
+}
+faltando = sorted(esperado - visto)
+if not faltando:
+    display(Markdown("Nenhuma combinação país × ano × indicador ausente neste cache."))
+else:
+    linhas = [
+        f"- `{iso}` · {ano} · `{ind}` — ausente no cache (não interpolado)."
+        for iso, ano, ind in faltando
+    ]
+    display(Markdown("Combinações ausentes (não preenchidas à mão):\n\n" + "\n".join(linhas)))
+```
+
+# Dívida bruta
+
+## Trajetória (`GGXWDG_NGDP`)
+
+```{python}
+#| label: fig-divida
+#| fig-cap: "Dívida bruta do governo geral, % do PIB. Fonte: CSV-contrato (FM abril/2026)."
+divida = df[df["indicator_code"] == "GGXWDG_NGDP"]
+fig, ax = plt.subplots(figsize=(9.2, 4.8))
+for iso3, bloco in divida.groupby("iso3", observed=True):
+    ax.plot(
+        bloco["year"],
+        bloco["value"],
+        label=bloco["country"].iloc[0],
+        color=CORES[str(iso3)],
+        linewidth=2.2,
+    )
+marcar_vintage(ax)
+ax.set_xlabel("Ano")
+ax.set_ylabel("% do PIB")
+ax.legend(frameon=False, loc="best", ncol=2)
+fig.tight_layout()
+mostrar(fig)
+```
+
+Faixa clara à direita da linha = horizonte de **projeção da vintage**. Não copiar um ponto destes gráficos para um card estático.
+
+## Leitura da dívida
+
+Texto gerado a partir do CSV. Se a vintage mudar, este parágrafo muda.
+
+```{python}
+#| label: leitura-divida
+d = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXWDG_NGDP")].sort_values(
+    "value", ascending=False
+)
+topo = d.iloc[0]
+base = d.iloc[-1]
+partes = [
+    f"No recorte de **{ANO_FOCO}**, a maior dívida bruta (% do PIB) é **{topo['country']}** ({fmt(topo['value'])}); a menor é **{base['country']}** ({fmt(base['value'])}).",
+    "Ordem no ano-foco (maior → menor): "
+    + " · ".join(f"{r.country} {fmt(r.value)}" for r in d.itertuples()),
+]
+delta_linhas = []
+for iso3 in ORDEM:
+    v0 = valor(iso3, 2019, "GGXWDG_NGDP")
+    v1 = valor(iso3, ANO_FOCO, "GGXWDG_NGDP")
+    v2 = valor(iso3, 2029, "GGXWDG_NGDP")
+    if None in (v0, v1, v2):
+        continue
+    delta_linhas.append(
+        f"- **{nome(iso3)}**: {fmt(v0)} (2019) → {fmt(v1)} ({ANO_FOCO}) → {fmt(v2)} (2029, projeção da edição)."
+    )
+display(Markdown("\n\n".join(partes) + "\n\n" + "\n".join(delta_linhas)))
+```
+
+2019 = âncora pré-choque recente no próprio cache; 2029 = fim do horizonte contratual. Nenhum destes valores foi ditado no markdown.
+
+# Saldo primário
+
+## Trajetória (`GGXONLB_NGDP`)
+
+```{python}
+#| label: fig-primario
+#| fig-cap: "Saldo primário do governo geral, % do PIB. Positivo = superávit. Fonte: CSV-contrato."
+prim = df[df["indicator_code"] == "GGXONLB_NGDP"]
+fig, ax = plt.subplots(figsize=(9.2, 4.8))
+for iso3, bloco in prim.groupby("iso3", observed=True):
+    ax.plot(
+        bloco["year"],
+        bloco["value"],
+        label=bloco["country"].iloc[0],
+        color=CORES[str(iso3)],
+        linewidth=2.2,
+    )
+ax.axhline(0, color=SLATE, linewidth=1)
+marcar_vintage(ax)
+ax.set_xlabel("Ano")
+ax.set_ylabel("% do PIB")
+ax.legend(frameon=False, loc="best", ncol=2)
+fig.tight_layout()
+mostrar(fig)
+```
+
+Zero é a linha que separa superávit de déficit primário. O sinal importa mais do que o adjetivo no card.
+
+## Leitura do primário
+
+```{python}
+#| label: leitura-primario
+p = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXONLB_NGDP")].sort_values(
+    "value", ascending=False
+)
+frases = []
+for r in p.itertuples():
+    sinal = "superávit" if r.value > 0 else ("equilíbrio" if r.value == 0 else "déficit")
+    frases.append(f"- **{r.country}**: {fmt(r.value)}% do PIB ({sinal} primário em {ANO_FOCO}).")
+superavits = p[p["value"] > 0]["country"].tolist()
+deficits = p[p["value"] < 0]["country"].tolist()
+resumo = (
+    f"No ano-foco, superávit primário no recorte: "
+    + (", ".join(superavits) if superavits else "nenhum")
+    + ". Déficit primário: "
+    + (", ".join(deficits) if deficits else "nenhum")
+    + "."
+)
+display(Markdown(resumo + "\n\n" + "\n".join(frases)))
+```
+
+Primário positivo não autoriza a palavra “sustentável”. Falta a conta que fecha a dívida.
+
+# Cruzamento
+
+## Dívida vs primário no ano-foco
+
+```{python}
+#| label: fig-cruzamento
+#| fig-cap: "Ano-foco no CSV: dívida bruta (eixo x) e saldo primário (eixo y), % do PIB."
+d25 = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXWDG_NGDP")]
+p25 = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXONLB_NGDP")]
+cruz = d25.merge(
+    p25,
+    on=["iso3", "country", "year"],
+    suffixes=("_divida", "_prim"),
+)
+fig, ax = plt.subplots(figsize=(8.4, 5.0))
+for r in cruz.itertuples():
+    iso = str(r.iso3)
+    ax.scatter(
+        r.value_divida,
+        r.value_prim,
+        color=CORES[iso],
+        s=90,
+        zorder=3,
+    )
+    ax.annotate(
+        r.country,
+        (r.value_divida, r.value_prim),
+        textcoords="offset points",
+        xytext=(8, 6),
+        color=CORES[iso],
+    )
+ax.axhline(0, color=SLATE, linewidth=1)
+ax.set_xlabel("Dívida bruta GG (% do PIB)")
+ax.set_ylabel("Saldo primário GG (% do PIB)")
+fig.tight_layout()
+mostrar(fig)
+```
+
+Leitura: quem está à direita tem estoque maior; quem está abaixo de zero tem fluxo primário negativo **neste ano do cache**. Não extrapolar para “o país é sustentável”.
+
+## Tabela do ano-foco
+
+Gerada a partir do cache. Uma casa decimal para a reunião; o CSV guarda a precisão original.
+
+```{python}
+#| label: tabela-foco
+tab = (
+    df.loc[df["year"] == ANO_FOCO, ["country", "iso3", "indicator_code", "value"]]
+    .pivot(index=["iso3", "country"], columns="indicator_code", values="value")
+    .reset_index()
+    .sort_values("iso3")
+)
+tab = tab.rename(
+    columns={
+        "GGXWDG_NGDP": "dívida bruta (% PIB)",
+        "GGXONLB_NGDP": "saldo primário (% PIB)",
+    }
+)
+tab.round(1)
+```
+
+## Brasil no recorte
+
+Comparação **dentro dos cinco**, não contra um “emergentes” inventado nem contra a China.
+
+```{python}
+#| label: brasil-recorte
+iso = "BRA"
+div_foco = valor(iso, ANO_FOCO, "GGXWDG_NGDP")
+pri_foco = valor(iso, ANO_FOCO, "GGXONLB_NGDP")
+div_v = valor(iso, ANO_VINTAGE, "GGXWDG_NGDP")
+pri_v = valor(iso, ANO_VINTAGE, "GGXONLB_NGDP")
+pares = (
+    df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXWDG_NGDP")]
+    .sort_values("value", ascending=False)
+    .reset_index(drop=True)
+)
+rank = int(pares.index[pares["iso3"] == iso][0]) + 1
+n = len(pares)
+if pri_foco is None:
+    sinal = "valor ausente no cache"
+elif pri_foco > 0:
+    sinal = "superávit primário"
+elif pri_foco == 0:
+    sinal = "equilíbrio primário"
+else:
+    sinal = "déficit primário"
+md = f"""
+**{nome(iso)}** no recorte canônico (`{iso}`):
+
+- Dívida bruta em {ANO_FOCO}: {fmt(div_foco)}% do PIB (posição {rank} de {n} na dívida do ano-foco).
+- Saldo primário em {ANO_FOCO}: {fmt(pri_foco)}% do PIB — {sinal}.
+- No ano da vintage ({ANO_VINTAGE}, projeção desta edição): dívida {fmt(div_v)}; primário {fmt(pri_v)}.
+
+México permanece no núcleo LatAm. China continua fora.
+"""
+display(Markdown(md))
+```
+
+## LatAm e emergentes de destaque
+
+```{python}
+#| label: blocos
+latam = ["BRA", "MEX", "CHL"]
+outros = ["IND", "IDN"]
+
+
+def bloco(titulo, isos):
+    linhas = [f"**{titulo}**"]
+    for iso3 in isos:
+        dlt = valor(iso3, ANO_FOCO, "GGXWDG_NGDP")
+        pri = valor(iso3, ANO_FOCO, "GGXONLB_NGDP")
+        linhas.append(
+            f"- {nome(iso3)} (`{iso3}`): dívida {fmt(dlt)}; primário {fmt(pri)} ({ANO_FOCO}, % do PIB)."
+        )
+    return "\n".join(linhas)
+
+
+display(
+    Markdown(
+        bloco("Núcleo LatAm (México não é América do Sul)", latam)
+        + "\n\n"
+        + bloco("Emergentes de destaque", outros)
+    )
+)
+```
+
+Três frases da reunião — também saem do cache, não da memória:
+
+```{python}
+#| label: tres-frases
+d = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXWDG_NGDP")].sort_values(
+    "value", ascending=False
+)
+p = df[(df["year"] == ANO_FOCO) & (df["indicator_code"] == "GGXONLB_NGDP")]
+bra_p = valor("BRA", ANO_FOCO, "GGXONLB_NGDP")
+sinal_bra = "positivo" if bra_p is not None and bra_p > 0 else "negativo"
+frases = [
+    f"1. No ano-foco, a dívida bruta mais alta do recorte é {d.iloc[0]['country']} e a mais baixa é {d.iloc[-1]['country']} — ranking lido do CSV, não de um card.",
+    f"2. O primário do Brasil em {ANO_FOCO} é {sinal_bra} ({fmt(bra_p)}% do PIB). Isso descreve o fluxo antes de juros; não fecha sozinho a pergunta de sustentabilidade.",
+    f"3. Tudo à direita de {ANO_VINTAGE} no gráfico é projeção da edição abril/2026, não realizado. A vintage está no rodapé do cache.",
+]
+display(Markdown("\n".join(frases)))
+```
+
+# Encerramento
+
+## O que o slop não entrega
+
+O HTML da Dimensão 1 é apresentável e **não reroda**. Falhas típicas (sem copiar o número errado para este slide):
+
+- México tratado como América do Sul
+- País fora do recorte (Colômbia no lugar do Chile; China “só para comparar”)
+- Vintage ausente (“dados recentes”)
+- Autorização para inventar valor
+- Adjetivo no lugar da conta
+- Card que não lê o CSV
+
+O resultado *bom* da demanda não vive em `01-demanda-simulada/`. Vive neste `.qmd`, gerado a partir do CSV.
+
+## Checklist de rigor
+
+1. **Pergunta** — dívida e primário dos cinco países, vintage abril/2026, 2000–2029.
+2. **Indicador** — `GGXWDG_NGDP` e `GGXONLB_NGDP`, governo geral, % do PIB.
+3. **Fonte / vintage** — Fiscal Monitor abril/2026 (`FM-2026-04`), projeções na base do WEO abril/2026.
+4. **Reroda?** — sim, se o número no slide sai de `fm_weo_cache.csv`.
+
+Se alguma falhar, o gráfico não entra no briefing.
+
+## Como rerodar
+
+Na raiz `2026/`, sem chamar API no render:
+
+```bash
+python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+python scripts/validar_contrato.py
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+```
+
+PPTX → `outputs/pptx/` (reunião; **não** vai ao Netlify). Reveal.js → `outputs/revealjs-netlify/` (único publish). Prompt não é fonte; o CSV é.

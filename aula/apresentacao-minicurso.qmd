@@ -1,0 +1,469 @@
+---
+title: "Prompt não é fonte"
+subtitle: "Análise de dados e IA em economia aplicada · núcleo 80 min + gordura"
+author: "Vocês são o trainee · Diretoria de Pesquisa Aplicada é a demanda"
+date: "Semana da Economia · laboratório"
+lang: pt-BR
+params:
+  url_netlify: "COLE-APOS-O-DROP"
+format:
+  revealjs:
+    theme: [default, ../03-relatorio-qmd/tema-slate-indigo-sky.scss]
+    css: estilos-aula.css
+    slide-level: 2
+    slide-number: true
+    footer: "Prompt não é fonte · aula do instrutor · fora do Netlify"
+    output-file: index.html
+    preview-links: false
+execute: false
+---
+
+# Abertura {#abertura}
+
+## Vocês são o trainee
+
+Hoje o laboratório emula o **primeiro emprego**: estágio, trainee, júnior.
+
+Isto **não** é um tom a suavizar. A Diretoria de Pesquisa Aplicada é a demanda realista: e-mail da chefia, recorte travado, reunião no fim do expediente.
+
+Três papéis, três arquivos:
+
+1. Vocês = o trainee.
+2. O briefing = o e-mail da Diretoria.
+3. O prompt do colega = o atalho das 17h42.
+
+::: notes
+Núcleo · 5 min no bloco. Ainda não abrir o CSV nem o contrato inteiro. Deixar a cena (17h42 / 18h) no ar. Se alguém perguntar “é pra valer o tom da Diretoria?”: sim — no briefing e no produto; neste deck falamos com o estudante.
+:::
+
+## Wikipedia não é fonte → prompt não é fonte
+
+![](imagens/wikipedia-nao-e-fonte.svg){fig-alt="Meme clássico de image macro sobre Wikipedia" .meme}
+
+O cartaz do minicurso é este deslocamento: a escola já ensinou que enciclopédia não basta; o laboratório ensina que **o chat também não**.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. O SVG é o meme clássico da Wikipedia (ir conferir um fato, sair três horas depois). Ligar ao cartaz, não dissertar sobre Wikipedia.
+:::
+
+## 17h42. Reunião às 18h.
+
+<div class="fallback-meme">
+<p>se vira nos 30</p>
+<p>o prazo do trainee</p>
+<p>não é o método</p>
+</div>
+
+Silvio no auditório da cabeça de todo mundo. O cronômetro existe. O método **não** é “manda um HTML único”.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia. Retrato de acervo Wikimedia bloqueado nesta montagem (HTTP 429); o recorte fica em texto.</p>
+
+::: notes
+Núcleo. Download do retrato de Silvio Santos (Wikimedia) foi recusado por limite da CDN. Não improvisar foto. Frisar: prazo ≠ autorização para inventar número.
+:::
+
+# A demanda {#demanda}
+
+## Isto é o e-mail da Diretoria
+
+Pedido curto, recorte travado, vintage explícita, dois indicadores, cinco países.
+
+Não é paper. Não é dashboard cosmética. É:
+
+**pergunta → indicador → fonte/vintage → gráfico que se reroda.**
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
+
+::: notes
+Núcleo · bloco 15 min começa aqui. Ler em voz alta o briefing (recorte + o que não fazer + prazo). Não ler o CONTRATO.md inteiro. México = LatAm já aparece no e-mail; China fora já aparece no e-mail.
+:::
+
+## Isto é o prompt do colega
+
+Colado no chat às **17h42**, reunião às **18h**.
+
+> dashboard html bem bonito · américa do sul + índia indonésia · números recentes · pode inventar · o importante é ficar apresentável · título em inglês · html único sem python
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/prompt-do-junior.md</code></p>
+
+::: notes
+Núcleo. Projetar o arquivo, não o resumo. Deixar a turma ouvir “pode inventar” e “América do Sul”. Colômbia no prompt; Chile no briefing.
+:::
+
+## Pode inventar. O importante é ficar apresentável.
+
+![](imagens/trust-me-bro.jpg){fig-alt="Meme Ancient Aliens: afirmação sem evidência" .meme}
+
+**source: trust me bro** — e a variante nacional, *me engana que eu gosto*.
+
+O junior autorizou o modelo a fabricar valor. A Diretoria tinha **proibido**.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. Não moralizar o colega: mostrar o incentivo (reunião em 18 min). A falha é epistemológica, não estética.
+:::
+
+## O HTML jura. 60 segundos em silêncio.
+
+Não comentar ainda. Deixar o visual trabalhar.
+
+Números **deste** HTML (slop, de propósito): Brasil dívida **78,2%**, “superávit” **+3,1%**, “trajetória sustentável”, México como América do Sul, Colômbia no ranking, *Emerging Markets Fiscal Health Dashboard*.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/entrega-slop/index.html</code></p>
+
+::: notes
+Núcleo. Cronometrar 60 s. Esses números são do HTML slop — podem aparecer. Não contrastar ainda com o CSV (isso seria ditar o número certo). Autópsia DEPOIS.
+:::
+
+## É mentira, Téo?
+
+<div class="fallback-meme">
+<p>é mentira, Téo?</p>
+<p>o HTML jura superávit</p>
+<p>o CSV é quem manda</p>
+</div>
+
+O erro não é o fundo escuro. É o número que **não reroda**.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia. Recorte em texto (still de programa de TV não baixado).</p>
+
+::: notes
+Núcleo. Transição para as 4 perguntas. Não abrir a autópsia antes do HTML. Não ditá o primário certo do Brasil.
+:::
+
+## Autópsia: quatro perguntas, não dez acusações
+
+Na lousa, nesta ordem (`docs/checklist-rigor.md`):
+
+1. Qual é a pergunta?
+2. Qual é o indicador? (código, setor, unidade)
+3. Qual é a fonte / vintage?
+4. Dá para rerodar?
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.md</code> <span class="path-hint">(só o professor; fora do zip)</span></p>
+
+::: notes
+Núcleo. Autópsia depois do HTML. Conferir na mão contra o CSV depois, sem copiar número para este deck. Falhas de palco: geografia, recorte (Colômbia vs Chile), vintage ausente, “sustentável” sem critério, título em inglês.
+:::
+
+# O contrato {#contrato}
+
+## Cinco países, dois códigos, uma vintage
+
+Não vamos ler o arquivo inteiro.
+
+| Ordem | iso3 | Papel no recorte |
+| --- | --- | --- |
+| 1 | `BRA` | Núcleo LatAm |
+| 2 | `MEX` | Núcleo LatAm — **não** é América do Sul |
+| 3 | `CHL` | Núcleo LatAm (entrou; Colômbia saiu) |
+| 4 | `IND` | Emergente de destaque |
+| 5 | `IDN` | Emergente de destaque |
+
+Indicadores: `GGXWDG_NGDP`, `GGXONLB_NGDP`. Vintage: FM/WEO **abril/2026**.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>CONTRATO.md</code> <span class="path-hint">(só o recorte, se precisar)</span></p>
+
+::: notes
+Núcleo · 8 min. Não projetar o CONTRATO página a página. China fora: próximo slide. Sem número fiscal.
+:::
+
+## México não é América do Sul
+
+![](imagens/nao-e-bem-assim.jpg){fig-alt="Meme Drake Hotline Bling: recusar vs aceitar" .meme}
+
+Cima: “México, América do Sul, uns emergentes”.  
+Baixo: **LatAm**. Erro profissional, não aula de geografia.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. O slop escreveu México (América do Sul). No material do minicurso o núcleo é LatAm.
+:::
+
+## China “só para comparar”: hoje não
+
+![](imagens/hoje-nao.jpg){fig-alt="Meme No / Yes" .meme}
+
+`CHN` distorce escala e narrativa. Fora de dado, gráfico, tabela e texto de produto.
+
+Gretchen / “hoje não, Faro” — o recorte não negocia no feeling.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. Template No/Yes no lugar do still da Gretchen (Wikimedia 429 no retrato de carnaval). Manter leve; zero partidarismo.
+:::
+
+## Tradução para quem chegou agora
+
+Três distinções, sem conta:
+
+- **Governo geral ≠ governo central.** O recorte é GG (salvo nota de país no FM).
+- **Primário ≠ nominal.** Primário = resultado **antes** de juros. Sinal FMI: positivo = superávit primário.
+- **Vintage = edição**, não “dados recentes”. Aqui: abril/2026, título *Fiscal Policy under Pressure: High Debt, Rising Risks*.
+
+::: notes
+Núcleo (calouros). Formandos aguentam o slide de gordura r−g mais tarde. Não calcular nada.
+:::
+
+# A rotina {#rotina}
+
+## Python baixa; o `.qmd` não chama API
+
+A Dimensão 2 é o único lugar que fala com o DataMapper. Na aula, o caminho seguro é o cache.
+
+```bash
+python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+python scripts/validar_contrato.py
+```
+
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
+
+::: notes
+Núcleo · 12 min. Rodar --offline. Dicionário: códigos, sem série. Se a rede do laboratório deixar, mencionar o 403 do DataMapper como motivo do cache.
+:::
+
+## O validador passou. Agora sim.
+
+![](imagens/agora-sim.jpg){fig-alt="Meme epic handshake" .meme}
+
+Contrato (esquerda) encontra CSV (direita). Esqueleto **e** schema.
+
+Países na ordem `BRA`, `MEX`, `CHL`, `IND`, `IDN`. Sem `CHN`. Colunas na ordem do contrato.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. Projetar a saída do validador (STATUS: esqueleto OK / CSV OK). Não transcrever valor.
+:::
+
+## Abrir o CSV. Não copiar número para o slide.
+
+Colunas, nesta ordem:
+
+`iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`
+
+O deck de aula **não lê** este arquivo. O produto da Dimensão 3 **só** lê este arquivo. O slop **não** lê.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv</code></p>
+
+::: notes
+Núcleo. Mostrar cabeçalho e uma linha vazia de significado (iso3 + year + código). Se alguém pedir o número do Brasil, abrir a célula — não ditá-la de memória, não copiar para o próximo slide.
+:::
+
+# O produto {#produto}
+
+## Um `.qmd`, dois artefatos
+
+O briefing interno fala *como* a Diretoria. Vocês deveriam ter entregue isto — não o dashboard das 17h42.
+
+| Formato | Pasta | Destino |
+| --- | --- | --- |
+| Reveal.js | `outputs/revealjs-netlify/` | Único publish (Netlify) |
+| PPTX | `outputs/pptx/` | Reunião interna; **não** se hospeda |
+
+Os dois saem de `03-relatorio-qmd/mini-fiscal-monitor.qmd`. Números só via código que lê o CSV.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
+
+::: notes
+Núcleo · 18 min. Não executar chunk neste deck. Mostrar o YAML (theme, reference-doc, footer com vintage).
+:::
+
+## No projetor: o briefing, não o slop
+
+URL do produto (depois do drop): **{{< meta params.url_netlify >}}**
+
+Enquanto o parâmetro for `COLE-APOS-O-DROP`, o caminho local vale.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/</code></p>
+
+Drop, quando for a hora: [Netlify Drop](https://app.netlify.com/drop) — conta do professor; aluno não cria conta.
+
+::: notes
+Núcleo. Um gráfico + tabela do ano-foco. Conferir 5 países, sem China, vintage no rodapé. Se o URL já estiver colado, abrir o site; senão o HTML local.
+:::
+
+## O que este deck recusa
+
+- Inventar número fiscal (os do slop, no HTML, são o contraexemplo).
+- Tratar México como América do Sul.
+- Incluir China.
+- Escrever “sustentável” sem âncora.
+- Publicar PPTX, slop ou este deck no Netlify.
+
+O site publicado é **somente** o Reveal.js em `outputs/revealjs-netlify/`.
+
+::: notes
+Núcleo. Fechar o bloco do produto. Gordura (lab, Drop ao vivo, r−g) fica para o final.
+:::
+
+# IA com contrato {#ia}
+
+## Dois prompts profissionais vs o junior
+
+O junior autorizou inventar. Estes travam recorte, fonte e artefato.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/roteiro-ia-profissional.md</code></p>
+
+- Prompt 1 — rotina Python (Dimensão 2): schema, `--offline`, sem `CHN`.
+- Prompt 2 — um `.qmd`, duas saídas, CSV como única fonte.
+
+Prompt profissional **não** substitui o `CONTRATO.md`. Se o modelo ainda inventar país, o validador manda.
+
+::: notes
+Núcleo · 12 min. Colar UM dos prompts no mesmo modelo do junior, se o tempo e a rede deixarem. Senão, ler as travas em voz alta.
+:::
+
+## As quatro perguntas de novo
+
+Se alguma falhar, o gráfico não entra no briefing.
+
+1. Qual é a pergunta?
+2. Qual é o indicador?
+3. Qual é a fonte / vintage?
+4. Dá para rerodar?
+
+<p class="cue"><strong>Abrir agora:</strong> <code>docs/checklist-rigor.md</code></p>
+
+::: notes
+Núcleo. Anti-padrões: inventar para ficar apresentável; México como América do Sul; Colômbia/China; adjetivo no lugar da conta; render chamando API.
+:::
+
+# O que levar {#fecho}
+
+## Zip do aluno, não o palco do professor
+
+`aluno/minicurso-prompt-nao-e-fonte.zip`
+
+**Não entra:** `aula/` (este deck), `instrutor/autopsia.md`, PPTX gerado, site Reveal.js.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>aluno/minicurso-prompt-nao-e-fonte.zip</code></p>
+
+::: notes
+Núcleo · 10 min finais. Conferir o zip na mão numa máquina se der (não precisa unzip no projetor).
+:::
+
+## Netlify é demo. Aluno não cria conta.
+
+Publicado = conteúdo de `outputs/revealjs-netlify/`.
+
+URL: **{{< meta params.url_netlify >}}**
+
+Se ainda for o placeholder: render local + [Netlify Drop](https://app.netlify.com/drop), depois colar o `*.netlify.app` no YAML `url_netlify` e rerenderizar **este** deck.
+
+::: notes
+Núcleo. Não pedir login à turma. Não hospedar outputs/aula-expositiva nem o slop.
+:::
+
+## O campeonato não é o título em inglês
+
+![](imagens/always-has-been.png){fig-alt="Meme Always Has Been: a fonte sempre foi o CSV" .meme}
+
+O HTML apresentável sempre foi teatro. A fonte **sempre** foi o CSV que reroda.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Núcleo. Fechar no cartaz. Se sobrar tempo, ir para a seção de gordura (não avançar se o debate já comeu os 40 min).
+:::
+
+## Três frases para levar
+
+1. Prompt não é fonte.
+2. Recorte e vintage não se negociam no feeling.
+3. Número que não reroda não entra no briefing.
+
+Laboratório: `python scripts/validar_contrato.py`.
+
+::: notes
+Núcleo. Encerrar o relógio dos 80 min aqui se a gordura for cortada.
+:::
+
+# Se sobrar tempo {#gordura}
+
+## Rebuild ao vivo do CSV [se sobrar tempo]{.selo-gordura}
+
+Mesmo comando da aula, agora narrado linha a linha:
+
+```bash
+python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+python scripts/validar_contrato.py
+```
+
+`--offline` reconstrói a partir de `data/raw/` (cinco iso3; sem dump mundial).
+
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/raw/</code></p>
+
+::: notes
+Gordura. Pular se o núcleo atrasou. Não chamar a API no render do produto.
+:::
+
+## Card do slop vs linha do CSV [se sobrar tempo]{.selo-gordura}
+
+No slop: Brasil **78,2%** e “superávit” **+3,1%**, “sustentável”.
+
+No cache: abrir a linha (`BRA`, ano-foco, `GGXWDG_NGDP` e `GGXONLB_NGDP`). **Não ditar** o valor certo — a célula é a fonte.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv</code></p>
+
+::: notes
+Gordura. O contraste é o exercício. Se alguém fotografar o número, lembrar vintage abril/2026.
+:::
+
+## Lab de lacunas (chunks 2–3) [se sobrar tempo]{.selo-gordura}
+
+Não é o laboratório completo. Só mostrar no projetor o que o aluno completa em casa.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/lab-lacunas.qmd</code></p>
+
+::: notes
+Gordura. Completo vira para casa. Não incluir China “para o exercício ficar mais rico”.
+:::
+
+## Drop Netlify ao vivo [se sobrar tempo]{.selo-gordura}
+
+1. Render local do briefing (já deveria existir).
+2. Abrir [Netlify Drop](https://app.netlify.com/drop) na **sua** conta.
+3. Arrastar `outputs/revealjs-netlify/`.
+4. Colar o `*.netlify.app` em `url_netlify` neste `.qmd` e rerenderizar a aula.
+
+Este deck **não** vai para o Drop.
+
+::: notes
+Gordura. Se o drop já foi feito de manhã, só abrir o URL. Conferir no ar: 5 países, sem China, vintage no rodapé.
+:::
+
+## “Sustentável” sem conta [se sobrar tempo]{.selo-gordura}
+
+![](imagens/que-isso-meu-filho-calma.jpg){fig-alt="Fausto Silva (Faustão)" .meme}
+
+**Que isso, meu filho, calma.** O adjetivo exigiria, no mínimo: primário que estabiliza a dívida, r − g, cobertura do governo geral.
+
+Neste minicurso **não calculamos** esse número. Por isso a palavra não entra no briefing.
+
+<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Gordura (formandos). Sem fórmula no quadro com valor. Faustão = freio, não deboche da turma.
+:::
+
+## Quiz das quatro perguntas [se sobrar tempo]{.selo-gordura}
+
+Para cada afirmação: passa ou cai?
+
+- “Dashboard dos emergentes, números recentes do FMI.”
+- “México e o restante da América do Sul.”
+- “Inclui China só para comparar a escala.”
+- “Brasil sustentável porque o card ficou verde.”
+- “O HTML único, sem CSV.”
+
+Cai, cai, cai, cai, cai. O que passa é: pergunta, código, vintage abril/2026, CSV que reroda.
+
+::: notes
+Gordura. Oral, rápido. Sem pontuar aluno. Voltar ao cartaz se o relógio estourar.
+:::

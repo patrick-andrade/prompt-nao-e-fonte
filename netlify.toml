@@ -1,6 +1,7 @@
-# Stub Onda 0: publica somente o Reveal.js da Dimensão 3.
-# PPTX não entra no Netlify. Conteúdo do site: Onda 2.
+# Publish = somente o Reveal.js da Dimensão 3.
+# PPTX não entra no Netlify. Demo do professor; alunos não criam conta.
+# Drop: arrastar outputs/revealjs-netlify/ (já renderizado). Ver docs/roteiro-netlify.md.
 
 [build]
-  publish = "05-revealjs-netlify"
-  command = "echo Onda 0: artefato Reveal.js entra na Onda 2"
+  publish = "outputs/revealjs-netlify"
+  command = "quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify && python scripts/achatar_saidas.py"

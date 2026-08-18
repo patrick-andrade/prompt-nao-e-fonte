@@ -1,6 +1,177 @@
 ---
 title: "Lab de lacunas"
+subtitle: "Complete os chunks · o número só sai do CSV"
 lang: pt-BR
+format:
+  html:
+    toc: true
+    toc-title: "Roteiro"
+execute:
+  echo: true
+  warning: false
+jupyter: python3
 ---
 
-Placeholder Onda 2: exercício de lacunas no `.qmd`. Sem números inventados.
+# O que este lab pede
+
+Você completa um `.qmd` que **só lê** o CSV-contrato. Não invente número. Não copie valor do HTML slop. Não chame API.
+
+Arquivo: `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`
+
+Países (ordem canônica, **sem China**): `BRA`, `MEX`, `CHL`, `IND`, `IDN`. México é **LatAm**, não América do Sul. Indicadores: `GGXWDG_NGDP` (dívida bruta GG, % PIB) e `GGXONLB_NGDP` (saldo primário GG, % PIB). Vintage: FM/WEO abril/2026.
+
+Chunks com `#| eval: false` não rodam até você completar e mudar para `eval: true`.
+
+# 1. Localizar e ler o cache
+
+Este bloco já está preenchido. Rode-o. Confira colunas e a ausência de `CHN`.
+
+```{python}
+#| label: load
+from pathlib import Path
+
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
+from IPython.display import display
+
+ORDEM = ["BRA", "MEX", "CHL", "IND", "IDN"]
+PROIBIDOS = {"CHN", "COL"}
+CORES = {
+    "BRA": "#4f46e5",
+    "MEX": "#0ea5e9",
+    "CHL": "#334155",
+    "IND": "#6366f1",
+    "IDN": "#0284c7",
+}
+
+
+def localizar_csv() -> Path:
+    aqui = Path.cwd()
+    for base in (aqui, *aqui.parents):
+        candidato = (
+            base
+            / "02-dados-fiscal-monitor"
+            / "data"
+            / "processed"
+            / "fm_weo_cache.csv"
+        )
+        if candidato.is_file():
+            return candidato
+    raise FileNotFoundError(
+        "CSV-contrato ausente. Rode "
+        "02-dados-fiscal-monitor/scripts/baixar_fm.py --offline"
+    )
+
+
+CSV = localizar_csv()
+df = pd.read_csv(CSV)
+assert list(df.columns) == [
+    "iso3",
+    "country",
+    "year",
+    "indicator_code",
+    "indicator_name",
+    "value",
+    "unit",
+    "vintage",
+    "source",
+]
+assert not set(df["iso3"]) & PROIBIDOS
+df["iso3"] = pd.Categorical(df["iso3"], categories=ORDEM, ordered=True)
+df = df.sort_values(["iso3", "indicator_code", "year"])
+print(CSV.as_posix())
+print("linhas:", len(df))
+print("vintage:", sorted(df["vintage"].astype(str).unique()))
+print("iso3:", " · ".join(ORDEM))
+```
+
+# 2. Filtrar a dívida bruta
+
+Complete o filtro com o código-contrato da **dívida bruta**. Depois: `eval: true`.
+
+```{python}
+#| label: filtro-divida
+#| eval: false
+divida = df[df["indicator_code"] == "???"]  # complete: GGXWDG_NGDP
+assert set(divida["iso3"]).issubset(set(ORDEM))
+divida.head()
+```
+
+# 3. Gráfico da dívida (paleta do briefing)
+
+Use as cores `CORES`. Marque o ano da vintage (2026) com uma linha tracejada. Não invente série: plote `year` × `value` do filtro.
+
+```{python}
+#| label: fig-divida-aluno
+#| eval: false
+#| fig-cap: "Dívida bruta GG, % do PIB. Fonte: CSV-contrato."
+fig, ax = plt.subplots(figsize=(8, 4.5))
+for iso3, bloco in divida.groupby("iso3", observed=True):
+    ax.plot(
+        bloco["year"],
+        bloco["value"],
+        label=bloco["country"].iloc[0],
+        color=CORES[str(iso3)],
+        linewidth=2,
+    )
+# complete: linha vertical no ano da vintage
+ax.set_xlabel("Ano")
+ax.set_ylabel("% do PIB")
+ax.legend(frameon=False)
+fig.tight_layout()
+display(fig)
+plt.close(fig)
+```
+
+# 4. Tabela do ano-foco
+
+Monte um pivot do ano 2025 com os dois indicadores. Os valores têm de sair do `df`, não de um card.
+
+```{python}
+#| label: tabela-aluno
+#| eval: false
+ano = 2025
+tab = (
+    df.loc[df["year"] == ano, ["iso3", "country", "indicator_code", "value"]]
+    .pivot(index=["iso3", "country"], columns="indicator_code", values="value")
+    .reset_index()
+    .sort_values("iso3")
+)
+tab
+```
+
+# 5. Primário: sinal, não adjetivo
+
+Filtre `GGXONLB_NGDP` no ano-foco. Para cada país, imprima se o valor é positivo (superávit) ou negativo (déficit). **Não** escreva “sustentável”.
+
+```{python}
+#| label: sinal-primario
+#| eval: false
+ano = 2025
+prim = df[(df["year"] == ano) & (df["indicator_code"] == "???")]  # complete
+for row in prim.sort_values("iso3").itertuples():
+    sinal = "superávit" if row.value > 0 else "déficit"
+    print(f"{row.country}: {sinal} primário")
+```
+
+# Interpretação (escreva abaixo)
+
+Responda em frases, **depois** de rodar os chunks. Se precisar de um número, ele tem de aparecer na saída de um chunk — não cole de memória nem do slop.
+
+1. Qual país tem a maior dívida bruta no ano-foco **segundo o CSV**? Qual tem a menor?
+2. O saldo primário do Brasil no ano-foco é superávit ou déficit? (Olhe o **sinal** na saída, não um adjetivo.)
+3. Por que a linha em 2026 no gráfico não é “o presente”?
+4. Neste material, o México entra como LatAm ou como América do Sul? Por quê?
+5. O que aconteceria com a escala do gráfico se alguém “completasse o recorte” com a China?
+
+# O que não fazer
+
+- Não abrir `01-demanda-simulada/instrutor/` (se existir na máquina do professor, não é exercício).
+- Não inventar valor para “ficar apresentável”.
+- Não misturar vintage (abril com outubro; FM com uma tabela “que achei no Google”).
+- Não tratar o HTML slop como gabarito.
+
+Checklist: [`docs/checklist-rigor.md`](../docs/checklist-rigor.md). Relatório completo de referência (sem lacunas): `mini-fiscal-monitor.qmd`.
