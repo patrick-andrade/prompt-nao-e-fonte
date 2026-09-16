@@ -7,7 +7,8 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 ## Antes da aula
 
 - [ ] `uv run python scripts/validar_contrato.py` passa (esqueleto + CSV).
-- [ ] Laboratório: confirmar se há git e qual Python (VS Code já confirmado; RStudio existe, não se usa). Numa máquina do lab, **sem admin**, rodar `python scripts/preparar_lab.py` e anotar em que degrau para (`DEGRAU: 2` ou `3`). Decidir o degrau da Atividade 2 e ajustar a nota do slide "Cheque a máquina".
+- [ ] Enviar [`pedido-laboratorio.md`](pedido-laboratorio.md) aos responsáveis pelo laboratório (VS Code, Python 3.10+ com pip, git, rede para GitHub/PyPI/Netlify, gravação no perfil do usuário). Guardar a resposta.
+- [ ] Numa máquina do lab, logado como aluno **sem admin**, rodar `python scripts/preparar_lab.py` e anotar em que degrau para (`DEGRAU: 2` ou `3`). Isso decide se a Atividade 0 chega ao degrau 3 e se a Atividade 2 pede o validador.
 - [ ] `.vscode/tasks.json` aparece em `Terminal → Run Build Task` numa máquina do lab.
 - [ ] Briefing, prompt do junior e slop abrem no navegador (UTF-8, acentos).
 - [ ] Autópsia em `01-demanda-simulada/instrutor/autopsia.md` conferida **na mão** contra o CSV (não copiar número para o deck).
@@ -50,7 +51,7 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 - [ ] Núcleo cronometrado em 80 min (5 + 7 + 18 + 6 + 13 + 13 + 10 + 8).
 - [ ] Abertura: vocês são o trainee; isto é o e-mail da Diretoria; isto é o prompt do colega.
-- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `preparar_lab.py` disparado em segundo plano.
+- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; Atividade 0 (onboarding *as is*) disparada e deixada rodar em segundo plano — dizer em voz alta o que o laboratório forneceu e o que o projeto puxa.
 - [ ] Atividade 1 (3 min, duplas): três duplas falam; nada de número certo.
 - [ ] Atividade 2 (5 min): a turma acha `BRA` · 2025 · `GGXONLB_NGDP`; contar mãos (positivo / negativo) sem ditar valor.
 - [ ] Atividade 3 (3 min): três voluntários leem a trava; ligar ao `CONTRATO.md`.

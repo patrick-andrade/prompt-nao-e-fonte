@@ -137,25 +137,25 @@ Núcleo · 1 min. É o slide que amarra o cartaz à prática: `AGENTS.md` e `CON
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/ferramentas.md</code> <span class="path-hint">(material de apoio; fica no clone)</span></p>
 
 ::: notes
-Núcleo · 1 min. Ninguém cria conta em nada. Aluno não precisa de Quarto nem de Netlify. RStudio existe no laboratório, mas o contrato mantém R só como menção.
+Núcleo · 1 min. Ninguém cria conta em nada. Aluno não precisa de Quarto nem de Netlify. RStudio existe no laboratório, mas o contrato mantém R só como menção. Dividir em voz alta: o laboratório fornece VS Code, Python e rede; tudo o mais o projeto puxa — próximo slide.
 :::
 
-## Cheque a máquina: três degraus
+## Atividade 0 · Onboarding *as is* {.slide-atividade}
 
-- <span class="degrau">degrau 1</span> Navegador: GitHub aberto + URL do produto.
-- <span class="degrau">degrau 2</span> VS Code com o clone aberto. **Basta para toda a aula.**
-- <span class="degrau">degrau 3</span> Terminal do VS Code, na raiz do clone:
+Projeto real chega assim: um repositório, um README e um comando. Ninguém instala pacote à mão.
 
-```bash
-python scripts/preparar_lab.py
-```
+::: {.atividade}
+[4 min · individual · dispara e segue · [degrau 2]{.degrau} → [degrau 3]{.degrau}]{.atividade-meta}
 
-Esperado no fim: `STATUS: CSV OK` e `DEGRAU: 3`. Se parar em `DEGRAU: 2`, a aula segue igual.
+1. Clonar (ou baixar o zip do GitHub) e abrir a pasta no VS Code.
+2. Terminal do VS Code, na raiz: `python scripts/preparar_lab.py` (ou **Terminal → Run Build Task**).
+3. Deixar rodar. Esperado no fim: `STATUS: CSV OK` e `DEGRAU: 3`. Se parar em `DEGRAU: 2`, a aula segue igual no editor.
+:::
 
-No VS Code: **Terminal → Run Build Task** roda o mesmo comando.
+O laboratório só forneceu VS Code, Python e rede. O resto o **projeto** puxa: `uv`, Python 3.13 do projeto, `pandas`, `matplotlib` — isolados na pasta do clone.
 
 ::: notes
-Núcleo · 2 min. Não esperar a turma inteira: o `sync` roda em segundo plano enquanto lemos o briefing. O script instala só o executável `uv` para o usuário se faltar; dependências ficam no `.venv` do clone. Sem admin, sem token. Quem estiver no degrau 1 acompanha pelo GitHub.
+Núcleo · 2 min de fala; o `sync` roda em segundo plano enquanto lemos o briefing. É a primeira lição de projeto real: o repositório se instala sozinho (`pyproject.toml` + `uv.lock`); quem chega não "instala Python", roda o bootstrap. Sem admin, sem token. Quem estiver no degrau 1 acompanha pelo GitHub. O que foi pedido ao laboratório está em `docs/pedido-laboratorio.md`.
 :::
 
 # A demanda {#demanda}

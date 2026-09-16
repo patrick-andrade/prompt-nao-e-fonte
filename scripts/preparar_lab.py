@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Prepara a máquina do laboratório para o degrau 3 (uv + validador).
+"""Bootstrap do projeto na máquina do aluno (degrau 3: uv + validador).
+
+Não é inventário da máquina: é o "onboarding as is" de um projeto real —
+clonar, rodar um comando, e o próprio repositório instala o que falta,
+isola as dependências e diz se está pronto. O que se pede ao laboratório
+antes da aula está em docs/pedido-laboratorio.md (VS Code, Python, git, rede).
 
 Roda com o Python que já existir na máquina (3.8+), sem exigir `uv` no PATH:
 
@@ -18,6 +23,7 @@ Ao final imprime o degrau alcançado (1, 2 ou 3) e a próxima ação em uma linh
 Falha de rede ou de instalação não vira traceback: a aula segue no degrau 2.
 
 Opções:
+    --verificar      só relata o que a máquina tem (Python, pip, git, uv); não instala nada
     --so-validar     pula instalação e sync; só roda o validador com o uv encontrado
     --sem-instalar   nunca tenta `pip install --user uv`
 
@@ -138,6 +144,28 @@ def validar(uv: list[str]) -> bool:
     return r.returncode == 0 and "CSV OK" in saida
 
 
+def verificar() -> int:
+    """Relata o que a máquina tem, sem instalar nada."""
+    print()
+    print(f"python : {sys.version.split()[0]} em {sys.executable}")
+    try:
+        pip_ok = _rodar([sys.executable, "-m", "pip", "--version"], timeout=60).returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        pip_ok = False
+    print(f"pip    : {'sim' if pip_ok else 'não'}")
+    git = shutil.which("git")
+    print(f"git    : {git or 'não encontrado (baixe o zip do GitHub)'}")
+    uv = localizar_uv()
+    print(f"uv     : {' '.join(uv) if uv else 'não encontrado (o script instala para o usuário)'}")
+    code = shutil.which("code")
+    print(f"VS Code: {code or 'comando `code` fora do PATH (pode estar instalado mesmo assim)'}")
+    venv = (ROOT / ".venv").is_dir()
+    print(f".venv  : {'presente' if venv else 'ainda não (uv sync cria)'}")
+    print()
+    print("Nada foi instalado. Para preparar de fato: python scripts/preparar_lab.py")
+    return 0
+
+
 def fechar(degrau: int, proximo: str) -> int:
     print()
     print(f"DEGRAU: {degrau}")
@@ -152,6 +180,9 @@ def main(argv: list[str]) -> int:
 
     print(f"Raiz do clone: {ROOT}")
     print(f"Python em uso: {sys.executable} ({sys.version.split()[0]})")
+
+    if "--verificar" in argv:
+        return verificar()
 
     if not degrau_2():
         return fechar(

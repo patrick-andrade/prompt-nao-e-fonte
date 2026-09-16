@@ -65,7 +65,7 @@ Cada atividade da aula diz qual degrau basta. Ninguém fica de fora por falta de
 | 2 · VS Code + clone | VS Code com a pasta do clone aberta | Tudo do degrau 1 **e** abrir os arquivos localmente, procurar uma linha no CSV, ler o `.qmd`. **Basta para toda a aula.** | `git clone` (ou zip) e `File → Open Folder` |
 | 3 · `uv` | `.venv` do projeto sincronizado | Rodar o validador, `baixar_fm.py --offline`, completar `lab-lacunas.qmd` | No terminal do VS Code: `python scripts/preparar_lab.py` (ou `Terminal → Run Build Task`) |
 
-O que `scripts/preparar_lab.py` faz: confere o clone; procura `uv`; se faltar, instala só o executável para o usuário; `uv sync --locked`; roda o validador; imprime `DEGRAU: 2` ou `DEGRAU: 3` e a próxima ação. Sem admin. Se a rede falhar, a mensagem diz para ficar no degrau 2 — sem traceback.
+O que `scripts/preparar_lab.py` faz: confere o clone; procura `uv`; se faltar, instala só o executável para o usuário; `uv sync --locked`; roda o validador; imprime `DEGRAU: 2` ou `DEGRAU: 3` e a próxima ação. Sem admin. Se a rede falhar, a mensagem diz para ficar no degrau 2 — sem traceback. Não é inventário da máquina (para isso, `--verificar`): é o onboarding *as is* de um projeto real — o repositório se instala sozinho a partir de `pyproject.toml` + `uv.lock`.
 
 ## Glossário
 
@@ -83,6 +83,7 @@ O que `scripts/preparar_lab.py` faz: confere o clone; procura `uv`; se faltar, i
 
 ## Ver também
 
-- [`requisitos-laboratorio.md`](requisitos-laboratorio.md) — o que a máquina precisa, por degrau.
+- [`pedido-laboratorio.md`](pedido-laboratorio.md) — checklist enviado aos responsáveis pelo laboratório (VS Code, Python, git, rede).
+- [`requisitos-laboratorio.md`](requisitos-laboratorio.md) — o que o laboratório fornece, o que o projeto puxa em sala, por degrau.
 - [`checklist-rigor.md`](checklist-rigor.md) — as quatro perguntas.
 - [`plano-aula-2h.md`](plano-aula-2h.md) — grade dos 80 min e atividades.

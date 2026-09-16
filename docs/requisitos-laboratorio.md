@@ -2,6 +2,16 @@
 
 Máquina do aluno (Windows, macOS ou Linux). Sem conta Netlify. Sem chave de API. O que é cada ferramenta e cada extensão de arquivo: [`ferramentas.md`](ferramentas.md).
 
+## Quem fornece o quê
+
+| Camada | Quem | O quê |
+| --- | --- | --- |
+| Laboratório (antes da aula) | Responsáveis pelo lab — checklist em [`pedido-laboratorio.md`](pedido-laboratorio.md) | VS Code, Python 3.10+ com `pip`, git (desejável), navegador, saída HTTPS para GitHub / PyPI / Netlify, permissão de gravar no perfil do usuário |
+| Projeto (em sala, Atividade 0) | A própria turma, com `python scripts/preparar_lab.py` | `uv` no perfil do usuário, Python 3.13 do projeto, `pandas`, `matplotlib` — tudo isolado em `<clone>/.venv` |
+| Professor | Máquina do instrutor | Quarto (render), Netlify (deploy), autópsia |
+
+Essa divisão é o exercício "as is" de projeto real: o repositório carrega `pyproject.toml` + `uv.lock` e se instala sozinho; quem chega não "instala Python", roda o bootstrap.
+
 ## Três degraus
 
 Ninguém fica de fora por falta de instalação. Cada atividade da aula diz qual degrau basta.
@@ -12,7 +22,7 @@ Ninguém fica de fora por falta de instalação. Cada atividade da aula diz qual
 | 2 · VS Code + clone | VS Code (o laboratório tem) e a pasta do clone (git ou zip) | **Toda a aula**: abrir os arquivos, achar uma linha no CSV, ler o `.qmd` |
 | 3 · `uv` | Um Python qualquer na máquina + rede | Rodar o validador, `baixar_fm.py --offline`, o lab de lacunas |
 
-## Antes de quinta (opcional, 5 min)
+## Atividade 0 · onboarding (em sala, 4 min; ou antes, se quiser)
 
 Na máquina que você vai usar:
 
@@ -31,12 +41,12 @@ STATUS: CSV OK (02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv).
 DEGRAU: 3
 ```
 
-Se imprimir `DEGRAU: 2`, a aula segue igual: você acompanha no VS Code. No VS Code, `Terminal → Run Build Task` roda o mesmo script; a tarefa `Validar contrato` roda só o validador.
+Se imprimir `DEGRAU: 2`, a aula segue igual: você acompanha no VS Code. No VS Code, `Terminal → Run Build Task` roda o mesmo script; a tarefa `Validar contrato` roda só o validador. `python scripts/preparar_lab.py --verificar` só relata o que a máquina tem, sem instalar.
 
 ## Obrigatório para o degrau 3
 
-- Python **3.13+** gerenciado pelo `uv` (o `uv` baixa se não houver)
-- Git e editor (VS Code ou Cursor); clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte)
+- Python **3.10+** com `pip` na máquina (o do laboratório); o Python **3.13** do projeto o `uv` baixa para o `.venv`
+- Git e editor (VS Code ou Cursor); clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte) — ou o zip do GitHub
 - Navegador para o HTML slop e para o Reveal.js
 - Quarto CLI só se o aluno for renderizar o `.qmd` (o professor renderiza na demo)
 

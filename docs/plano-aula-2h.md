@@ -36,9 +36,9 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 
 - Três objetivos (distinguir, aplicar, ler).
 - Crash course de extensões em dois slides: o que cada arquivo é (`.md`, `.py`, `.csv`, `.qmd`, `.html`, `.pptx`, `.toml`/`.yml`/`.lock`, `.json`, `.scss`) e **quem lê o quê** (humano, Python, Quarto, navegador, IA). Ponto: o `.md` é referência para pessoa e para modelo; o `.csv` é a única fonte de número; o `.html` é saída.
-- Ferramentas na mesa e quem usa hoje (aluno / professor).
-- Cheque a máquina: os três degraus; `python scripts/preparar_lab.py` roda em segundo plano enquanto a aula segue.
+- Ferramentas na mesa e quem usa hoje (aluno / professor). Dizer a divisão: o laboratório forneceu VS Code, Python e rede ([`pedido-laboratorio.md`](pedido-laboratorio.md)); o resto o projeto puxa.
   - `Abrir agora: docs/ferramentas.md`
+- **Atividade 0 · Onboarding as is** (4 min, individual, dispara e segue): clonar ou baixar o zip, abrir no VS Code, `python scripts/preparar_lab.py`. O repositório instala `uv`, o Python do projeto e as bibliotecas no `.venv` e roda o validador. Esperado `DEGRAU: 3`; `DEGRAU: 2` não trava a aula. É a primeira lição de projeto real: ninguém instala pacote à mão.
 
 ### 18 min — demanda, slop, autópsia
 
