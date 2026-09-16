@@ -6,6 +6,8 @@ A fonte da verdade do produto é [`CONTRATO.md`](CONTRATO.md) (v1.2). Não inven
 
 Pacote da turma (24/09/2026): clone [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Alunos **não** criam conta Netlify. Autópsia em `01-demanda-simulada/instrutor/autopsia.md` só **depois** do slop.
 
+Chegou sem saber o que é `uv`, `.qmd` ou iso3? Comece por [`docs/ferramentas.md`](docs/ferramentas.md) (ferramentas, extensões de arquivo, glossário). A aula funciona em **três degraus** — navegador, VS Code + clone, `uv` — e o degrau 3 se prepara com um comando: `python scripts/preparar_lab.py` (ver [`docs/requisitos-laboratorio.md`](docs/requisitos-laboratorio.md)).
+
 ## Três dimensões (3 pastas numeradas)
 
 | Dimensão | Pasta | O que entrega |
@@ -41,6 +43,8 @@ Na raiz deste projeto (`2026/`; Python 3.13+):
 uv sync --locked
 uv run python scripts/validar_contrato.py
 ```
+
+Sem `uv` na máquina: `python scripts/preparar_lab.py` faz o mesmo (instala só o executável `uv` para o usuário, sincroniza o `.venv` e roda o validador).
 
 - **Onda 0 (histórica):** CSV ausente → esqueleto OK / Dimensão 2 pendente, exit 0.
 - **A partir da Onda 1:** o mesmo comando valida schema, países, indicadores e vintage do CSV.

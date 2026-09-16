@@ -20,8 +20,9 @@ Zip opcional (máquina sem git): `uv run python scripts/empacotar_aluno.py` → 
 - `03-relatorio-qmd/`
   - `mini-fiscal-monitor.qmd`, `lab-lacunas.qmd`, `roteiro-ia-profissional.md`
   - `tema-slate-indigo-sky.scss`, `template-referencia.pptx`
-- `docs/plano-aula-2h.md`, `docs/requisitos-laboratorio.md`, `docs/checklist-rigor.md`
-- `scripts/validar_contrato.py`, `scripts/achatar_saidas.py`
+- `docs/plano-aula-2h.md`, `docs/requisitos-laboratorio.md`, `docs/ferramentas.md`, `docs/checklist-rigor.md`
+- `scripts/validar_contrato.py`, `scripts/preparar_lab.py`, `scripts/achatar_saidas.py`
+- `.vscode/tasks.json` (tarefas "Preparar laboratório" e "Validar contrato")
 - `.cursor/rules/minicurso.mdc`
 
 ## Não entra no zip (e não se publica no Netlify)
@@ -38,8 +39,7 @@ Zip opcional (máquina sem git): `uv run python scripts/empacotar_aluno.py` → 
 ```bash
 git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git
 cd prompt-nao-e-fonte
-uv sync --locked
-uv run python scripts/validar_contrato.py
+python scripts/preparar_lab.py
 ```
 
-Esperado: esqueleto OK **e** CSV OK.
+Esperado: `STATUS: CSV OK` e `DEGRAU: 3`. Se a máquina parar em `DEGRAU: 2` (sem `uv`, sem rede), a aula segue no VS Code. Degraus e ferramentas: [`ferramentas.md`](ferramentas.md).

@@ -7,6 +7,8 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 ## Antes da aula
 
 - [ ] `uv run python scripts/validar_contrato.py` passa (esqueleto + CSV).
+- [ ] Laboratório: confirmar se há git e qual Python (VS Code já confirmado; RStudio existe, não se usa). Numa máquina do lab, **sem admin**, rodar `python scripts/preparar_lab.py` e anotar em que degrau para (`DEGRAU: 2` ou `3`). Decidir o degrau da Atividade 2 e ajustar a nota do slide "Cheque a máquina".
+- [ ] `.vscode/tasks.json` aparece em `Terminal → Run Build Task` numa máquina do lab.
 - [ ] Briefing, prompt do junior e slop abrem no navegador (UTF-8, acentos).
 - [ ] Autópsia em `01-demanda-simulada/instrutor/autopsia.md` conferida **na mão** contra o CSV (não copiar número para o deck).
 - [ ] Deck de aula renderizado: `uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs` (HTML na raiz de `outputs/aula-expositiva/` após o pós-render automático).
@@ -46,14 +48,19 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 ## Aula (80 + 40)
 
-- [ ] Núcleo cronometrado em 80 min.
+- [ ] Núcleo cronometrado em 80 min (5 + 7 + 18 + 6 + 13 + 13 + 10 + 8).
 - [ ] Abertura: vocês são o trainee; isto é o e-mail da Diretoria; isto é o prompt do colega.
+- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `preparar_lab.py` disparado em segundo plano.
+- [ ] Atividade 1 (3 min, duplas): três duplas falam; nada de número certo.
+- [ ] Atividade 2 (5 min): a turma acha `BRA` · 2025 · `GGXONLB_NGDP`; contar mãos (positivo / negativo) sem ditar valor.
+- [ ] Atividade 3 (3 min): três voluntários leem a trava; ligar ao `CONTRATO.md`.
+- [ ] Quiz no fecho, em coro; voltar aos três verbos.
 - [ ] Cues `Abrir agora:` com caminho relativo (sem OneDrive, sem `file://`).
 - [ ] Memes: rodapé de uso acadêmico visível; cortar os que não funcionarem.
-- [ ] Gordura só se sobrar tempo (rebuild, card vs CSV, lab, site no ar, r−g, quiz).
+- [ ] Gordura só se sobrar tempo (rebuild, card vs CSV, lab, site no ar, r−g).
 - [ ] UTF-8 no projetor (acentos, travessão, iso3).
 
 ## Pacote
 
 - [ ] Clone público no projetor; pedir para **não** abrir a autópsia antes do slop.
-- [ ] Se gerar zip: `aluno/minicurso-prompt-nao-e-fonte.zip` sem `aula/` e sem `instrutor/autopsia.md`.
+- [ ] Se gerar zip: `aluno/minicurso-prompt-nao-e-fonte.zip` sem `aula/` e sem `instrutor/autopsia.md` (inclui `scripts/preparar_lab.py`, `docs/ferramentas.md`, `.vscode/tasks.json`).

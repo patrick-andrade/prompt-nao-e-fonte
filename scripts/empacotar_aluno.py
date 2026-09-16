@@ -44,9 +44,12 @@ ARQUIVOS = [
     "03-relatorio-qmd/template-referencia.pptx",
     "docs/plano-aula-2h.md",
     "docs/requisitos-laboratorio.md",
+    "docs/ferramentas.md",
     "docs/checklist-rigor.md",
     "scripts/validar_contrato.py",
+    "scripts/preparar_lab.py",
     "scripts/achatar_saidas.py",
+    ".vscode/tasks.json",
     ".cursor/rules/minicurso.mdc",
 ]
 

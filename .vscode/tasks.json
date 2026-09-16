@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Preparar laboratório (degrau 3)",
+      "detail": "Instala só o executável uv se faltar, uv sync --locked e validador do contrato.",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/preparar_lab.py"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Validar contrato",
+      "detail": "uv run python scripts/validar_contrato.py (sem instalar nem sincronizar).",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/preparar_lab.py", "--so-validar"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    }
+  ]
+}

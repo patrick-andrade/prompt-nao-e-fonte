@@ -64,3 +64,69 @@
   font-size: 0.7em;
   color: #475569;
 }
+
+/* Micro-atividades do núcleo (A1–A3). */
+.reveal .atividade {
+  margin: 0.6em auto 0;
+  padding: 0.8em 1.1em;
+  border: 3px solid #0ea5e9;
+  border-radius: 0.6em;
+  background: #f0f9ff;
+  color: #0f172a;
+  text-align: left;
+  font-size: 0.78em;
+}
+
+.reveal .atividade p {
+  margin: 0.35em 0;
+}
+
+.reveal .atividade .atividade-meta {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0369a1;
+}
+
+.reveal .atividade code {
+  background: #e0f2fe;
+  padding: 0.05em 0.3em;
+}
+
+.reveal .slide-atividade h2 {
+  color: #0369a1;
+}
+
+/* Selo de degrau (1 navegador · 2 VS Code · 3 uv). */
+.reveal .degrau {
+  display: inline-block;
+  padding: 0.12em 0.55em;
+  border-radius: 999px;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 0.6em;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Tabelas do bloco "Antes de começar" (extensões, ferramentas). */
+.reveal .tabela-compacta table {
+  font-size: 0.52em;
+  line-height: 1.25;
+  margin: 0.3em auto;
+}
+
+.reveal .tabela-compacta th,
+.reveal .tabela-compacta td {
+  padding: 0.25em 0.5em;
+  vertical-align: top;
+}
+
+.reveal .tabela-compacta code {
+  font-size: 0.95em;
+}
