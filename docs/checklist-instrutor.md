@@ -49,9 +49,10 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 ## Aula (80 + 40)
 
-- [ ] Núcleo cronometrado em 80 min (5 + 7 + 18 + 6 + 13 + 13 + 10 + 8).
+- [ ] Núcleo cronometrado em 80 min (5 + 9 + 17 + 6 + 13 + 12 + 10 + 8).
+- [ ] Regra "ler antes de rodar" cumprida em todo comando: `preparar_lab.py`, `baixar_fm.py`, `validar_contrato.py` e o `.qmd` abertos no projetor **antes** de executar.
 - [ ] Abertura: vocês são o trainee; isto é o e-mail da Diretoria; isto é o prompt do colega.
-- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; Atividade 0 (onboarding *as is*) disparada e deixada rodar em segundo plano — dizer em voz alta o que o laboratório forneceu e o que o projeto puxa.
+- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `preparar_lab.py` aberto e lido pelos nomes das funções; só depois a Atividade 0 (onboarding *as is*) disparada e deixada rodar em segundo plano — dizer em voz alta o que o laboratório forneceu e o que o projeto puxa.
 - [ ] Atividade 1 (3 min, duplas): três duplas falam; nada de número certo.
 - [ ] Atividade 2 (5 min): a turma acha `BRA` · 2025 · `GGXONLB_NGDP`; contar mãos (positivo / negativo) sem ditar valor.
 - [ ] Atividade 3 (3 min): três voluntários leem a trava; ligar ao `CONTRATO.md`.

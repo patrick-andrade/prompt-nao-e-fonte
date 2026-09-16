@@ -75,10 +75,10 @@ Núcleo. Referência: Silvio Santos ("se vira nos 30") — testar se a turma peg
 2. **Aplicar** quatro perguntas — pergunta, indicador, fonte/vintage, reroda? — a qualquer número que chegue por chat.
 3. **Ler** um CSV-contrato: `iso3`, código do indicador, vintage — e achar uma célula sem perguntar ao modelo.
 
-Nada disso exige programar hoje. Exige saber **o que é cada arquivo** e **quem lê o quê**.
+Nada disso exige programar hoje. Exige saber **o que é cada arquivo**, **quem lê o quê** — e a regra da aula: **ler antes de rodar**.
 
 ::: notes
-Núcleo · bloco de 7 min começa aqui (1 min neste slide). Três verbos, sem enfeite. Voltar a eles no quiz do fecho.
+Núcleo · bloco de 9 min começa aqui (1 min neste slide). Três verbos, sem enfeite. Voltar a eles no quiz do fecho.
 :::
 
 ## Extensões (1/2): o que cada arquivo é
@@ -140,22 +140,44 @@ Núcleo · 1 min. É o slide que amarra o cartaz à prática: `AGENTS.md` e `CON
 Núcleo · 1 min. Ninguém cria conta em nada. Aluno não precisa de Quarto nem de Netlify. RStudio existe no laboratório, mas o contrato mantém R só como menção. Dividir em voz alta: o laboratório fornece VS Code, Python e rede; tudo o mais o projeto puxa — próximo slide.
 :::
 
+## Regra da aula: ler antes de rodar
+
+Nenhum comando "cola e roda". Antes de executar um arquivo, abrimos o arquivo, dizemos **o que** ele faz e **por que** vamos rodá-lo.
+
+Projeto real chega assim: um repositório, um README, um bootstrap. Vamos ler o bootstrap.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>scripts/preparar_lab.py</code> <span class="path-hint">(ler o cabeçalho e os nomes das funções; ainda não rodar)</span></p>
+
+::: {.tabela-compacta}
+| Função no arquivo | O que faz, em uma frase | Por que importa |
+| --- | --- | --- |
+| `degrau_2()` | Confere se `CONTRATO.md`, `pyproject.toml`, `uv.lock` e o CSV estão no clone | Sem o contrato e o dado, nada abaixo faz sentido |
+| `localizar_uv()` / `instalar_uv()` | Procura o `uv`; se faltar, instala **só o executável** no perfil do usuário | Nada global; ninguém precisa de admin |
+| `sincronizar()` | `uv sync --locked`: lê `pyproject.toml` + `uv.lock` e cria o `.venv` com as **mesmas versões** em toda máquina | Reprodutibilidade: o gráfico de quinta é o gráfico de hoje |
+| `validar()` | Roda `scripts/validar_contrato.py` | O projeto se declara pronto — ou diz o que falta |
+| `fechar()` | Imprime `DEGRAU: 2` ou `3` e a próxima ação | Sem traceback; falha vira instrução |
+:::
+
+::: notes
+Núcleo · 3 min. Projetar o arquivo no VS Code: docstring do topo (o que é, o que não é), depois rolar pelos `def` na ordem da tabela. Não ler código linha a linha — ler nomes. Frase-chave: "`uv.lock` é a lista de versões congelada; por isso o mesmo repositório dá o mesmo `.venv` em qualquer máquina". Ligar ao slide de extensões: `.py` executa, `.toml`/`.lock` configuram, `.md` é o contrato. O que foi pedido ao laboratório está em `docs/pedido-laboratorio.md`.
+:::
+
 ## Atividade 0 · Onboarding *as is* {.slide-atividade}
 
-Projeto real chega assim: um repositório, um README e um comando. Ninguém instala pacote à mão.
+Agora que lemos o que o script faz, rodamos — e sabemos o que esperar.
 
 ::: {.atividade}
 [4 min · individual · dispara e segue · [degrau 2]{.degrau} → [degrau 3]{.degrau}]{.atividade-meta}
 
 1. Clonar (ou baixar o zip do GitHub) e abrir a pasta no VS Code.
 2. Terminal do VS Code, na raiz: `python scripts/preparar_lab.py` (ou **Terminal → Run Build Task**).
-3. Deixar rodar. Esperado no fim: `STATUS: CSV OK` e `DEGRAU: 3`. Se parar em `DEGRAU: 2`, a aula segue igual no editor.
+3. Acompanhar as mensagens na ordem das funções que acabamos de ler. Esperado no fim: `STATUS: CSV OK` e `DEGRAU: 3`. Se parar em `DEGRAU: 2`, a mensagem diz o que faltou e a aula segue no editor.
 :::
 
 O laboratório só forneceu VS Code, Python e rede. O resto o **projeto** puxa: `uv`, Python 3.13 do projeto, `pandas`, `matplotlib` — isolados na pasta do clone.
 
 ::: notes
-Núcleo · 2 min de fala; o `sync` roda em segundo plano enquanto lemos o briefing. É a primeira lição de projeto real: o repositório se instala sozinho (`pyproject.toml` + `uv.lock`); quem chega não "instala Python", roda o bootstrap. Sem admin, sem token. Quem estiver no degrau 1 acompanha pelo GitHub. O que foi pedido ao laboratório está em `docs/pedido-laboratorio.md`.
+Núcleo · 2 min de fala; o `sync` roda em segundo plano enquanto lemos o briefing. Perguntar antes de rodar: "o que vai aparecer primeiro na tela?" (a raiz do clone e o Python em uso — primeiras linhas de `main()`). É a primeira lição de projeto real: o repositório se instala sozinho; quem chega não "instala Python", roda o bootstrap que acabou de ler. Sem admin, sem token. Quem estiver no degrau 1 acompanha pelo GitHub.
 :::
 
 # A demanda {#demanda}
@@ -171,7 +193,7 @@ Não é paper. Não é dashboard cosmética. É:
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
 
 ::: notes
-Núcleo · bloco de 18 min começa aqui. Ler em voz alta o briefing (recorte + o que não fazer + prazo). Não ler o CONTRATO.md inteiro. México = LatAm já aparece no e-mail; China fora já aparece no e-mail.
+Núcleo · bloco de 17 min começa aqui. Ler em voz alta o briefing (recorte + o que não fazer + prazo). Não ler o CONTRATO.md inteiro. México = LatAm já aparece no e-mail; China fora já aparece no e-mail.
 :::
 
 ## Isto é o prompt do colega
@@ -329,10 +351,10 @@ python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
 python scripts/validar_contrato.py
 ```
 
-<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code> <span class="path-hint">(ler antes de rodar: onde está o `--offline`, o que ele lê em `data/raw/`, o que grava)</span></p>
 
 ::: notes
-Núcleo · bloco de 13 min. Rodar `--offline` no projetor. Dicionário: códigos, sem série. Se a rede do laboratório deixar, mencionar o 403 do DataMapper como motivo do cache.
+Núcleo · bloco de 13 min. Mesma regra: abrir o arquivo, mostrar a função que trata `--offline` e a que grava o CSV, e só então rodar no projetor. Dicionário: códigos, sem série. Se a rede do laboratório deixar, mencionar o 403 do DataMapper como motivo do cache.
 :::
 
 ## O validador passou. Agora sim.
@@ -395,7 +417,7 @@ Os dois saem de `03-relatorio-qmd/mini-fiscal-monitor.qmd`. Números só via có
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
 
 ::: notes
-Núcleo · bloco de 13 min. Não executar chunk neste deck. Mostrar o YAML (theme, reference-doc, footer com vintage) e um chunk que lê o CSV: o número do slide nasce ali.
+Núcleo · bloco de 12 min. Não executar chunk neste deck. Mostrar o YAML (theme, reference-doc, footer com vintage) e um chunk que lê o CSV: o número do slide nasce ali.
 :::
 
 ## No projetor: o produto, não o slop

@@ -32,15 +32,16 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 - "Vocês são o trainee." Cena 17h42, reunião às 18h.
 - As três dimensões em uma frase; ainda não abrir o contrato inteiro.
 
-### 7 min — antes de começar
+### 9 min — antes de começar
 
-- Três objetivos (distinguir, aplicar, ler).
+- Três objetivos (distinguir, aplicar, ler) e a **regra da aula: ler antes de rodar**. Nenhum comando "cola e roda": antes de executar um arquivo, abre-se o arquivo, diz-se o que ele faz e por que vamos rodá-lo. Vale para `preparar_lab.py`, `baixar_fm.py`, `validar_contrato.py` e o `.qmd`.
 - Crash course de extensões em dois slides: o que cada arquivo é (`.md`, `.py`, `.csv`, `.qmd`, `.html`, `.pptx`, `.toml`/`.yml`/`.lock`, `.json`, `.scss`) e **quem lê o quê** (humano, Python, Quarto, navegador, IA). Ponto: o `.md` é referência para pessoa e para modelo; o `.csv` é a única fonte de número; o `.html` é saída.
 - Ferramentas na mesa e quem usa hoje (aluno / professor). Dizer a divisão: o laboratório forneceu VS Code, Python e rede ([`pedido-laboratorio.md`](pedido-laboratorio.md)); o resto o projeto puxa.
   - `Abrir agora: docs/ferramentas.md`
-- **Atividade 0 · Onboarding as is** (4 min, individual, dispara e segue): clonar ou baixar o zip, abrir no VS Code, `python scripts/preparar_lab.py`. O repositório instala `uv`, o Python do projeto e as bibliotecas no `.venv` e roda o validador. Esperado `DEGRAU: 3`; `DEGRAU: 2` não trava a aula. É a primeira lição de projeto real: ninguém instala pacote à mão.
+- **Leitura guiada de `scripts/preparar_lab.py`** (3 min): projetar o arquivo; docstring do topo e os `def` na ordem — `degrau_2` (confere o clone), `localizar_uv`/`instalar_uv` (só o executável, no perfil do usuário), `sincronizar` (`uv sync --locked`: mesmas versões em toda máquina), `validar`, `fechar`. Ler nomes, não linhas.
+- **Atividade 0 · Onboarding as is** (4 min, individual, dispara e segue): clonar ou baixar o zip, abrir no VS Code, `python scripts/preparar_lab.py` — agora sabendo o que vai aparecer. O repositório instala `uv`, o Python do projeto e as bibliotecas no `.venv` e roda o validador. Esperado `DEGRAU: 3`; `DEGRAU: 2` não trava a aula. É a primeira lição de projeto real: ninguém instala pacote à mão.
 
-### 18 min — demanda, slop, autópsia
+### 17 min — demanda, slop, autópsia
 
 - Ler em voz alta o briefing da Diretoria (`01-demanda-simulada/briefing-supervisao.md`).
 - Projetar o prompt do colega (`01-demanda-simulada/prompt-do-junior.md`).
@@ -60,11 +61,11 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 ### 13 min — rotina Python e CSV
 
 - Pasta `02-dados-fiscal-monitor/`: dicionário (códigos, sem série) e notas de vintage.
-- Caminho da aula: `baixar_fm.py --offline` no projetor; validador passa.
+- Caminho da aula: abrir `baixar_fm.py` (onde está o `--offline`, o que lê em `data/raw/`, o que grava) e só então rodar no projetor; validador passa.
 - **Atividade 2 · Achem a linha** (5 min, individual, degrau 2; degrau 3 opcional): abrir `fm_weo_cache.csv` no VS Code ou no GitHub, localizar `BRA` · `2025` · `GGXONLB_NGDP`, ler o **sinal** de `value` e comparar com o card do slop. Ninguém diz o número: mão levantada, positivo ou negativo. Degrau 3: `python scripts/preparar_lab.py --so-validar`.
 - Abrir o CSV no projetor: colunas na ordem do contrato, a linha que a turma achou. **Não** copiar número para o slide.
 
-### 13 min — um `.qmd`, dois artefatos
+### 12 min — um `.qmd`, dois artefatos
 
 - `03-relatorio-qmd/mini-fiscal-monitor.qmd` lê **somente** o CSV. Mostrar o YAML e um chunk que lê o arquivo.
 - Produto no ar ou local: gráficos, tabela do ano-foco. Perguntar: "a linha da Atividade 2 está neste gráfico?"
