@@ -12,9 +12,9 @@ Você **não** precisa instalar tudo isto para acompanhar a aula. A tabela de de
 | GitHub | Site que hospeda o repositório público da turma | Clonar ou só ler os arquivos; o CSV abre como tabela na visualização web | Todos | O repositório abre sem login | Zip opcional (`aluno/`) se a máquina não tiver git |
 | git | Controle de versão | `git clone` do repositório; o Netlify rebuilda a cada `push` do professor | Quem tiver instalado | `git --version` | Baixar o zip do GitHub ("Code → Download ZIP") |
 | VS Code | Editor que o laboratório já tem | Abrir o clone; ler `.md`, `.csv`, `.py`, `.qmd`; terminal integrado; tarefas prontas em `.vscode/tasks.json` | Todos | Abrir a pasta do clone: `File → Open Folder` | Qualquer editor de texto |
-| Python 3.13 | Linguagem dos scripts | Rodar `baixar_fm.py` e `validar_contrato.py` | Quem chegar ao degrau 3 | `uv` baixa o 3.13 do projeto se a máquina tiver outro Python | Acompanhar no degrau 2 |
-| `uv` | Gerenciador de ambiente e dependências Python | `uv sync --locked` cria o `.venv` do clone com `pandas`, `matplotlib` etc., isolado da máquina | Quem chegar ao degrau 3 | `python scripts/preparar_lab.py` instala só o executável (`pip install --user uv`) se faltar | Acompanhar no degrau 2 |
-| pandas / matplotlib | Bibliotecas Python de tabela e gráfico | O `.qmd` lê o CSV com pandas e desenha com matplotlib | O `.qmd`, o lab de lacunas | Ficam no `.venv`; nada global | — |
+| Python (o do laboratório) | Linguagem dos scripts | Rodar `validar_contrato.py` e `baixar_fm.py --offline`, que usam só a biblioteca padrão (`csv`, `json`, `re`, `urllib`) | Todos (degrau 3) | `python --version` no terminal do VS Code; 3.10+ basta | Acompanhar no degrau 2 |
+| `uv` | Gerenciador de ambiente e dependências Python | `uv sync --locked` cria o `.venv` do clone com o Python 3.13 do projeto, `pandas`, `matplotlib`, isolados da máquina | Quem for completar o lab de lacunas em casa; o professor no render | `python scripts/preparar_lab.py` instala só o executável (`pip install --user uv`) se faltar; `--verificar` só relata | Não é necessário na aula |
+| pandas / matplotlib | Bibliotecas Python de tabela e gráfico | O `.qmd` lê o CSV com pandas e desenha com matplotlib | O `.qmd`, o lab de lacunas | Ficam no `.venv`; nada global | Não são necessárias na aula |
 | Quarto | Compila `.qmd` (texto + código) em HTML, PPTX e outros | `mini-fiscal-monitor.qmd` → Reveal.js e PPTX; o deck de aula também | Professor, na demo | `uv run -- quarto check jupyter` | Aluno não precisa: o render já está no ar |
 | Reveal.js | Slides em HTML para o navegador | Formato do produto publicado e do deck de aula | Todos veem; professor gera | Abrir o URL do produto | HTML local em `outputs/revealjs-netlify/` |
 | PowerPoint (`.pptx`) | Apresentação de escritório | Briefing interno da reunião, gerado pelo mesmo `.qmd` | Diretoria (ficção) e professor | `outputs/pptx/` depois do render | Não se hospeda; não é para o aluno |
@@ -62,10 +62,12 @@ Cada atividade da aula diz qual degrau basta. Ninguém fica de fora por falta de
 | Degrau | O que você tem | O que consegue fazer | Como chegar |
 | --- | --- | --- | --- |
 | 1 · navegador | Só um navegador | Ler o briefing, o prompt e o CSV no GitHub; ver o produto no Netlify | Abrir [o repositório](https://github.com/patrick-andrade/prompt-nao-e-fonte) |
-| 2 · VS Code + clone | VS Code com a pasta do clone aberta | Tudo do degrau 1 **e** abrir os arquivos localmente, procurar uma linha no CSV, ler o `.qmd`. **Basta para toda a aula.** | `git clone` (ou zip) e `File → Open Folder` |
-| 3 · `uv` | `.venv` do projeto sincronizado | Rodar o validador, `baixar_fm.py --offline`, completar `lab-lacunas.qmd` | No terminal do VS Code: `python scripts/preparar_lab.py` (ou `Terminal → Run Build Task`) |
+| 2 · VS Code + clone | VS Code com a pasta do clone aberta | Tudo do degrau 1 **e** abrir os arquivos localmente, procurar uma linha no CSV, ler os scripts e o `.qmd` | `git clone` (ou **Code → Download ZIP**) e `File → Open Folder` |
+| 3 · Python do laboratório | Qualquer Python 3.10+ | Rodar `scripts/validar_contrato.py` e `baixar_fm.py --offline` — só biblioteca padrão. **Cobre toda a aula; nada a instalar.** | Terminal do VS Code: `python scripts/validar_contrato.py` (ou `Terminal → Run Build Task`) |
 
-O que `scripts/preparar_lab.py` faz: confere o clone; procura `uv`; se faltar, instala só o executável para o usuário; `uv sync --locked`; roda o validador; imprime `DEGRAU: 2` ou `DEGRAU: 3` e a próxima ação. Sem admin. Se a rede falhar, a mensagem diz para ficar no degrau 2 — sem traceback. Não é inventário da máquina (para isso, `--verificar`): é o onboarding *as is* de um projeto real — o repositório se instala sozinho a partir de `pyproject.toml` + `uv.lock`.
+**O que é o clone.** A cópia do repositório na sua máquina. "Clonar" é o `git clone`; sem git, o botão **Code → Download ZIP** no GitHub faz o mesmo (descompactar e abrir a pasta). Dentro vêm o briefing, o slop, o CSV, os scripts, o `.qmd` e a documentação.
+
+**Para casa (não é degrau da aula).** `python scripts/preparar_lab.py` confere o clone; procura `uv`; se faltar, instala só o executável para o usuário; `uv sync --locked` monta o `.venv` com o Python 3.13 do projeto, `pandas` e `matplotlib`; roda o validador; imprime `DEGRAU: 2` ou `DEGRAU: 3` e a próxima ação. Sem admin. Se a rede falhar, a mensagem diz o que faltou — sem traceback. Serve para completar `03-relatorio-qmd/lab-lacunas.qmd`. Não é inventário da máquina (para isso, `--verificar`): é o bootstrap de um projeto real, que se instala a partir de `pyproject.toml` + `uv.lock`. Regra da aula vale aqui também: abrir o arquivo e ler os nomes das funções antes de rodar.
 
 ## Glossário
 
@@ -79,7 +81,9 @@ O que `scripts/preparar_lab.py` faz: confere o clone; procura `uv`; se faltar, i
 - **Render:** o Quarto executar o `.qmd` e gerar HTML / PPTX. O render do produto lê o CSV; não chama API.
 - **Cache / `--offline`:** reconstruir o CSV a partir do JSON já baixado em `data/raw/`, sem rede.
 - **Slop:** saída bonita e imprecisa de um prompt preguiçoso. O HTML de `01-demanda-simulada/entrega-slop/` é slop de propósito.
-- **Validador:** `scripts/validar_contrato.py`; confere pastas, cláusulas do contrato e o schema do CSV. Esperado: `STATUS: esqueleto OK` e `STATUS: CSV OK`.
+- **Validador:** `scripts/validar_contrato.py`; confere pastas, cláusulas do contrato e o schema do CSV, só com biblioteca padrão. Esperado: `STATUS: esqueleto OK` e `STATUS: CSV OK`. É o "estou pronto" do repositório e a primeira coisa que a turma roda.
+- **Clone:** a cópia do repositório na máquina (`git clone` ou Download ZIP).
+- **`.venv`:** pasta dentro do clone onde o `uv` guarda o Python do projeto e as bibliotecas (`pandas`, `matplotlib`), isoladas do resto da máquina. Só para o `.qmd` e o lab de lacunas; a aula não precisa.
 
 ## Ver também
 

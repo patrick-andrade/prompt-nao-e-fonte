@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Bootstrap do projeto na máquina do aluno (degrau 3: uv + validador).
+"""Bootstrap do ambiente do projeto (para casa: uv + .venv + validador).
 
-Não é inventário da máquina: é o "onboarding as is" de um projeto real —
-clonar, rodar um comando, e o próprio repositório instala o que falta,
-isola as dependências e diz se está pronto. O que se pede ao laboratório
-antes da aula está em docs/pedido-laboratorio.md (VS Code, Python, git, rede).
+A aula em si não precisa deste script: o validador e o `--offline` rodam com
+o Python do laboratório, só biblioteca padrão. Este arquivo é o passo seguinte,
+para quem quiser completar 03-relatorio-qmd/lab-lacunas.qmd (pandas, matplotlib):
+o próprio repositório instala o que falta, isola as dependências no `.venv` e
+diz se está pronto. Não é inventário da máquina (para isso, `--verificar`).
+O que se pede ao laboratório está em docs/pedido-laboratorio.md.
 
 Roda com o Python que já existir na máquina (3.8+), sem exigir `uv` no PATH:
 
@@ -19,8 +21,10 @@ O que faz, nesta ordem:
 3. `uv sync --locked` (baixa o Python 3.13 do projeto se a máquina não tiver).
 4. `uv run python scripts/validar_contrato.py`.
 
-Ao final imprime o degrau alcançado (1, 2 ou 3) e a próxima ação em uma linha.
-Falha de rede ou de instalação não vira traceback: a aula segue no degrau 2.
+Ao final imprime o degrau alcançado e a próxima ação em uma linha. Aqui,
+"DEGRAU: 3" significa ambiente completo (.venv sincronizado + validador OK);
+"DEGRAU: 2" significa clone íntegro, mas sem uv/rede — a aula não depende disso.
+Falha de rede ou de instalação não vira traceback.
 
 Opções:
     --verificar      só relata o que a máquina tem (Python, pip, git, uv); não instala nada

@@ -2,24 +2,35 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Preparar laboratório (degrau 3)",
-      "detail": "Instala só o executável uv se faltar, uv sync --locked e validador do contrato.",
+      "label": "Validar contrato (Atividade 0)",
+      "detail": "python scripts/validar_contrato.py — só biblioteca padrão; nada a instalar.",
       "type": "shell",
       "command": "python",
-      "args": ["scripts/preparar_lab.py"],
+      "args": ["scripts/validar_contrato.py"],
       "options": { "cwd": "${workspaceFolder}" },
       "group": { "kind": "build", "isDefault": true },
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
       "problemMatcher": []
     },
     {
-      "label": "Validar contrato",
-      "detail": "uv run python scripts/validar_contrato.py (sem instalar nem sincronizar).",
+      "label": "Reconstruir CSV do cache (--offline)",
+      "detail": "python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline — regrava o CSV a partir de data/raw/.",
       "type": "shell",
       "command": "python",
-      "args": ["scripts/preparar_lab.py", "--so-validar"],
+      "args": ["02-dados-fiscal-monitor/scripts/baixar_fm.py", "--offline"],
       "options": { "cwd": "${workspaceFolder}" },
       "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Preparar ambiente para casa (uv + .venv)",
+      "detail": "python scripts/preparar_lab.py — instala só o executável uv se faltar, uv sync --locked e validador. Ler o arquivo antes.",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/preparar_lab.py"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "none",
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
       "problemMatcher": []
     }

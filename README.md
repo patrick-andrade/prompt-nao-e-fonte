@@ -6,7 +6,7 @@ A fonte da verdade do produto é [`CONTRATO.md`](CONTRATO.md) (v1.2). Não inven
 
 Pacote da turma (24/09/2026): clone [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Alunos **não** criam conta Netlify. Autópsia em `01-demanda-simulada/instrutor/autopsia.md` só **depois** do slop.
 
-Chegou sem saber o que é `uv`, `.qmd` ou iso3? Comece por [`docs/ferramentas.md`](docs/ferramentas.md) (ferramentas, extensões de arquivo, glossário). A aula funciona em **três degraus** — navegador, VS Code + clone, `uv` — e o degrau 3 se prepara com um comando: `python scripts/preparar_lab.py` (ver [`docs/requisitos-laboratorio.md`](docs/requisitos-laboratorio.md)).
+Chegou sem saber o que é `uv`, `.qmd` ou iso3? Comece por [`docs/ferramentas.md`](docs/ferramentas.md) (ferramentas, extensões de arquivo, glossário). A aula funciona em **três degraus** — navegador, VS Code + clone, Python do laboratório — e nada se instala em sala: `python scripts/validar_contrato.py` roda só com a biblioteca padrão (ver [`docs/requisitos-laboratorio.md`](docs/requisitos-laboratorio.md)). O `.venv` com `pandas` / `matplotlib` é para casa: `python scripts/preparar_lab.py`.
 
 ## Três dimensões (3 pastas numeradas)
 
@@ -44,7 +44,7 @@ uv sync --locked
 uv run python scripts/validar_contrato.py
 ```
 
-Sem `uv` na máquina: `python scripts/preparar_lab.py` faz o mesmo (instala só o executável `uv` para o usuário, sincroniza o `.venv` e roda o validador).
+Só o validador, sem `uv` (biblioteca padrão): `python scripts/validar_contrato.py`. Sem `uv` na máquina e querendo o `.venv`: `python scripts/preparar_lab.py` (instala só o executável `uv` para o usuário, sincroniza e roda o validador).
 
 - **Onda 0 (histórica):** CSV ausente → esqueleto OK / Dimensão 2 pendente, exit 0.
 - **A partir da Onda 1:** o mesmo comando valida schema, países, indicadores e vintage do CSV.

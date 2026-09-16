@@ -39,7 +39,9 @@ Zip opcional (máquina sem git): `uv run python scripts/empacotar_aluno.py` → 
 ```bash
 git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git
 cd prompt-nao-e-fonte
-python scripts/preparar_lab.py
+python scripts/validar_contrato.py
 ```
 
-Esperado: `STATUS: CSV OK` e `DEGRAU: 3`. Se a máquina parar em `DEGRAU: 2` (sem `uv`, sem rede), a aula segue no VS Code. Degraus e ferramentas: [`ferramentas.md`](ferramentas.md).
+Esperado: `STATUS: esqueleto OK` e `STATUS: CSV OK`, com o Python do laboratório e nada instalado. Para casa, `python scripts/preparar_lab.py` monta o `.venv` (`uv`, `pandas`, `matplotlib`) para o lab de lacunas. Degraus e ferramentas: [`ferramentas.md`](ferramentas.md).
+
+O zip opcional deste script **não** passa no validador de esqueleto (omite `aula/` e `instrutor/` de propósito). Para a Atividade 0 em máquina sem git, use o **Download ZIP do GitHub** (repositório completo).

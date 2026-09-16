@@ -1,16 +1,17 @@
 # Requisitos de laboratório
 
-Máquina do aluno (Windows, macOS ou Linux). Sem conta Netlify. Sem chave de API. O que é cada ferramenta e cada extensão de arquivo: [`ferramentas.md`](ferramentas.md).
+Máquina do aluno (Windows, macOS ou Linux). Sem conta Netlify. Sem chave de API. Sem instalar biblioteca durante a aula. O que é cada ferramenta e cada extensão de arquivo: [`ferramentas.md`](ferramentas.md).
 
 ## Quem fornece o quê
 
 | Camada | Quem | O quê |
 | --- | --- | --- |
-| Laboratório (antes da aula) | Responsáveis pelo lab — checklist em [`pedido-laboratorio.md`](pedido-laboratorio.md) | VS Code, Python 3.10+ com `pip`, git (desejável), navegador, saída HTTPS para GitHub / PyPI / Netlify, permissão de gravar no perfil do usuário |
-| Projeto (em sala, Atividade 0) | A própria turma, com `python scripts/preparar_lab.py` | `uv` no perfil do usuário, Python 3.13 do projeto, `pandas`, `matplotlib` — tudo isolado em `<clone>/.venv` |
+| Laboratório (antes da aula) | Responsáveis pelo lab — checklist em [`pedido-laboratorio.md`](pedido-laboratorio.md) | VS Code, Python 3.10+, navegador; git e saída para GitHub desejáveis |
+| Repositório (em sala) | O clone / zip de [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte) | Contrato, dado (`data/raw/` + CSV), scripts de biblioteca padrão, `.qmd`, docs |
+| Projeto (para casa) | O aluno, com `python scripts/preparar_lab.py` | `uv` no perfil do usuário, Python 3.13 do projeto, `pandas`, `matplotlib` — isolados em `<clone>/.venv` |
 | Professor | Máquina do instrutor | Quarto (render), Netlify (deploy), autópsia |
 
-Essa divisão é o exercício "as is" de projeto real: o repositório carrega `pyproject.toml` + `uv.lock` e se instala sozinho; quem chega não "instala Python", roda o bootstrap.
+O "clone" é a cópia do repositório na máquina: `git clone` ou **Code → Download ZIP** no GitHub. Sem ele, o aluno só olha os arquivos pelo site (degrau 1).
 
 ## Três degraus
 
@@ -19,65 +20,51 @@ Ninguém fica de fora por falta de instalação. Cada atividade da aula diz qual
 | Degrau | Precisa de | Basta para |
 | --- | --- | --- |
 | 1 · navegador | Navegador | Ler briefing, prompt e CSV no GitHub; ver o produto no Netlify |
-| 2 · VS Code + clone | VS Code (o laboratório tem) e a pasta do clone (git ou zip) | **Toda a aula**: abrir os arquivos, achar uma linha no CSV, ler o `.qmd` |
-| 3 · `uv` | Um Python qualquer na máquina + rede | Rodar o validador, `baixar_fm.py --offline`, o lab de lacunas |
+| 2 · VS Code + clone | VS Code (o laboratório tem) e a pasta do clone (git ou zip) | Abrir os arquivos, achar uma linha no CSV, ler o `.qmd` e os scripts |
+| 3 · Python do laboratório | Qualquer Python 3.10+ | Rodar `scripts/validar_contrato.py` e `baixar_fm.py --offline` — só biblioteca padrão. **Cobre toda a aula.** |
 
-## Atividade 0 · onboarding (em sala, 4 min; ou antes, se quiser)
+Para casa (não é degrau da aula): `python scripts/preparar_lab.py` monta o `.venv` com `pandas` / `matplotlib` para completar `03-relatorio-qmd/lab-lacunas.qmd`.
 
-Na máquina que você vai usar:
+## Atividade 0 · onboarding (em sala, 3 min)
+
+Regra da aula: **ler antes de rodar**. Primeiro abre-se `scripts/validar_contrato.py` no VS Code e lê-se o que ele checa; só então:
 
 ```bash
 git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git
 cd prompt-nao-e-fonte
-python scripts/preparar_lab.py
+python scripts/validar_contrato.py
 ```
 
-Se não tiver git: no GitHub, `Code → Download ZIP`, descompactar e abrir a pasta no VS Code. O comando final é o mesmo.
-
-`preparar_lab.py` roda com o Python que já existir (3.8+). Ele confere o clone, instala **só o executável** `uv` para o usuário se faltar (`pip install --user uv`), faz `uv sync --locked` (o `uv` baixa o Python 3.13 do projeto, isolado no `.venv` do clone) e roda o validador. Sem admin. Esperado no fim:
+Sem git: **Code → Download ZIP** no GitHub, descompactar, abrir a pasta no VS Code e rodar a última linha no terminal integrado (ou `Terminal → Run Build Task`). Esperado:
 
 ```text
+STATUS: esqueleto OK (pastas + cláusulas v1.2 em CONTRATO.md).
 STATUS: CSV OK (02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv).
-DEGRAU: 3
 ```
 
-Se imprimir `DEGRAU: 2`, a aula segue igual: você acompanha no VS Code. No VS Code, `Terminal → Run Build Task` roda o mesmo script; a tarefa `Validar contrato` roda só o validador. `python scripts/preparar_lab.py --verificar` só relata o que a máquina tem, sem instalar.
+`FALHA:` diz o que faltou. Nada foi instalado.
 
-## Obrigatório para o degrau 3
+## Para casa · `preparar_lab.py`
 
-- Python **3.10+** com `pip` na máquina (o do laboratório); o Python **3.13** do projeto o `uv` baixa para o `.venv`
-- Git e editor (VS Code ou Cursor); clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte) — ou o zip do GitHub
-- Navegador para o HTML slop e para o Reveal.js
-- Quarto CLI só se o aluno for renderizar o `.qmd` (o professor renderiza na demo)
+Também com a regra "ler antes de rodar": o arquivo tem cabeçalho e funções nomeadas (`degrau_2`, `localizar_uv`, `instalar_uv`, `sincronizar`, `validar`, `fechar`). Ele roda com o Python que existir (3.8+), instala **só o executável** `uv` para o usuário se faltar (`pip install --user uv`), faz `uv sync --locked` (o `uv` baixa o Python 3.13 do projeto, isolado no `.venv` do clone) e roda o validador. Sem admin. Pede rede uma vez (PyPI, GitHub). Esperado no fim: `DEGRAU: 3`. `--verificar` só relata o que a máquina tem.
 
-## Python do projeto
-
-Na raiz do clone, o equivalente manual do `preparar_lab.py`:
+O equivalente manual, para quem já tem `uv`:
 
 ```bash
 uv sync --locked
 uv run python scripts/validar_contrato.py
-uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
 ```
 
-`uv` é o caminho do contrato. Instalar apenas o executável `uv` por máquina; as dependências permanecem isoladas por projeto. Não instalar pacote global "no feeling".
-
-Para confirmar que o Quarto encontrou o Python do projeto (só quem for renderizar):
-
-```bash
-uv run -- quarto check jupyter
-```
+`uv` é o caminho do contrato para o render. Instalar apenas o executável `uv` por máquina; as dependências permanecem isoladas por projeto. Não instalar pacote global "no feeling". Quarto só quem for renderizar o `.qmd`: `uv run -- quarto check jupyter`.
 
 ## Rede
 
-A aula **não depende** do DataMapper no horário do laboratório. O cache versionado (`data/raw/` + `fm_weo_cache.csv`) é a fonte do render. Download ao vivo é extra, para quem quiser ver a rotina abril/outubro.
-
-O degrau 3 precisa de rede uma vez (baixar `uv`, Python 3.13 e as dependências). Sem rede, fica-se no degrau 2.
+A aula **não depende** do DataMapper no horário do laboratório. O cache versionado (`data/raw/` + `fm_weo_cache.csv`) é a fonte do render e do `--offline`. Download ao vivo é extra, para quem quiser ver a rotina abril/outubro.
 
 ## Plano B só no navegador (degrau 1)
 
 - CSV: abrir `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv` no GitHub; a visualização mostra o arquivo como tabela com busca.
-- Briefing, prompt do junior, contrato e `.qmd`: o GitHub renderiza o Markdown e mostra o código.
+- Briefing, prompt do junior, contrato, scripts e `.qmd`: o GitHub renderiza o Markdown e mostra o código.
 - Produto: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
 - Slop: só no projetor (HTML não renderiza na visualização do GitHub).
 

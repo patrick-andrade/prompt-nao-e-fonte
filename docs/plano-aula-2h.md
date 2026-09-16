@@ -21,8 +21,10 @@ O quiz do fecho verifica os três. Nenhum exige programar.
 Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requisitos-laboratorio.md`](requisitos-laboratorio.md)):
 
 - **1 · navegador** — GitHub (CSV como tabela) + Netlify.
-- **2 · VS Code + clone** — abrir arquivos e procurar no CSV. **Basta para toda a aula.**
-- **3 · `uv`** — `python scripts/preparar_lab.py`; validador e `--offline`.
+- **2 · VS Code + clone** — abrir arquivos e procurar no CSV.
+- **3 · Python do laboratório** — rodar `validar_contrato.py` e `baixar_fm.py --offline` (só biblioteca padrão). **Cobre toda a aula; nada a instalar.**
+
+Para casa, não degrau: `python scripts/preparar_lab.py` monta o `.venv` (`uv`, `pandas`, `matplotlib`) para o `lab-lacunas.qmd`. O "clone" é a cópia do repositório na máquina (`git clone` ou Download ZIP).
 
 ## Núcleo (80 min)
 
@@ -32,14 +34,14 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 - "Vocês são o trainee." Cena 17h42, reunião às 18h.
 - As três dimensões em uma frase; ainda não abrir o contrato inteiro.
 
-### 9 min — antes de começar
+### 8 min — antes de começar
 
-- Três objetivos (distinguir, aplicar, ler) e a **regra da aula: ler antes de rodar**. Nenhum comando "cola e roda": antes de executar um arquivo, abre-se o arquivo, diz-se o que ele faz e por que vamos rodá-lo. Vale para `preparar_lab.py`, `baixar_fm.py`, `validar_contrato.py` e o `.qmd`.
+- Três objetivos (distinguir, aplicar, ler) e a **regra da aula: ler antes de rodar**. Nenhum comando "cola e roda": antes de executar um arquivo, abre-se o arquivo, diz-se o que ele faz e por que vamos rodá-lo. Vale para `validar_contrato.py`, `baixar_fm.py`, o `.qmd` e, para casa, `preparar_lab.py`.
 - Crash course de extensões em dois slides: o que cada arquivo é (`.md`, `.py`, `.csv`, `.qmd`, `.html`, `.pptx`, `.toml`/`.yml`/`.lock`, `.json`, `.scss`) e **quem lê o quê** (humano, Python, Quarto, navegador, IA). Ponto: o `.md` é referência para pessoa e para modelo; o `.csv` é a única fonte de número; o `.html` é saída.
-- Ferramentas na mesa e quem usa hoje (aluno / professor). Dizer a divisão: o laboratório forneceu VS Code, Python e rede ([`pedido-laboratorio.md`](pedido-laboratorio.md)); o resto o projeto puxa.
+- Ferramentas na mesa e quem usa hoje (aluno / professor). Dizer a divisão: o laboratório forneceu VS Code e Python ([`pedido-laboratorio.md`](pedido-laboratorio.md)); o repositório trouxe contrato, dado e scripts; ninguém instala biblioteca hoje.
   - `Abrir agora: docs/ferramentas.md`
-- **Leitura guiada de `scripts/preparar_lab.py`** (3 min): projetar o arquivo; docstring do topo e os `def` na ordem — `degrau_2` (confere o clone), `localizar_uv`/`instalar_uv` (só o executável, no perfil do usuário), `sincronizar` (`uv sync --locked`: mesmas versões em toda máquina), `validar`, `fechar`. Ler nomes, não linhas.
-- **Atividade 0 · Onboarding as is** (4 min, individual, dispara e segue): clonar ou baixar o zip, abrir no VS Code, `python scripts/preparar_lab.py` — agora sabendo o que vai aparecer. O repositório instala `uv`, o Python do projeto e as bibliotecas no `.venv` e roda o validador. Esperado `DEGRAU: 3`; `DEGRAU: 2` não trava a aula. É a primeira lição de projeto real: ninguém instala pacote à mão.
+- **Leitura guiada de `scripts/validar_contrato.py`** (3 min): projetar o arquivo; docstring, constantes do topo (`ISO3_CANONICO`, `ISO3_PROIBIDOS = {"CHN", "COL"}`, `INDICADORES`, `COLUNAS`, `VINTAGE_OK` — o contrato virou código), `validar_esqueleto`, `validar_csv` (colunas, países, indicadores, anos, vintage, NA nos anos-chave), `main` (`STATUS:` ou `FALHA:`). Ler nomes e a lista de checagens, não linhas.
+- **Atividade 0 · Onboarding as is** (3 min, individual, nada a instalar): clonar ou Download ZIP, abrir no VS Code, `python scripts/validar_contrato.py` — sabendo o que vai aparecer. Esperado `STATUS: esqueleto OK` e `STATUS: CSV OK`. `FALHA:` diz o que faltou. É a primeira lição de projeto real: um repositório chega com o seu próprio teste de "estou pronto".
 
 ### 17 min — demanda, slop, autópsia
 
@@ -62,10 +64,10 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 
 - Pasta `02-dados-fiscal-monitor/`: dicionário (códigos, sem série) e notas de vintage.
 - Caminho da aula: abrir `baixar_fm.py` (onde está o `--offline`, o que lê em `data/raw/`, o que grava) e só então rodar no projetor; validador passa.
-- **Atividade 2 · Achem a linha** (5 min, individual, degrau 2; degrau 3 opcional): abrir `fm_weo_cache.csv` no VS Code ou no GitHub, localizar `BRA` · `2025` · `GGXONLB_NGDP`, ler o **sinal** de `value` e comparar com o card do slop. Ninguém diz o número: mão levantada, positivo ou negativo. Degrau 3: `python scripts/preparar_lab.py --so-validar`.
+- **Atividade 2 · Achem a linha** (5 min, individual, degrau 2; degrau 3 opcional): abrir `fm_weo_cache.csv` no VS Code ou no GitHub, localizar `BRA` · `2025` · `GGXONLB_NGDP`, ler o **sinal** de `value` e comparar com o card do slop. Ninguém diz o número: mão levantada, positivo ou negativo. Degrau 3: `python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline` (lido no slide anterior) e `python scripts/validar_contrato.py` — o CSV regravado a partir de `data/raw/` mantém a linha.
 - Abrir o CSV no projetor: colunas na ordem do contrato, a linha que a turma achou. **Não** copiar número para o slide.
 
-### 12 min — um `.qmd`, dois artefatos
+### 13 min — um `.qmd`, dois artefatos
 
 - `03-relatorio-qmd/mini-fiscal-monitor.qmd` lê **somente** o CSV. Mostrar o YAML e um chunk que lê o arquivo.
 - Produto no ar ou local: gráficos, tabela do ano-foco. Perguntar: "a linha da Atividade 2 está neste gráfico?"
@@ -84,7 +86,7 @@ Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requ
 - Quiz das quatro perguntas (3 min, oral, em coro): cinco afirmações, todas caem. Voltar aos três verbos.
 - Pacote: [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Autópsia só depois do slop.
 - Netlify é demo do professor; aluno não cria conta.
-- Para casa: `lab-lacunas.qmd` (degrau 3) ou as cinco perguntas de interpretação no fim dele (degrau 2).
+- Para casa: ler e rodar `scripts/preparar_lab.py` (monta o `.venv` com `pandas` / `matplotlib`) e completar `lab-lacunas.qmd`; sem `uv`, as cinco perguntas de interpretação no fim dele.
 - Fechar: o campeonato não é o título em inglês; é o CSV que reroda. Três frases.
 
 ## Gordura (até 40 min; pular se houver debate)
@@ -93,6 +95,7 @@ Cada item abaixo é um slide com selo **se sobrar tempo** no deck:
 
 - Rebuild ao vivo do CSV (`baixar_fm.py --offline`).
 - Card do slop vs linha do CSV — agora a dívida também (abrir o arquivo, **não** ditar número).
+- Como um projeto puxa suas dependências: ler `scripts/preparar_lab.py` pelos nomes das funções (`uv sync --locked`, `uv.lock` = versões congeladas); rodar só se a rede deixar.
 - Chunks 2–3 de `03-relatorio-qmd/lab-lacunas.qmd` no projetor.
 - Site Netlify no ar: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
 - Slide r−g: o que "sustentável" exigiria (primário que estabiliza, r − g) **sem calcular número**.

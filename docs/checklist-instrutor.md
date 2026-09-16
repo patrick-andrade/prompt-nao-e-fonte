@@ -7,8 +7,9 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 ## Antes da aula
 
 - [ ] `uv run python scripts/validar_contrato.py` passa (esqueleto + CSV).
-- [ ] Enviar [`pedido-laboratorio.md`](pedido-laboratorio.md) aos responsáveis pelo laboratório (VS Code, Python 3.10+ com pip, git, rede para GitHub/PyPI/Netlify, gravação no perfil do usuário). Guardar a resposta.
-- [ ] Numa máquina do lab, logado como aluno **sem admin**, rodar `python scripts/preparar_lab.py` e anotar em que degrau para (`DEGRAU: 2` ou `3`). Isso decide se a Atividade 0 chega ao degrau 3 e se a Atividade 2 pede o validador.
+- [ ] Enviar [`pedido-laboratorio.md`](pedido-laboratorio.md) aos responsáveis pelo laboratório (obrigatório: VS Code, Python 3.10+, navegador; desejável: git e saída para GitHub). Guardar a resposta.
+- [ ] Numa máquina do lab, logado como aluno, clonar (ou Download ZIP) e rodar `python scripts/validar_contrato.py`: tem de imprimir `esqueleto OK` e `CSV OK`. Sem rede, levar o zip do GitHub num pendrive.
+- [ ] Opcional: `python scripts/preparar_lab.py --verificar` na mesma máquina, para saber se o para-casa (`uv` + `.venv`) funciona no lab ou só em casa.
 - [ ] `.vscode/tasks.json` aparece em `Terminal → Run Build Task` numa máquina do lab.
 - [ ] Briefing, prompt do junior e slop abrem no navegador (UTF-8, acentos).
 - [ ] Autópsia em `01-demanda-simulada/instrutor/autopsia.md` conferida **na mão** contra o CSV (não copiar número para o deck).
@@ -49,20 +50,20 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 ## Aula (80 + 40)
 
-- [ ] Núcleo cronometrado em 80 min (5 + 9 + 17 + 6 + 13 + 12 + 10 + 8).
-- [ ] Regra "ler antes de rodar" cumprida em todo comando: `preparar_lab.py`, `baixar_fm.py`, `validar_contrato.py` e o `.qmd` abertos no projetor **antes** de executar.
+- [ ] Núcleo cronometrado em 80 min (5 + 8 + 17 + 6 + 13 + 13 + 10 + 8).
+- [ ] Regra "ler antes de rodar" cumprida em todo comando: `validar_contrato.py`, `baixar_fm.py` e o `.qmd` abertos no projetor **antes** de executar (e `preparar_lab.py`, se a gordura chegar lá).
 - [ ] Abertura: vocês são o trainee; isto é o e-mail da Diretoria; isto é o prompt do colega.
-- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `preparar_lab.py` aberto e lido pelos nomes das funções; só depois a Atividade 0 (onboarding *as is*) disparada e deixada rodar em segundo plano — dizer em voz alta o que o laboratório forneceu e o que o projeto puxa.
+- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `validar_contrato.py` aberto e lido pelas constantes e nomes das funções; só depois a Atividade 0 (`python scripts/validar_contrato.py`) — dizer em voz alta o que o laboratório forneceu e o que o repositório trouxe; nada instalado.
 - [ ] Atividade 1 (3 min, duplas): três duplas falam; nada de número certo.
 - [ ] Atividade 2 (5 min): a turma acha `BRA` · 2025 · `GGXONLB_NGDP`; contar mãos (positivo / negativo) sem ditar valor.
 - [ ] Atividade 3 (3 min): três voluntários leem a trava; ligar ao `CONTRATO.md`.
 - [ ] Quiz no fecho, em coro; voltar aos três verbos.
 - [ ] Cues `Abrir agora:` com caminho relativo (sem OneDrive, sem `file://`).
 - [ ] Memes: rodapé de uso acadêmico visível; cortar os que não funcionarem.
-- [ ] Gordura só se sobrar tempo (rebuild, card vs CSV, lab, site no ar, r−g).
+- [ ] Gordura só se sobrar tempo (rebuild, card vs CSV, dependências com `preparar_lab.py`, lab, site no ar, r−g).
 - [ ] UTF-8 no projetor (acentos, travessão, iso3).
 
 ## Pacote
 
 - [ ] Clone público no projetor; pedir para **não** abrir a autópsia antes do slop.
-- [ ] Se gerar zip: `aluno/minicurso-prompt-nao-e-fonte.zip` sem `aula/` e sem `instrutor/autopsia.md` (inclui `scripts/preparar_lab.py`, `docs/ferramentas.md`, `.vscode/tasks.json`).
+- [ ] Se gerar zip: `aluno/minicurso-prompt-nao-e-fonte.zip` sem `aula/` e sem `instrutor/autopsia.md` (inclui `scripts/preparar_lab.py`, `docs/ferramentas.md`, `.vscode/tasks.json`). Atenção: sem `aula/` e `instrutor/`, o validador reporta pasta ausente nesse zip — para a Atividade 0 use o **Download ZIP do GitHub** (repositório completo), não este.
