@@ -21,8 +21,8 @@ Cláusulas: [`CONTRATO.md`](../CONTRATO.md) v1.2.
 ## Como gerar
 
 ```bash
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
-python scripts/validar_contrato.py
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+uv run python scripts/validar_contrato.py
 ```
 
 `--offline` reconstrói o CSV a partir de `data/raw/` (caminho da aula). Sem `--offline` tenta o DataMapper; se a rede devolver 403, cai no bruto em disco.

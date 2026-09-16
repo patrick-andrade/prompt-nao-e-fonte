@@ -1,6 +1,6 @@
 # Autópsia do slop (somente instrutor)
 
-Fora do zip do aluno. Abrir **depois** de projetar `entrega-slop/index.html` e **antes** de abrir o CSV.
+Está no clone público; **não** entra no zip opcional. Abrir **depois** de projetar `entrega-slop/index.html` e **antes** de abrir o CSV.
 
 O HTML é bonito de propósito. O erro não é estética; é **epistemologia do número**.
 

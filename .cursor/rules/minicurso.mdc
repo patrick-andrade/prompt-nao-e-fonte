@@ -14,9 +14,10 @@ A fonte da verdade é `CONTRATO.md` na raiz (v1.2). Não inventar país, coluna,
 - Indicadores: `GGXWDG_NGDP`, `GGXONLB_NGDP`. Vintage FM/WEO abril/2026.
 - Slop (Dimensão 1) **não** lê o CSV. Quarto / PPTX / Reveal.js da Dimensão 3 **só** leem o CSV. O deck de aula **não** lê o CSV.
 - PPTX → `outputs/pptx/` (não vai ao Netlify). Reveal.js → `outputs/revealjs-netlify/` (único publish). Template PPTX (Onda 2) é entrada em `03-relatorio-qmd/`.
-- Aula (instrutor): `aula/apresentacao-minicurso.qmd` → `outputs/aula-expositiva/` (fora do Netlify e do zip).
+- Aula (instrutor): `aula/apresentacao-minicurso.qmd` → `outputs/aula-expositiva/` (fora do Netlify).
 - Netlify = somente Reveal.js do produto. Python = `uv` + `pyproject.toml`. UTF-8; sem credenciais.
 - Cue de arquivo = caminho relativo (`Abrir agora:`). Hiperlink só para URL público.
+- Pacote do aluno = clone GitHub público; zip opcional sem `aula/` e sem autópsia.
 - Diretoria de Pesquisa Aplicada = demanda realista de estágio/trainee, não tom a substituir no produto.
-- Inspeção humana (Onda 3): projetor, URL, memes e zip o agente não fecha.
+- Inspeção humana (Onda 3): projetor, URL, memes e clone o agente não fecha.
 - País, coluna ou formato novos = bump para v1.3 no contrato e no validador.

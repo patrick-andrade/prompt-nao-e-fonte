@@ -1,0 +1,4 @@
+project:
+  render:
+    - aula/apresentacao-minicurso.qmd
+  output-dir: outputs/aula-expositiva

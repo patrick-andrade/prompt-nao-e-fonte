@@ -24,7 +24,7 @@ Sair da aula sabendo distinguir um HTML apresentável de uma rotina que se rerod
 - Projetar o prompt do colega (`01-demanda-simulada/prompt-do-junior.md`).
 - Abrir o slop. **60 segundos em silêncio.**
   - `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`
-- Autópsia pelas quatro perguntas (`docs/checklist-rigor.md`). Arquivo `instrutor/autopsia.md` **não** vai ao aluno; abrir **depois** do HTML.
+- Autópsia pelas quatro perguntas (`docs/checklist-rigor.md`). Arquivo `instrutor/autopsia.md` está no clone; abrir **depois** do HTML.
 - Transição: “o resultado bom não mora nesta pasta.”
 
 ### 8 min — contrato (sem ler o arquivo inteiro)
@@ -46,7 +46,7 @@ Sair da aula sabendo distinguir um HTML apresentável de uma rotina que se rerod
 - `03-relatorio-qmd/mini-fiscal-monitor.qmd` lê **somente** o CSV.
 - Um gráfico + tabela do ano-foco no produto já renderizado (local ou Netlify).
 - PPTX (reunião) e Reveal.js (navegador) saem do mesmo `.qmd`.
-- `Abrir agora: outputs/revealjs-netlify/` — ou o URL em `url_netlify` se já houver drop.
+- `Abrir agora: outputs/revealjs-netlify/` — ou o URL em `url_netlify` se o deploy já estiver no ar.
 - PPTX **não** vai ao Netlify.
 
 ### 12 min — dois prompts profissionais vs o junior
@@ -55,9 +55,9 @@ Sair da aula sabendo distinguir um HTML apresentável de uma rotina que se rerod
 - Recolocar as quatro perguntas: `docs/checklist-rigor.md`.
 - Prompt profissional não substitui o contrato.
 
-### 10 min — zip, URL, o que levar
+### 10 min — clone, URL, o que levar
 
-- Pacote: `aluno/minicurso-prompt-nao-e-fonte.zip` (sem autópsia, sem `aula/`).
+- Pacote: [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Autópsia só depois do slop.
 - Netlify é demo do professor; aluno não cria conta.
 - Fechar: o campeonato não é o título em inglês; é o CSV que reroda.
 
@@ -68,7 +68,7 @@ Cada item abaixo é um slide com selo **se sobrar tempo** no deck:
 - Rebuild ao vivo do CSV (`baixar_fm.py --offline`).
 - Card do slop vs linha do CSV (abrir o arquivo, **não** ditar número).
 - Chunks 2–3 de `03-relatorio-qmd/lab-lacunas.qmd` no projetor.
-- Drop Netlify ao vivo ([Netlify Drop](https://app.netlify.com/drop)); colar o URL em `url_netlify`.
+- Site Netlify no ar (projeto `fiscal-monitor-2026`); colar o URL em `url_netlify` se ainda for placeholder.
 - Slide r−g: o que “sustentável” exigiria (primário que estabiliza, r − g) **sem calcular número**.
 - Quiz das quatro perguntas.
 

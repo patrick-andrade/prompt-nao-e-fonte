@@ -38,7 +38,7 @@ Validar:
 
 ```bash
 
-python scripts/validar_contrato.py
+uv run python scripts/validar_contrato.py
 
 ```
 
@@ -70,9 +70,9 @@ Validar:
 
 ```bash
 
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
 
-python scripts/validar_contrato.py
+uv run python scripts/validar_contrato.py
 
 ```
 
@@ -102,17 +102,16 @@ Produto final e publicação.
 
 ```bash
 
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
 
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 
 ```
 
 
 
-- Drop/publish Netlify (somente Reveal.js; demo do professor; ver [`roteiro-netlify.md`](roteiro-netlify.md)).
-
-- Zip do aluno em `aluno/minicurso-prompt-nao-e-fonte.zip` (sem `instrutor/autopsia.md`; lista em [`pacote-aluno.md`](pacote-aluno.md)). Regenerar com `python scripts/empacotar_aluno.py`.
+- Publish Netlify (somente Reveal.js; demo do professor; ver [`roteiro-netlify.md`](roteiro-netlify.md)).
+- Pacote do aluno: clone do GitHub (lista em [`pacote-aluno.md`](pacote-aluno.md)). Zip opcional: `uv run python scripts/empacotar_aluno.py`.
 - O Quarto aninha a subpasta da fonte no `--output-dir`; `scripts/achatar_saidas.py` (post-render) deixa `index.html` e o PPTX na raiz de cada pasta de saída.
 
 CONTRATO nesta onda ainda era **v1.1** (país, coluna e formato não mudaram). O bump v1.2 é da Onda 3 (aula + inspeção humana), sem mexer no schema.
@@ -123,25 +122,24 @@ Deck de exposição, contrato v1.2 e o que **só você** fecha no projetor. Onda
 
 Já no repositório:
 
-- `CONTRATO.md` **v1.2**: pasta `aula/`, `aula/apresentacao-minicurso.qmd`, saída `outputs/aula-expositiva/` (fora do Netlify e do zip), cláusula de inspeção humana, Diretoria como demanda de estágio/trainee, cues = caminho relativo.
+- `CONTRATO.md` **v1.2**: pasta `aula/`, `aula/apresentacao-minicurso.qmd`, saída `outputs/aula-expositiva/` (fora do Netlify), cláusula de inspeção humana, Diretoria como demanda de estágio/trainee, cues = caminho relativo.
 - Deck Reveal.js (núcleo 80 min + gordura; não lê o CSV; tema reutilizado de `03-relatorio-qmd/tema-slate-indigo-sky.scss`).
 - [`plano-aula-2h.md`](plano-aula-2h.md) em 80+40; este plano; [`checklist-instrutor.md`](checklist-instrutor.md).
-- Zip **sem** `aula/` e **sem** autópsia (`scripts/empacotar_aluno.py`).
-- `scripts/achatar_saidas.py` também achata `aula/` aninhado em `outputs/aula-expositiva/`. `netlify.toml` **não** muda: publish continua `outputs/revealjs-netlify/`.
+- Pacote da turma = clone público; zip opcional **sem** `aula/` e **sem** autópsia (`scripts/empacotar_aluno.py`).
+- `scripts/achatar_saidas.py` também achata `aula/` aninhado em `outputs/aula-expositiva/`. `netlify.toml` publica `outputs/revealjs-netlify/` via `scripts/netlify_build.sh`.
 
 Render do deck (explícito; fora do `render:` padrão de `_quarto.yml`):
 
 ```bash
-quarto render aula/apresentacao-minicurso.qmd --to revealjs --output-dir outputs/aula-expositiva
-python scripts/achatar_saidas.py
+uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
 ```
 
 O que o agente **não** fecha (marcar em [`checklist-instrutor.md`](checklist-instrutor.md)):
 
 - Render local do briefing e contraste visual slop vs Reveal.js.
-- Drop Netlify; colar o `*.netlify.app` em `url_netlify` no deck e rerenderizar.
+- Deploy Netlify do git; colar o `*.netlify.app` em `url_netlify` no deck e rerenderizar.
 - Assistir o deck como aluno: ritmo, memes (nota de uso acadêmico), cues `Abrir agora:`, simulação Diretoria → trainee.
-- Conferir o zip na mão.
+- Conferir o clone público (autópsia só depois do slop).
 - Ajustes de texto/tom que só o professor decide.
 - Cronometrar o núcleo de 80 min; cortar gordura/memes que não funcionarem; UTF-8 no projetor.
 

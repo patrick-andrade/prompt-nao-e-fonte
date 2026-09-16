@@ -1,7 +1,11 @@
 # Publish = somente o Reveal.js da Dimensão 3.
-# PPTX não entra no Netlify. Demo do professor; alunos não criam conta.
-# Drop: arrastar outputs/revealjs-netlify/ (já renderizado). Ver docs/roteiro-netlify.md.
+# PPTX, slop e deck de aula não entram. Demo do professor; alunos não criam conta.
+# Site ligado ao git (projeto fiscal-monitor-2026). Ver docs/roteiro-netlify.md.
 
 [build]
   publish = "outputs/revealjs-netlify"
-  command = "quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify && python scripts/achatar_saidas.py"
+  command = "bash scripts/netlify_build.sh"
+
+[build.environment]
+  PYTHON_VERSION = "3.13"
+  UV_PYTHON = "3.13"

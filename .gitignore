@@ -1,5 +1,5 @@
 # Ambientes e segredos
-.venv/
+.venv
 venv/
 .env
 .env.*

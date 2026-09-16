@@ -4,7 +4,7 @@
 Paleta slate / indigo / sky. Não contém números fiscais.
 Uso (raiz 2026/):
 
-    python scripts/gerar_template_pptx.py
+    uv run python scripts/gerar_template_pptx.py
 """
 
 from __future__ import annotations

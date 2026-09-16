@@ -26,17 +26,13 @@ Análise narrativa, lab de lacunas e roteiro de IA profissional estão nesta pas
 Render:
 
 ```bash
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 ```
 
 O Quarto aninha `03-relatorio-qmd/` dentro do `--output-dir`. O `post-render` em `_quarto.yml` (`python scripts/achatar_saidas.py`) sobe `index.html` e o PPTX para a raiz de cada pasta de saída.
 
-No Windows, apontar o Python do `.venv` se o Quarto achar o interpretador do sistema sem Jupyter:
-
-```bash
-export QUARTO_PYTHON=".venv/Scripts/python.exe"
-```
+No Windows, mantenha o prefixo `uv run --` nos comandos acima; assim o Quarto recebe automaticamente o Python e o Jupyter resolvidos pelo projeto, sem caminho absoluto gravado na configuração.
 
 Mapa das pastas de saída: [`outputs/README.md`](../outputs/README.md). Publicação: [`docs/roteiro-netlify.md`](../docs/roteiro-netlify.md).
 
@@ -44,4 +40,4 @@ Mapa das pastas de saída: [`outputs/README.md`](../outputs/README.md). Publica�
 
 `quarto render` gera os dois formatos quando o `.qmd` e o CSV existirem. Números do slide = números do CSV-contrato. Render de aula **não** chama API. Sem número inventado neste README.
 
-A pasta `outputs/revealjs-netlify/` é dropável no Netlify (`netlify.toml`: `publish = "outputs/revealjs-netlify"`).
+A pasta `outputs/revealjs-netlify/` é o publish do site ligado ao git (`netlify.toml`: `publish = "outputs/revealjs-netlify"`).

@@ -3,7 +3,7 @@
 
 Uso (na raiz do repositório, pasta 2026/):
 
-    python scripts/validar_contrato.py
+    uv run python scripts/validar_contrato.py
 
 Códigos de saída
 ----------------

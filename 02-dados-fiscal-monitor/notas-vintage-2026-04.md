@@ -27,13 +27,13 @@ Página da edição: [Fiscal Monitor, April 2026](https://www.imf.org/en/publica
 Algumas redes devolvem HTTP 403 no DataMapper para clientes script. Por isso o bruto recortado vive em `data/raw/` e a aula reroda com:
 
 ```bash
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
 ```
 
 Download ao vivo (quando a API responder):
 
 ```bash
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py
 ```
 
 Render de aula **não** chama a API: o `.qmd` lê o CSV.

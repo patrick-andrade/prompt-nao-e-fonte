@@ -3,7 +3,7 @@ name = "minicurso-semana-economia-2026"
 version = "0.1.0"
 description = "Minicurso Prompt não é fonte — Semana da Economia (contrato v1.2)"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "pandas>=2.2.0",
     "matplotlib>=3.8.0",

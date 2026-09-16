@@ -27,8 +27,8 @@ O produto vive **inteiro** nesta pasta. Pastas de infraestrutura não recebem pr
     pptx/                       ← reunião interna; fora do Netlify
     revealjs-netlify/           ← único artefato publicado
     aula-expositiva/            ← deck de aula; fora do Netlify
-  aluno/
-  aula/                         ← apresentação do professor; fora do zip
+  aluno/                        ← README aponta o clone; zip opcional
+  aula/                         ← apresentação do professor; HTML gerado fora do Netlify
     apresentacao-minicurso.qmd
     imagens/
   01-demanda-simulada/
@@ -46,8 +46,8 @@ O CSV-contrato **não muda de caminho:** `02-dados-fiscal-monitor/data/processed
 
 - **Netlify** = somente Reveal.js (`publish = "outputs/revealjs-netlify"`). PPTX não se hospeda. `outputs/aula-expositiva/` também **não** se publica.
 - Template PPTX de referência é **entrada** em `03-relatorio-qmd/`, não em `outputs/`.
-- `aluno/` recebe o zip (`minicurso-prompt-nao-e-fonte.zip`, sem `instrutor/autopsia.md` e sem `aula/`).
+- `aluno/` aponta o clone público; zip opcional (`minicurso-prompt-nao-e-fonte.zip`, sem `instrutor/autopsia.md` e sem `aula/`).
 - Cue de arquivo no deck = caminho relativo no repositório. Hiperlink só para URL público.
-- Onda 0 (esqueleto), Onda 1 (slop + CSV + `.qmd` que lê o cache) e Onda 2 (análise, template, Netlify, zip) estão feitas (produto). Onda 3 = inspeção humana; ver [`plano-implementacao.md`](plano-implementacao.md).
+- Onda 0 (esqueleto), Onda 1 (slop + CSV + `.qmd` que lê o cache) e Onda 2 (análise, template, Netlify) estão feitas (produto). Onda 3 = inspeção humana; ver [`plano-implementacao.md`](plano-implementacao.md).
 
 Sem números fiscais neste arquivo. Sem China no produto.

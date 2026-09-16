@@ -4,6 +4,8 @@ Minicurso da Semana da Economia: análise de dados e IA em economia aplicada. Gr
 
 A fonte da verdade do produto é [`CONTRATO.md`](CONTRATO.md) (v1.2). Não inventar país, coluna, indicador, vintage, formato nem número fiscal.
 
+Pacote da turma (24/09/2026): clone [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Alunos **não** criam conta Netlify. Autópsia em `01-demanda-simulada/instrutor/autopsia.md` só **depois** do slop.
+
 ## Três dimensões (3 pastas numeradas)
 
 | Dimensão | Pasta | O que entrega |
@@ -20,7 +22,7 @@ Saídas da Dimensão 3:
 - Reveal.js → `outputs/revealjs-netlify/` (único artefato publicado)
 - Template PPTX de referência é **entrada** em `03-relatorio-qmd/`
 
-Deck de aula (instrutor; **não** lê o CSV; fora do zip e do Netlify):
+Deck de aula (instrutor; **não** lê o CSV; HTML gerado fora do Netlify):
 
 - Fonte: `aula/apresentacao-minicurso.qmd`
 - Saída: `outputs/aula-expositiva/`
@@ -31,10 +33,13 @@ Países (ordem canônica, **sem China**): `BRA`, `MEX`, `CHL`, `IND`, `IDN`.
 
 ## Como validar
 
-Na raiz deste repositório (`2026/`; Python 3.11+; `uv sync` para o render Quarto):
+Na raiz deste projeto (`2026/`; Python 3.13+):
+
+> Se esta pasta estiver dentro do OneDrive, use estes comandos em uma cópia de trabalho fora da pasta sincronizada. O `uv` cria `.venv` no projeto por padrão; o preview de ambiente central não deve ser ativado neste checkout porque o OneDrive percorreu o junction no teste de 28/08/2026.
 
 ```bash
-python scripts/validar_contrato.py
+uv sync --locked
+uv run python scripts/validar_contrato.py
 ```
 
 - **Onda 0 (histórica):** CSV ausente → esqueleto OK / Dimensão 2 pendente, exit 0.
@@ -43,16 +48,17 @@ python scripts/validar_contrato.py
 Render do briefing (Reveal.js publicado; PPTX só na pasta de saída):
 
 ```bash
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
-quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 ```
 
 Render do deck de aula (explícito; **não** entra no `render:` padrão de `_quarto.yml`):
 
 ```bash
-quarto render aula/apresentacao-minicurso.qmd --to revealjs --output-dir outputs/aula-expositiva
-python scripts/achatar_saidas.py
+uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
 ```
+
+O perfil `aula` define a pasta de saída e executa o pós-render automaticamente.
 
 Não há números fiscais neste README: eles só existem no CSV-contrato.
 
@@ -60,4 +66,4 @@ Não há números fiscais neste README: eles só existem no CSV-contrato.
 
 - Python: `pyproject.toml` + `uv`
 - Quarto: `_quarto.yml` (Reveal.js + PPTX a partir de `03-relatorio-qmd/`; o deck de aula é CLI à parte)
-- Netlify: `netlify.toml` publica **somente** `outputs/revealjs-netlify/`
+- Netlify: `netlify.toml` publica **somente** `outputs/revealjs-netlify/` (build em `scripts/netlify_build.sh`; projeto `fiscal-monitor-2026`)

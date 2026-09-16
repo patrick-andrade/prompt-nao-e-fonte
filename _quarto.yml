@@ -1,10 +1,10 @@
 # Destinos por formato (CLI --output-dir):
-#   quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
-#   quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+#   uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+#   uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 #
 # Deck de aula (instrutor; NÃO entra neste render: nem no Netlify):
-#   quarto render aula/apresentacao-minicurso.qmd --to revealjs --output-dir outputs/aula-expositiva
-#   python scripts/achatar_saidas.py
+#   uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
+# O post-render executa scripts/achatar_saidas.py automaticamente.
 #
 # Demo Netlify: somente o Reveal.js do produto (ver docs/roteiro-netlify.md). PPTX não se hospeda.
 project:

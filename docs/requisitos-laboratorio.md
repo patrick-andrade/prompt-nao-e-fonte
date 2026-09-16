@@ -4,28 +4,29 @@ Máquina do aluno (Windows, macOS ou Linux). Sem conta Netlify. Sem chave de API
 
 ## Obrigatório
 
-- Python **3.11+**
-- Git e editor (Cursor ou VS Code)
+- Python **3.13+** gerenciado pelo `uv`
+- Git e editor (Cursor ou VS Code); clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte)
 - Navegador para o HTML slop e para o Reveal.js
 - Quarto CLI se o aluno for renderizar o `.qmd` (o professor renderiza na demo)
 
 ## Python do projeto
 
-Na raiz `2026/`:
+Na raiz do clone:
 
 ```bash
-uv sync
-python scripts/validar_contrato.py
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git
+cd prompt-nao-e-fonte
+uv sync --locked
+uv run python scripts/validar_contrato.py
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
 ```
 
-`uv` é o caminho do contrato. Se a máquina da sala não tiver `uv`, `python` 3.11+ com as dependências do `pyproject.toml` resolve o validador e o `.qmd`. Não instalar pacote global “no feeling”.
+`uv` é o caminho do contrato. Instalar apenas o executável `uv` por máquina; as dependências permanecem isoladas por projeto. Não instalar pacote global “no feeling”.
 
-Se o Quarto achar o Python do sistema sem Jupyter, na raiz:
+Para confirmar que o Quarto encontrou o Python do projeto:
 
 ```bash
-export QUARTO_PYTHON=".venv/Scripts/python.exe"   # Windows
-# export QUARTO_PYTHON=".venv/bin/python"         # macOS / Linux
+uv run -- quarto check jupyter
 ```
 
 ## Rede
@@ -35,6 +36,7 @@ A aula **não depende** do DataMapper no horário do laboratório. O cache versi
 ## Não pedir ao aluno
 
 - Conta no Netlify (demo do professor; ver [`roteiro-netlify.md`](roteiro-netlify.md))
+- Zip obrigatório (o canal é o GitHub; zip só se a máquina não tiver git)
 - Token FMI, `.env`, scrape autenticado
 - China no recorte
 - Shinylive

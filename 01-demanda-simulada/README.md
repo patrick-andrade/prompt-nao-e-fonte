@@ -12,7 +12,7 @@ Cláusulas: [`CONTRATO.md`](../CONTRATO.md) v1.2.
 ## Saídas
 
 - [`entrega-slop/index.html`](entrega-slop/index.html) — HTML ilustrativo e impreciso de propósito (não lê o CSV).
-- [`instrutor/autopsia.md`](instrutor/autopsia.md) — só do instrutor; fora do zip do aluno.
+- [`instrutor/autopsia.md`](instrutor/autopsia.md) — só depois do slop (está no clone; fora do zip opcional).
 
 ## Validação
 

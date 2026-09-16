@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Empacota o zip do aluno (sem autópsia nem deck de aula).
+"""Empacota o zip opcional do aluno (sem autópsia nem deck de aula).
+
+O canal da turma é o clone público. Use o zip só se a máquina não tiver git.
 
 Uso (raiz 2026/):
 
-    python scripts/empacotar_aluno.py
+    uv run python scripts/empacotar_aluno.py
 """
 
 from __future__ import annotations
@@ -21,6 +23,7 @@ ARQUIVOS = [
     "AGENTS.md",
     "pyproject.toml",
     "uv.lock",
+    ".python-version",
     "_quarto.yml",
     "01-demanda-simulada/README.md",
     "01-demanda-simulada/briefing-supervisao.md",

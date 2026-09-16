@@ -28,7 +28,7 @@ Artefato de **aula** (instrutor; não é produto da Dimensão 3):
 
 - Fonte: `aula/apresentacao-minicurso.qmd` (Reveal.js; **não** lê o CSV)
 - Saída: `outputs/aula-expositiva/`
-- **Fora** do Netlify e do zip do aluno (como a autópsia)
+- HTML gerado **fora** do Netlify. A fonte `aula/` e a autópsia vivem no repositório público; na aula a autópsia abre-se **depois** do slop.
 
 O resultado *bom* da demanda **não** vive na Dimensão 1: é o HTML Reveal.js / PPTX da Dimensão 3, gerado a partir do CSV.
 
@@ -79,16 +79,16 @@ Colunas (nesta ordem):
 - **O slop (Dimensão 1) não usa esse CSV.** Se o HTML slop ler `fm_weo_cache.csv`, o contraste didático cai.
 - **O deck de aula (`aula/apresentacao-minicurso.qmd`) não lê o CSV.** Aponta para caminhos no repositório e, quando houver, para o URL público do produto.
 - **Não inventar número do Brasil (nem dos outros) em README, AGENTS, docs ou slides stub.** Números **do slop** podem aparecer no deck de aula porque são deliberadamente falsos e estão no HTML. Número fiscal verdadeiro só vem do cache, da API ou de PDF extraído com `doc_extract`.
-- **Netlify:** demo do professor; alunos não criam conta. Artefato publicado = Reveal.js em `outputs/revealjs-netlify/`. PPTX não se hospeda. Deck de aula em `outputs/aula-expositiva/` **não** se publica. Não há app Shinylive nesta versão.
+- **Netlify:** demo do professor; alunos não criam conta. Site ligado ao git (projeto `fiscal-monitor-2026`). Artefato publicado = Reveal.js em `outputs/revealjs-netlify/`. PPTX não se hospeda. Deck de aula em `outputs/aula-expositiva/` **não** se publica. Não há app Shinylive nesta versão.
+- **Pacote do aluno:** clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Zip opcional (`scripts/empacotar_aluno.py`) só para máquina sem git; se gerado, sem `aula/` e sem `instrutor/autopsia.md`.
 - **Python:** `pyproject.toml` + `uv`. R só como menção de ecossistema.
 - **UTF-8;** sem credenciais, tokens ou senhas no git.
-- **Cue de arquivo:** caminho relativo no repositório, no projetor como `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`. Sem `file://`, sem OneDrive. Hiperlink só para URL público (Netlify, Drop).
+- **Cue de arquivo:** caminho relativo no repositório, no projetor como `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`. Sem `file://`, sem OneDrive. Hiperlink só para URL público (GitHub, Netlify).
 
 Render do deck de aula (explícito; **não** entra no `render:` padrão de `_quarto.yml`):
 
 ```bash
-quarto render aula/apresentacao-minicurso.qmd --to revealjs --output-dir outputs/aula-expositiva
-python scripts/achatar_saidas.py
+uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
 ```
 
 ---
@@ -100,16 +100,16 @@ O agente fecha o código e o esqueleto. **Não** fecha o que só o instrutor vê
 - Dimensão 1: slop legível no projetor; prompt e briefing; autópsia **depois** do HTML; conferir na mão as acusações da autópsia contra o CSV (não copiar número para o deck de aula).
 - Dimensão 2: `baixar_fm.py --offline` + `validar_contrato.py`; dicionário sem série.
 - Dimensão 3: `quarto render` Reveal.js **e** PPTX; gráficos e tabela; tema; “sustentável” ausente sem critério.
-- Publicação: Drop Netlify; colar URL no parâmetro `url_netlify` do deck; conferir no ar (5 países, sem China, vintage no rodapé).
+- Publicação: deploy Netlify do git; colar o URL de produção no parâmetro `url_netlify` do deck; conferir no ar (5 países, sem China, vintage no rodapé).
 - Aula: cronometrar o núcleo de 80 min; cortar gordura e memes que não funcionarem; UTF-8 no projetor.
-- Zip: sem `aula/`, sem `instrutor/autopsia.md`.
+- Pacote: clone do GitHub; autópsia só **depois** do slop. Zip opcional, se existir: sem `aula/`, sem `instrutor/autopsia.md`.
 
 ---
 
 ## Validação
 
 ```bash
-python scripts/validar_contrato.py
+uv run python scripts/validar_contrato.py
 ```
 
 - Onda 0 (CSV ainda ausente): o validador confirma o esqueleto e imprime que a Dimensão 2 está pendente (exit 0).
@@ -119,7 +119,7 @@ python scripts/validar_contrato.py
 
 ## Versionamento
 
-**v1.2** (esta versão): pasta `aula/`, artefato `aula/apresentacao-minicurso.qmd`, saída `outputs/aula-expositiva/` (fora do Netlify e do zip), cláusula de inspeção humana (Onda 3), Diretoria como demanda realista de estágio/trainee, cues de arquivo = caminho relativo. Países, colunas, indicadores, vintage e CSV permanecem os do v1.1 / v1.0.
+**v1.2** (esta versão): pasta `aula/`, artefato `aula/apresentacao-minicurso.qmd`, saída `outputs/aula-expositiva/` (fora do Netlify), cláusula de inspeção humana (Onda 3), Diretoria como demanda realista de estágio/trainee, cues de arquivo = caminho relativo. Pacote do aluno = repositório público (zip opcional). Países, colunas, indicadores, vintage e CSV permanecem os do v1.1 / v1.0.
 
 **v1.1:** a árvore deixa de ser cinco pastas numeradas e passa a ser três pastas de produto + infraestrutura.
 

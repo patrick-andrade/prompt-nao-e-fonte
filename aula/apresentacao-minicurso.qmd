@@ -2,10 +2,11 @@
 title: "Prompt não é fonte"
 subtitle: "Análise de dados e IA em economia aplicada · núcleo 80 min + gordura"
 author: "Vocês são o trainee · Diretoria de Pesquisa Aplicada é a demanda"
-date: "Semana da Economia · laboratório"
+date: 2026-09-24
 lang: pt-BR
 params:
-  url_netlify: "COLE-APOS-O-DROP"
+  url_netlify: "COLE-URL-DE-PRODUCAO"
+  url_github: "https://github.com/patrick-andrade/prompt-nao-e-fonte"
 format:
   revealjs:
     theme: [default, ../03-relatorio-qmd/tema-slate-indigo-sky.scss]
@@ -15,7 +16,9 @@ format:
     footer: "Prompt não é fonte · aula do instrutor · fora do Netlify"
     output-file: index.html
     preview-links: false
-execute: false
+    date-format: "DD/MM/YYYY"
+execute:
+  enabled: false
 ---
 
 # Abertura {#abertura}
@@ -33,7 +36,7 @@ Três papéis, três arquivos:
 3. O prompt do colega = o atalho das 17h42.
 
 ::: notes
-Núcleo · 5 min no bloco. Ainda não abrir o CSV nem o contrato inteiro. Deixar a cena (17h42 / 18h) no ar. Se alguém perguntar “é pra valer o tom da Diretoria?”: sim — no briefing e no produto; neste deck falamos com o estudante.
+Núcleo · 5 min no bloco. Ainda não abrir o CSV nem o contrato inteiro. Deixar a cena (17h42 / 18h) no ar. As três dimensões numa frase: demanda e slop; rotina Python que grava o CSV; um `.qmd` que vira PPTX e Reveal.js. Se alguém perguntar “é pra valer o tom da Diretoria?”: sim — no briefing e no produto; neste deck falamos com o estudante.
 :::
 
 ## Wikipedia não é fonte → prompt não é fonte
@@ -143,7 +146,7 @@ Na lousa, nesta ordem (`docs/checklist-rigor.md`):
 3. Qual é a fonte / vintage?
 4. Dá para rerodar?
 
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.md</code> <span class="path-hint">(só o professor; fora do zip)</span></p>
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.md</code> <span class="path-hint">(depois do slop; está no clone)</span></p>
 
 ::: notes
 Núcleo. Autópsia depois do HTML. Conferir na mão contra o CSV depois, sem copiar número para este deck. Falhas de palco: geografia, recorte (Colômbia vs Chile), vintage ausente, “sustentável” sem critério, título em inglês.
@@ -276,13 +279,13 @@ Núcleo · 18 min. Não executar chunk neste deck. Mostrar o YAML (theme, refere
 
 ## No projetor: o briefing, não o slop
 
-URL do produto (depois do drop): **{{< meta params.url_netlify >}}**
+URL do produto (site ligado ao git): **{{< meta params.url_netlify >}}**
 
-Enquanto o parâmetro for `COLE-APOS-O-DROP`, o caminho local vale.
+Enquanto o parâmetro for `COLE-URL-DE-PRODUCAO`, o caminho local vale.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/</code></p>
 
-Drop, quando for a hora: [Netlify Drop](https://app.netlify.com/drop) — conta do professor; aluno não cria conta.
+Aluno não cria conta. Publicado = somente este Reveal.js.
 
 ::: notes
 Núcleo. Um gráfico + tabela do ano-foco. Conferir 5 países, sem China, vintage no rodapé. Se o URL já estiver colado, abrir o site; senão o HTML local.
@@ -299,7 +302,7 @@ Núcleo. Um gráfico + tabela do ano-foco. Conferir 5 países, sem China, vintag
 O site publicado é **somente** o Reveal.js em `outputs/revealjs-netlify/`.
 
 ::: notes
-Núcleo. Fechar o bloco do produto. Gordura (lab, Drop ao vivo, r−g) fica para o final.
+Núcleo. Fechar o bloco do produto. Gordura (lab, site no ar, r−g) fica para o final.
 :::
 
 # IA com contrato {#ia}
@@ -336,25 +339,23 @@ Núcleo. Anti-padrões: inventar para ficar apresentável; México como América
 
 # O que levar {#fecho}
 
-## Zip do aluno, não o palco do professor
+## O repositório é o pacote
 
-`aluno/minicurso-prompt-nao-e-fonte.zip`
+Clone: [{{< meta params.url_github >}}](https://github.com/patrick-andrade/prompt-nao-e-fonte)
 
-**Não entra:** `aula/` (este deck), `instrutor/autopsia.md`, PPTX gerado, site Reveal.js.
-
-<p class="cue"><strong>Abrir agora:</strong> <code>aluno/minicurso-prompt-nao-e-fonte.zip</code></p>
+No clone vêm briefing, slop, CSV, `.qmd` e este palco. **Não abrir** `instrutor/autopsia.md` antes do HTML das 17h42.
 
 ::: notes
-Núcleo · 10 min finais. Conferir o zip na mão numa máquina se der (não precisa unzip no projetor).
+Núcleo · 10 min finais. GitHub público substitui o zip. Se alguém estiver sem git, o fallback `aluno/minicurso-prompt-nao-e-fonte.zip` ainda existe — sem `aula/` e sem autópsia.
 :::
 
 ## Netlify é demo. Aluno não cria conta.
 
-Publicado = conteúdo de `outputs/revealjs-netlify/`.
+Publicado = conteúdo de `outputs/revealjs-netlify/` (projeto `fiscal-monitor-2026`, ligado ao git).
 
 URL: **{{< meta params.url_netlify >}}**
 
-Se ainda for o placeholder: render local + [Netlify Drop](https://app.netlify.com/drop), depois colar o `*.netlify.app` no YAML `url_netlify` e rerenderizar **este** deck.
+Se ainda for o placeholder: projetar o HTML local; depois do primeiro deploy verde, colar o `*.netlify.app` no YAML `url_netlify` e rerenderizar **este** deck.
 
 ::: notes
 Núcleo. Não pedir login à turma. Não hospedar outputs/aula-expositiva nem o slop.
@@ -425,17 +426,17 @@ Não é o laboratório completo. Só mostrar no projetor o que o aluno completa 
 Gordura. Completo vira para casa. Não incluir China “para o exercício ficar mais rico”.
 :::
 
-## Drop Netlify ao vivo [se sobrar tempo]{.selo-gordura}
+## Site no ar [se sobrar tempo]{.selo-gordura}
 
 1. Render local do briefing (já deveria existir).
-2. Abrir [Netlify Drop](https://app.netlify.com/drop) na **sua** conta.
-3. Arrastar `outputs/revealjs-netlify/`.
-4. Colar o `*.netlify.app` em `url_netlify` neste `.qmd` e rerenderizar a aula.
+2. Abrir o URL de produção do projeto `fiscal-monitor-2026` (git → Netlify).
+3. Conferir no ar: 5 países, sem China, vintage no rodapé.
+4. Se o YAML ainda tiver placeholder, colar o `*.netlify.app` em `url_netlify` e rerenderizar a aula.
 
-Este deck **não** vai para o Drop.
+Este deck **não** vai ao Netlify.
 
 ::: notes
-Gordura. Se o drop já foi feito de manhã, só abrir o URL. Conferir no ar: 5 países, sem China, vintage no rodapé.
+Gordura. Se o deploy já estiver verde, só abrir o URL. Não pedir conta à turma.
 :::
 
 ## “Sustentável” sem conta [se sobrar tempo]{.selo-gordura}
