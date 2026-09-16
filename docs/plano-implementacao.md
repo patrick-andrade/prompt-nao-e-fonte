@@ -90,7 +90,7 @@ Produto final e publicação.
 
 
 
-- Análise completa em `03-relatorio-qmd/mini-fiscal-monitor.qmd` (briefing interno; números só via código que lê o CSV).
+- Análise completa em `03-relatorio-qmd/mini-fiscal-monitor.qmd` (PPTX = briefing interno; Reveal.js = produto; números só via código que lê o CSV).
 
 - `lab-lacunas.qmd` e `roteiro-ia-profissional.md`.
 
@@ -136,7 +136,7 @@ uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to reve
 
 O que o agente **não** fecha (marcar em [`checklist-instrutor.md`](checklist-instrutor.md)):
 
-- Render local do briefing e contraste visual slop vs Reveal.js.
+- Render local do produto Reveal.js e contraste visual slop vs Netlify.
 - Deploy Netlify do git; colar o `*.netlify.app` em `url_netlify` no deck e rerenderizar.
 - Assistir o deck como aluno: ritmo, memes (nota de uso acadêmico), cues `Abrir agora:`, simulação Diretoria → trainee.
 - Conferir o clone público (autópsia só depois do slop).

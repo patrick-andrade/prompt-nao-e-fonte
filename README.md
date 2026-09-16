@@ -45,7 +45,7 @@ uv run python scripts/validar_contrato.py
 - **Onda 0 (histórica):** CSV ausente → esqueleto OK / Dimensão 2 pendente, exit 0.
 - **A partir da Onda 1:** o mesmo comando valida schema, países, indicadores e vintage do CSV.
 
-Render do briefing (Reveal.js publicado; PPTX só na pasta de saída):
+Render do produto (Reveal.js publicado; PPTX = briefing interno, só na pasta de saída):
 
 ```bash
 uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify

@@ -45,7 +45,7 @@ Sair da aula sabendo distinguir um HTML apresentável de uma rotina que se rerod
 
 - `03-relatorio-qmd/mini-fiscal-monitor.qmd` lê **somente** o CSV.
 - Um gráfico + tabela do ano-foco no produto já renderizado (local ou Netlify).
-- PPTX (reunião) e Reveal.js (navegador) saem do mesmo `.qmd`.
+- PPTX (briefing interno da reunião) e Reveal.js (produto no navegador) saem do mesmo `.qmd`.
 - `Abrir agora: outputs/revealjs-netlify/` — ou o URL em `url_netlify` se o deploy já estiver no ar.
 - PPTX **não** vai ao Netlify.
 

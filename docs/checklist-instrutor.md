@@ -32,8 +32,8 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 ## Dimensão 3 — produto
 
-- [ ] Reveal.js do briefing no projetor (local ou Netlify).
-- [ ] PPTX existe em `outputs/pptx/` e **não** está no site.
+- [ ] Reveal.js do **produto** no projetor (local ou Netlify).
+- [ ] PPTX (briefing interno) existe em `outputs/pptx/` e **não** está no site.
 - [ ] Um gráfico + tabela do ano-foco; tema slate / indigo / sky.
 - [ ] Cinco países; México como LatAm; **sem China**; vintage no rodapé.
 - [ ] Adjetivo “sustentável” ausente sem critério.

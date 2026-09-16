@@ -1,6 +1,6 @@
 # Dimensão 3 — fonte Quarto (PPTX e Reveal.js)
 
-Um único `mini-fiscal-monitor.qmd` (Python) lê **somente** o CSV-contrato e renderiza PPTX (reunião interna) e Reveal.js (navegador / Netlify).
+Um único `mini-fiscal-monitor.qmd` (Python) lê **somente** o CSV-contrato e renderiza PPTX (briefing interno da reunião) e Reveal.js (produto / Netlify).
 
 Cláusulas: [`CONTRATO.md`](../CONTRATO.md) v1.2.
 

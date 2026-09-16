@@ -16,12 +16,12 @@ A árvore tem **3 pastas numeradas de produto** mais pastas de **infraestrutura*
 | 2 — Análise real em Python | `02-dados-fiscal-monitor/` | Scripts que baixam, empilham, validam e gravam o CSV-contrato. Motor da rotina (abril/outubro). |
 | 3 — Do `.qmd` ao PPTX e ao Reveal.js | `03-relatorio-qmd/` | Um único `mini-fiscal-monitor.qmd` (Python) lê o CSV e gera PPTX e Reveal.js. No Netlify entra **só** o Reveal.js. |
 
-A **Diretoria de Pesquisa Aplicada** é a demanda realista de trabalho (estágio / trainee / júnior): e-mail da chefia, recorte travado, reunião no fim do expediente. Não é um tom a substituir no produto da Dimensão 3. O briefing e o `mini-fiscal-monitor.qmd` falam *como* a Diretoria; o deck de aula fala *com* o estudante (“vocês são o trainee”).
+A **Diretoria de Pesquisa Aplicada** é a demanda realista de trabalho (estágio / trainee / júnior): e-mail da chefia, recorte travado, reunião no fim do expediente. Não é um tom a substituir no produto da Dimensão 3. O e-mail da Diretoria e o **PPTX** falam *como* a Diretoria (briefing interno da reunião). O Reveal.js no Netlify é o **produto** publicado. O deck de aula fala *com* o estudante (“vocês são o trainee”).
 
 Saídas da Dimensão 3 (infraestrutura, não pastas numeradas):
 
-- PPTX → `outputs/pptx/` (reunião interna; **não** vai ao Netlify)
-- Reveal.js → `outputs/revealjs-netlify/` (único artefato publicado)
+- PPTX → `outputs/pptx/` (briefing interno da reunião; **não** vai ao Netlify)
+- Reveal.js → `outputs/revealjs-netlify/` (produto publicado; único artefato do Netlify)
 - Template de referência PPTX (Onda 2) é **entrada** em `03-relatorio-qmd/`, não em `outputs/`
 
 Artefato de **aula** (instrutor; não é produto da Dimensão 3):

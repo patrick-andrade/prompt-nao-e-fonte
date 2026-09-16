@@ -37,8 +37,9 @@ O que este prompt trava: recorte, schema, vintage, falha de rede, lacuna. O que 
 ## Prompt 2 — análise Quarto (Dimensão 3)
 
 ```text
-Escreva um único mini-fiscal-monitor.qmd (Python, lang: pt-BR) para briefing interno:
-reunião de 20 minutos (PPTX) e a mesma narrativa no navegador (Reveal.js, slide-level: 2).
+Escreva um único mini-fiscal-monitor.qmd (Python, lang: pt-BR) com dois artefatos:
+PPTX = briefing interno da reunião de 20 minutos; Reveal.js = produto publicado (slide-level: 2).
+O Netlify recebe só o Reveal.js. O PPTX não se hospeda.
 
 Fonte: SOMENTE 02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv.
 Render de aula NÃO chama API. Números só via código que lê o CSV — nunca hardcode no markdown.

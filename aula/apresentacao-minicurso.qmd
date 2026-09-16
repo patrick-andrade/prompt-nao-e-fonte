@@ -262,12 +262,12 @@ Núcleo. Mostrar cabeçalho e uma linha vazia de significado (iso3 + year + cód
 
 ## Um `.qmd`, dois artefatos
 
-O briefing interno fala *como* a Diretoria. Vocês deveriam ter entregue isto — não o dashboard das 17h42.
+O PPTX é o briefing interno da reunião (fala *como* a Diretoria). O Reveal.js é o **produto** publicado. Vocês deveriam ter entregue isto — não o dashboard das 17h42.
 
 | Formato | Pasta | Destino |
 | --- | --- | --- |
-| Reveal.js | `outputs/revealjs-netlify/` | Único publish (Netlify) |
-| PPTX | `outputs/pptx/` | Reunião interna; **não** se hospeda |
+| Reveal.js | `outputs/revealjs-netlify/` | Produto no Netlify |
+| PPTX | `outputs/pptx/` | Briefing interno; **não** se hospeda |
 
 Os dois saem de `03-relatorio-qmd/mini-fiscal-monitor.qmd`. Números só via código que lê o CSV.
 
@@ -277,7 +277,7 @@ Os dois saem de `03-relatorio-qmd/mini-fiscal-monitor.qmd`. Números só via có
 Núcleo · 18 min. Não executar chunk neste deck. Mostrar o YAML (theme, reference-doc, footer com vintage).
 :::
 
-## No projetor: o briefing, não o slop
+## No projetor: o produto, não o slop
 
 URL do produto (site ligado ao git): **{{< meta params.url_netlify >}}**
 

@@ -4,8 +4,8 @@ Sem números fiscais aqui.
 
 | Pasta | Artefato | Destino |
 | --- | --- | --- |
-| `outputs/pptx/` | PPTX da reunião interna (Dimensão 3) | **Não** vai ao Netlify |
-| `outputs/revealjs-netlify/` | HTML Reveal.js do briefing (`index.html`) | Único publish do Netlify (`netlify.toml`) |
+| `outputs/pptx/` | PPTX do briefing interno da reunião (Dimensão 3) | **Não** vai ao Netlify |
+| `outputs/revealjs-netlify/` | HTML Reveal.js do **produto** (`index.html`) | Único publish do Netlify (`netlify.toml`) |
 | `outputs/aula-expositiva/` | HTML Reveal.js da aula (`aula/apresentacao-minicurso.qmd`) | Instrutor; **não** vai ao Netlify |
 
 O template de referência PPTX é **entrada** em `03-relatorio-qmd/template-referencia.pptx`, não nesta pasta.

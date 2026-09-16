@@ -1,17 +1,17 @@
 ---
 title: "Mini Fiscal Monitor"
-subtitle: "Briefing interno · reunião de 20 minutos + deck no navegador"
 author: "Diretoria de Pesquisa Aplicada"
-date: "Vintage FM/WEO abril/2026"
 lang: pt-BR
 format:
   revealjs:
+    subtitle: "Dívida bruta e saldo primário · FM/WEO abril/2026"
     theme: [default, tema-slate-indigo-sky.scss]
     slide-level: 2
     slide-number: true
     footer: "CSV-contrato · FM abril/2026 · sem China"
     output-file: index.html
   pptx:
+    subtitle: "Briefing interno · reunião de 20 minutos"
     reference-doc: template-referencia.pptx
 execute:
   echo: false
@@ -20,17 +20,29 @@ execute:
 jupyter: python3
 ---
 
+::: {.content-visible when-format="pptx"}
 # Briefing interno
+:::
+
+::: {.content-visible when-format="revealjs"}
+# Produto
+:::
 
 ## O pedido
 
-Produto curto para **reunião com a coordenação** e, em seguida, a mesma narrativa no **navegador**.
+::: {.content-visible when-format="pptx"}
+Briefing interno para a **reunião de 20 minutos** com a coordenação. A versão HTML (Reveal.js) é o **produto** que se publica; não entra neste arquivo PowerPoint.
+:::
+
+::: {.content-visible when-format="revealjs"}
+Produto publicado no navegador. O PPTX da reunião é briefing interno da exposição e **não** se hospeda.
+:::
 
 Não é paper. Não é dashboard cosmética. É:
 
 **pergunta → indicador → fonte/vintage → gráfico que se reroda.**
 
-Entregas desta sessão: PPTX de reunião (esta sala) e Reveal.js (o que se publica). Os dois saem de um único `.qmd`.
+Os dois artefatos saem de um único `.qmd`. Números só via código que lê o CSV-contrato.
 
 ## Recorte (não negociar no feeling)
 
@@ -77,7 +89,7 @@ Saldo primário = resultado global **antes** de juros.
 - Sinal FMI: positivo = superávit primário; negativo = déficit primário.
 - `GGXCNL` (resultado nominal / overall balance) inclui juros e **não** está neste CSV.
 
-Adjetivo (“sustentável”) sem âncora (primário que estabiliza a dívida, r − g, cobertura) não entra neste briefing.
+Adjetivo (“sustentável”) sem âncora (primário que estabiliza a dívida, r − g, cobertura) não entra neste produto.
 
 ## Vintage
 
@@ -561,7 +573,7 @@ O resultado *bom* da demanda não vive em `01-demanda-simulada/`. Vive neste `.q
 3. **Fonte / vintage** — Fiscal Monitor abril/2026 (`FM-2026-04`), projeções na base do WEO abril/2026.
 4. **Reroda?** — sim, se o número no slide sai de `fm_weo_cache.csv`.
 
-Se alguma falhar, o gráfico não entra no briefing.
+Se alguma falhar, o gráfico não entra no produto.
 
 ## Como rerodar
 
