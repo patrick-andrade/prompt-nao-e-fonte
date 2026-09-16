@@ -12,7 +12,7 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 - [ ] Deck de aula renderizado: `uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs` (HTML na raiz de `outputs/aula-expositiva/` após o pós-render automático).
 - [ ] Produto Reveal.js e PPTX renderizados (`outputs/revealjs-netlify/`, `outputs/pptx/`).
 - [ ] Repositório público [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte) abre no navegador; zip opcional só se alguém estiver sem git.
-- [ ] URL Netlify de produção colado em `url_netlify` no deck — ou o placeholder `COLE-URL-DE-PRODUCAO` ainda visível de propósito, com cue para `outputs/revealjs-netlify/`.
+- [x] URL Netlify de produção colado em `url_netlify` no deck: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
 - [ ] Notas de palestrante visíveis no modo apresentador; slides de gordura com selo **se sobrar tempo**.
 
 ## Dimensão 1 — slop
@@ -40,9 +40,9 @@ Marcar na ordem. Cortar gordura se o relógio apertar.
 
 ## Publicação
 
-- [ ] Site `fiscal-monitor-2026` ligado ao git; publish só de `outputs/revealjs-netlify/` (não o slop, não o PPTX, não `outputs/aula-expositiva/`).
-- [ ] URL `*.netlify.app` conferido no ar (5 países, sem China, vintage).
-- [ ] Mesmo URL colado no YAML `url_netlify` e deck rerenderizado, se o deploy já existia.
+- [x] Site `fiscal-monitor-2026` ligado ao git; publish só de `outputs/revealjs-netlify/` (não o slop, não o PPTX, não `outputs/aula-expositiva/`).
+- [x] URL [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app) conferido no ar (5 países, sem China, vintage no rodapé).
+- [x] Mesmo URL colado no YAML `url_netlify` e deck rerenderizado.
 
 ## Aula (80 + 40)
 

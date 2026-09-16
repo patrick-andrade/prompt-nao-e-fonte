@@ -68,7 +68,7 @@ Cada item abaixo é um slide com selo **se sobrar tempo** no deck:
 - Rebuild ao vivo do CSV (`baixar_fm.py --offline`).
 - Card do slop vs linha do CSV (abrir o arquivo, **não** ditar número).
 - Chunks 2–3 de `03-relatorio-qmd/lab-lacunas.qmd` no projetor.
-- Site Netlify no ar (projeto `fiscal-monitor-2026`); colar o URL em `url_netlify` se ainda for placeholder.
+- Site Netlify no ar: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
 - Slide r−g: o que “sustentável” exigiria (primário que estabiliza, r − g) **sem calcular número**.
 - Quiz das quatro perguntas.
 

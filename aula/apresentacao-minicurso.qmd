@@ -5,7 +5,7 @@ author: "Vocês são o trainee · Diretoria de Pesquisa Aplicada é a demanda"
 date: 2026-09-24
 lang: pt-BR
 params:
-  url_netlify: "COLE-URL-DE-PRODUCAO"
+  url_netlify: "https://fiscal-monitor-2026.netlify.app"
   url_github: "https://github.com/patrick-andrade/prompt-nao-e-fonte"
 format:
   revealjs:
@@ -281,7 +281,7 @@ Núcleo · 18 min. Não executar chunk neste deck. Mostrar o YAML (theme, refere
 
 URL do produto (site ligado ao git): **{{< meta params.url_netlify >}}**
 
-Enquanto o parâmetro for `COLE-URL-DE-PRODUCAO`, o caminho local vale.
+Se a rede falhar, o caminho local `outputs/revealjs-netlify/` vale.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/</code></p>
 
@@ -355,7 +355,7 @@ Publicado = conteúdo de `outputs/revealjs-netlify/` (projeto `fiscal-monitor-20
 
 URL: **{{< meta params.url_netlify >}}**
 
-Se ainda for o placeholder: projetar o HTML local; depois do primeiro deploy verde, colar o `*.netlify.app` no YAML `url_netlify` e rerenderizar **este** deck.
+Aluno não cria conta. Se a rede do laboratório falhar, projetar `outputs/revealjs-netlify/`.
 
 ::: notes
 Núcleo. Não pedir login à turma. Não hospedar outputs/aula-expositiva nem o slop.
@@ -428,12 +428,9 @@ Gordura. Completo vira para casa. Não incluir China “para o exercício ficar 
 
 ## Site no ar [se sobrar tempo]{.selo-gordura}
 
-1. Render local do briefing (já deveria existir).
-2. Abrir o URL de produção do projeto `fiscal-monitor-2026` (git → Netlify).
-3. Conferir no ar: 5 países, sem China, vintage no rodapé.
-4. Se o YAML ainda tiver placeholder, colar o `*.netlify.app` em `url_netlify` e rerenderizar a aula.
-
-Este deck **não** vai ao Netlify.
+1. Abrir [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
+2. Conferir no ar: 5 países, sem China, vintage no rodapé.
+3. Este deck **não** vai ao Netlify.
 
 ::: notes
 Gordura. Se o deploy já estiver verde, só abrir o URL. Não pedir conta à turma.
