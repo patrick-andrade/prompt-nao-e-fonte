@@ -18,10 +18,10 @@ Publicação + edição + corte. Aqui: Fiscal Monitor abril/2026 (`FM-2026-04`),
 
 O número no slide tem de sair de `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv` (ou de um render que só lê esse CSV). HTML com valor colado, mesmo bonito, não reroda.
 
-## Anti-padrões (os do slop)
+## Falhas exemplificadas pelo slop
 
-- Autorizar o modelo a inventar valor para “ficar apresentável”
-- México como América do Sul
-- País fora do recorte (Colômbia, China)
-- Adjetivo (“sustentável”) no lugar da conta
-- Render de aula chamando API
+- Atribuição “FMI e estatísticas nacionais” sem edição, documento ou tabela.
+- Anos 2024, 2025 e 2026 no mesmo painel sem distinguir observação, estimativa, projeção e ano fiscal.
+- Título “resultado” sobre NFSP do BCB: sinal positivo indica déficit nessa fonte, embora saldo positivo indique superávit no FMI.
+- Adjetivo “sustentável” sem hipótese de juros, crescimento e trajetória do primário.
+- HTML com valores colados, sem rotina de atualização nem verificação.

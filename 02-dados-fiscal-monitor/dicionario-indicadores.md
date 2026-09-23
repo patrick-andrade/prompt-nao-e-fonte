@@ -1,4 +1,4 @@
-# Dicionário de indicadores (contrato v1.2)
+# Dicionário de indicadores (contrato v1.3)
 
 Códigos travados. Séries numéricas **não** vivem neste arquivo: só no CSV-contrato.
 
@@ -18,4 +18,4 @@ Países (iso3, ordem canônica): `BRA`, `MEX`, `CHL`, `IND`, `IDN`. China fora.
 - **Cobertura e GFSM:** o MSA do Fiscal Monitor adverte que países misturam GFSM 2014, GFSM 2001 e, em alguns casos, GFSM 1986. Comparação entre países é do FMI, não uma conta nacional harmonizada por nós.
 - **Projeção:** anos à frente da vintage são projeções da equipe do FMI, não realizado. O CSV não traz uma coluna `obs_status`; o recorte 2000–2029 mistura os dois de propósito — o `.qmd` deve dizer isso.
 
-Mapeamento API → contrato: o script `scripts/baixar_fm.py` baixa os códigos FM e grava os códigos canônicos `GGXWDG_NGDP` e `GGXONLB_NGDP`.
+Mapeamento bruto → contrato: `scripts/baixar_fm.R` reconstrói offline os códigos canônicos `GGXWDG_NGDP` e `GGXONLB_NGDP`; `scripts/baixar_fm.py` é a rota alternativa. A consulta corrente à API é separada e não troca a edição do cache.

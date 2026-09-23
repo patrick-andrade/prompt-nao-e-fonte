@@ -1,0 +1,3 @@
+# Arquivos gerados por Quarto e renv: não cobrar espaços finais do gerador.
+outputs/revealjs-netlify/index.html -whitespace
+renv/activate.R -whitespace

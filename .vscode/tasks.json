@@ -13,11 +13,11 @@
       "problemMatcher": []
     },
     {
-      "label": "Reconstruir CSV do cache (--offline)",
-      "detail": "python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline — regrava o CSV a partir de data/raw/.",
+      "label": "Reconstruir CSV em R (--offline)",
+      "detail": "Rscript lê o bruto congelado em data/raw/ e reconstrói o CSV contratado.",
       "type": "shell",
-      "command": "python",
-      "args": ["02-dados-fiscal-monitor/scripts/baixar_fm.py", "--offline"],
+      "command": "Rscript",
+      "args": ["02-dados-fiscal-monitor/scripts/baixar_fm.R", "--offline"],
       "options": { "cwd": "${workspaceFolder}" },
       "group": "test",
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },

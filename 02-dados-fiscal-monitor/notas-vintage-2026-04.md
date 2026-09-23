@@ -24,16 +24,16 @@ Página da edição: [Fiscal Monitor, April 2026](https://www.imf.org/en/publica
 
 ## Rede e aula
 
-Algumas redes devolvem HTTP 403 no DataMapper para clientes script. Por isso o bruto recortado vive em `data/raw/` e a aula reroda com:
+Algumas redes devolvem HTTP 403 no DataMapper para clientes script. Por isso o bruto recortado vive em `data/raw/` e a aula reconstrói com R:
 
 ```bash
-uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
 ```
 
-Download ao vivo (quando a API responder):
+Consulta exploratória à API corrente (quando a rede responder):
 
 ```bash
-uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py
+Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --consultar-api
 ```
 
-Render de aula **não** chama a API: o `.qmd` lê o CSV.
+`imfapi::imf_get()` não seleciona a vintage histórica; `--consultar-api` não substitui o cache de abril/2026. A rota Python alternativa tem o mesmo bloqueio. O `.qmd` do produto só lê o CSV, e o deck de aula não o lê.

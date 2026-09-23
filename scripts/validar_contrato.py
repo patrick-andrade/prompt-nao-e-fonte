@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valida o CONTRATO.md v1.2 e, se existir, o schema do CSV-contrato.
+"""Valida o CONTRATO.md v1.3 e o schema do CSV-contrato.
 
 Uso (na raiz do repositório, pasta 2026/):
 
@@ -15,6 +15,7 @@ Códigos de saída
 from __future__ import annotations
 
 import csv
+import math
 import re
 import sys
 from pathlib import Path
@@ -34,7 +35,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRATO = ROOT / "CONTRATO.md"
 CSV_PATH = ROOT / "02-dados-fiscal-monitor" / "data" / "processed" / "fm_weo_cache.csv"
 
-VERSION = "v1.2"
+VERSION = "v1.3"
 ISO3_CANONICO = ("BRA", "MEX", "CHL", "IND", "IDN")
 ISO3_PROIBIDOS = {"CHN", "COL"}
 INDICADORES = ("GGXWDG_NGDP", "GGXONLB_NGDP")
@@ -74,11 +75,14 @@ PASTAS_OBRIGATORIAS = (
 )
 
 ARQUIVOS_OBRIGATORIOS = (
+    ROOT / "AGENTS.md",
     ROOT / "aula" / "apresentacao-minicurso.qmd",
+    ROOT / "02-dados-fiscal-monitor" / "scripts" / "baixar_fm.R",
+    ROOT / "03-relatorio-qmd" / "mini-fiscal-monitor.qmd",
 )
 
 CLAUSULAS_CONTRATO = (
-    "v1.2",
+    "v1.3",
     "BRA",
     "MEX",
     "CHL",
@@ -111,7 +115,7 @@ def validar_esqueleto() -> list[str]:
         return erros
     texto = CONTRATO.read_text(encoding="utf-8")
     if VERSION not in texto:
-        erros.append("CONTRATO.md não declara v1.2.")
+        erros.append(f"CONTRATO.md não declara {VERSION}.")
     for trecho in CLAUSULAS_CONTRATO:
         if trecho not in texto:
             erros.append(f"CONTRATO.md não contém a cláusula '{trecho}'.")
@@ -174,7 +178,18 @@ def validar_csv(path: Path) -> list[str]:
         if year < ANO_MIN or year > ANO_MAX:
             erros.append(f"L{i}: year {year} fora de {ANO_MIN}–{ANO_MAX}.")
 
-        pares_chave.add((iso3, year, indicador))
+        chave = (iso3, year, indicador)
+        if chave in pares_chave:
+            erros.append(f"L{i}: chave duplicada {chave}.")
+        pares_chave.add(chave)
+        try:
+            numero = float(valor)
+            if not math.isfinite(numero):
+                erros.append(f"L{i}: value não finito ({valor!r}).")
+        except ValueError:
+            erros.append(f"L{i}: value não numérico ({valor!r}).")
+        if not VINTAGE_OK.fullmatch(vintage):
+            erros.append(f"L{i}: vintage fora do contrato ({vintage!r}).")
         if iso3 in ISO3_CANONICO and year in ANOS_CHAVE and indicador in INDICADORES:
             if valor == "":
                 erros.append(
@@ -196,11 +211,8 @@ def validar_csv(path: Path) -> list[str]:
     if faltando_ind:
         erros.append(f"Indicadores ausentes no CSV: {faltando_ind}")
 
-    if vintages and not any(VINTAGE_OK.search(v or "") for v in vintages):
-        erros.append(
-            "Nenhum vintage registra FM-2026-04, WEO-2026-04 ou 2026-04. "
-            f"valores={sorted(vintages)}"
-        )
+    if len(vintages) > 1:
+        erros.append(f"CSV mistura vintages: {sorted(vintages)}")
 
     return erros
 
@@ -215,7 +227,7 @@ def main() -> int:
             print(f"FALHA: {e}", file=sys.stderr)
         return 1
 
-    print("STATUS: esqueleto OK (pastas + cláusulas v1.2 em CONTRATO.md).")
+    print(f"STATUS: esqueleto OK (pastas + cláusulas {VERSION} em CONTRATO.md).")
 
     if not CSV_PATH.is_file():
         rel = CSV_PATH.relative_to(ROOT).as_posix()

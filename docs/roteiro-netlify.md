@@ -1,45 +1,22 @@
-# Publicar o Reveal.js no Netlify
+# Publicar o Reveal.js estático no Netlify
 
-Demo do **professor**. Alunos **não** criam conta. PPTX **não** se hospeda. Sem Shinylive neste contrato.
+O projeto Netlify `fiscal-monitor-2026` publica **somente** `outputs/revealjs-netlify/index.html` do repositório [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). O HTML já está renderizado com `embed-resources: true` e versionado. O site não instala R, Python ou Quarto; `scripts/netlify_build.sh` apenas verifica que o arquivo existe.
 
-Artefato publicado = conteúdo de `outputs/revealjs-netlify/` (HTML Reveal.js gerado a partir de `03-relatorio-qmd/mini-fiscal-monitor.qmd`). O CSV-contrato já foi lido no render; o site não chama API.
-
-Site ligado ao git: repositório [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte), projeto Netlify `fiscal-monitor-2026`, owner `patrick-andrade`. Colar o URL de produção (`*.netlify.app`) em `params.url_netlify` no deck de aula depois do primeiro deploy verde.
-
-## 1. Render local (projetor e conferência)
-
-Na raiz `2026/`, com `uv` e Quarto no PATH:
+## Antes do push
 
 ```bash
-uv sync --locked
-uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
-uv run python scripts/validar_contrato.py
-uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
+python scripts/validar_contrato.py
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
 ```
 
-O `netlify.toml` declara `publish = "outputs/revealjs-netlify"`. O HTML de entrada deve ser `index.html` na raiz dessa pasta (o Quarto aninha a subpasta da fonte; `scripts/achatar_saidas.py` sobe o arquivo).
+Abrir `outputs/revealjs-netlify/index.html` sem rede e conferir todos os slides. Registrar o HTML no Git junto com o `.qmd`, o CSV e o contrato. `netlify.toml` usa `publish = "outputs/revealjs-netlify"` e um comando de checagem estática. O PPTX local e `outputs/aula-expositiva/` não entram no publish.
 
-Não publique `outputs/pptx/`. Reunião interna fica no arquivo PowerPoint, não no site.
+## Depois do push
 
-## 2. Caminho da aula: git → Netlify
+1. Conferir o commit em `main` no GitHub e o deploy correspondente no painel Netlify.
+2. Abrir [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app) e recarregar a página.
+3. Conferir capa, cinco países, vintage abril/2026, gráficos, slide de limites e crédito visual à OCDE.
+4. Comparar o site com o `index.html` local. O navegador não deve buscar CSV ou API em tempo de execução.
 
-O build remoto está em `scripts/netlify_build.sh` (instala `uv` + Quarto 1.9.37, `uv sync --locked`, render Reveal.js, achata a saída). Um `git push` em `main` dispara o deploy. Alunos só assistem o URL; não pedem login.
-
-Enquanto o URL de produção não estiver no YAML do deck, projetar `outputs/revealjs-netlify/index.html`.
-
-Drop avulso ([Netlify Drop](https://app.netlify.com/drop)) fica como plano B se o build da imagem falhar. Arrastar só `outputs/revealjs-netlify/`.
-
-## 3. O que conferir no ar
-
-- Título e vintage da edição (abril/2026), sem “dados recentes”.
-- Cinco países; México como LatAm; **sem China**.
-- Gráficos iguais aos do render local (são o mesmo HTML).
-- Rodapé / método apontando para o CSV, não para uma API no browser.
-
-## 4. Fora desta demo
-
-- Conta Netlify da turma
-- Token, `.env`, chave FMI
-- Hospedar `outputs/pptx/`
-- Publicar `outputs/aula-expositiva/`
-- Tratar o slop (`01-demanda-simulada/entrega-slop/`) como site oficial
+Se o deploy não refletir o commit, guardar o identificador do deploy e revisar a ligação do site ao repositório. Não publicar o slop como produto. Os alunos apenas acessam a URL; não precisam de conta.

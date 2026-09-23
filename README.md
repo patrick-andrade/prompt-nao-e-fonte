@@ -1,73 +1,40 @@
-# Prompt não é fonte
+# Prompt não é fonte · Semana da Economia 2026
 
-Minicurso da Semana da Economia: análise de dados e IA em economia aplicada. Graduação, laboratório, 2 horas (núcleo 80 min + gordura até 40 min). Raiz do produto = esta pasta (`2026/`).
+Minicurso sobre análise fiscal, IA e reprodutibilidade. A turma compara uma apresentação visualmente convincente, mas descuidada das fontes, com outra que pode ser refeita a partir do mesmo CSV. A fonte da verdade é o [`CONTRATO.md`](CONTRATO.md) **v1.3**.
 
-A fonte da verdade do produto é [`CONTRATO.md`](CONTRATO.md) (v1.2). Não inventar país, coluna, indicador, vintage, formato nem número fiscal.
-
-Pacote da turma (24/09/2026): clone [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Alunos **não** criam conta Netlify. Autópsia em `01-demanda-simulada/instrutor/autopsia.md` só **depois** do slop.
-
-Chegou sem saber o que é `uv`, `.qmd` ou iso3? Comece por [`docs/ferramentas.md`](docs/ferramentas.md) (ferramentas, extensões de arquivo, glossário). A aula funciona em **três degraus** — navegador, VS Code + clone, Python do laboratório — e nada se instala em sala: `python scripts/validar_contrato.py` roda só com a biblioteca padrão (ver [`docs/requisitos-laboratorio.md`](docs/requisitos-laboratorio.md)). O `.venv` com `pandas` / `matplotlib` é para casa: `python scripts/preparar_lab.py`.
-
-## Três dimensões (3 pastas numeradas)
-
-| Dimensão | Pasta | O que entrega |
+| Dimensão | Pasta | Produto |
 | --- | --- | --- |
-| 1 — Demanda simulada | `01-demanda-simulada/` | Briefing, prompt do junior, HTML slop; autópsia só do instrutor |
-| 2 — Scripts Python | `02-dados-fiscal-monitor/` | Download FM/WEO abril/2026 e CSV-contrato |
-| 3 — Qmd → PPTX / Reveal.js | `03-relatorio-qmd/` | Relatório que lê o CSV; gera PPTX e Reveal.js |
+| 1 · demanda simulada | [`01-demanda-simulada/`](01-demanda-simulada/) | E-mail da gestora, prompt plausível, HTML com falhas sutis de fonte e autópsia |
+| 2 · dados | [`02-dados-fiscal-monitor/`](02-dados-fiscal-monitor/) | R reconstrói o CSV congelado; Python é alternativa |
+| 3 · apresentação | [`03-relatorio-qmd/`](03-relatorio-qmd/) | Um `.qmd` em R produz PPTX e Reveal.js a partir do CSV |
 
-Infraestrutura (sem número): `docs/`, `scripts/`, `outputs/`, `aluno/`, `aula/`.
+O roteiro do professor fica em [`aula/`](aula/). O produto público é o [Reveal.js no Netlify](https://fiscal-monitor-2026.netlify.app); a apresentação em PPTX fica em `outputs/pptx/`. O repositório da turma é [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte).
 
-Saídas da Dimensão 3:
+## Reproduzir localmente
 
-- PPTX → `outputs/pptx/` (reunião interna; **não** vai ao Netlify)
-- Reveal.js → `outputs/revealjs-netlify/` (único artefato publicado)
-- Template PPTX de referência é **entrada** em `03-relatorio-qmd/`
-
-Deck de aula (instrutor; **não** lê o CSV; HTML gerado fora do Netlify):
-
-- Fonte: `aula/apresentacao-minicurso.qmd`
-- Saída: `outputs/aula-expositiva/`
-
-Mapa pastas ↔ dimensões: [`docs/arquitetura.md`](docs/arquitetura.md). Plano das ondas: [`docs/plano-implementacao.md`](docs/plano-implementacao.md). Checklist de inspeção humana: [`docs/checklist-instrutor.md`](docs/checklist-instrutor.md).
-
-Países (ordem canônica, **sem China**): `BRA`, `MEX`, `CHL`, `IND`, `IDN`.
-
-## Como validar
-
-Na raiz deste projeto (`2026/`; Python 3.13+):
-
-> Se esta pasta estiver dentro do OneDrive, use estes comandos em uma cópia de trabalho fora da pasta sincronizada. O `uv` cria `.venv` no projeto por padrão; o preview de ambiente central não deve ser ativado neste checkout porque o OneDrive percorreu o junction no teste de 28/08/2026.
+Na raiz do clone, com R, Quarto e Python disponíveis:
 
 ```bash
-uv sync --locked
-uv run python scripts/validar_contrato.py
+Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
+python scripts/validar_contrato.py
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
+quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
 ```
 
-Só o validador, sem `uv` (biblioteca padrão): `python scripts/validar_contrato.py`. Sem `uv` na máquina e querendo o `.venv`: `python scripts/preparar_lab.py` (instala só o executável `uv` para o usuário, sincroniza e roda o validador).
+O professor fixa os pacotes R em [`renv.lock`](renv.lock); para preparar outra máquina, execute `Rscript -e 'source("renv/activate.R"); renv::restore(prompt=FALSE)'` antes do render. O `.Rprofile` usa a biblioteca local quando os pacotes centrais já estão restaurados. A rota Python usa `pyproject.toml` e `uv.lock`: `uv sync --locked` e `uv run python ...`. O script Python de validação usa só a biblioteca padrão e pode rodar com `python` do laboratório. O [`docs/requisitos-laboratorio.md`](docs/requisitos-laboratorio.md) explica os três níveis de participação.
 
-- **Onda 0 (histórica):** CSV ausente → esqueleto OK / Dimensão 2 pendente, exit 0.
-- **A partir da Onda 1:** o mesmo comando valida schema, países, indicadores e vintage do CSV.
+`--offline` é o padrão das rotinas R e Python e usa dois JSONs recortados, versionados em `data/raw/`. `--consultar-api` inspeciona a API corrente e **não** regrava o cache de abril/2026, pois a função documentada não seleciona essa vintage. O `.qmd` lê apenas `fm_weo_cache.csv`; o render não chama a API.
 
-Render do produto (Reveal.js publicado; PPTX = briefing interno, só na pasta de saída):
+O `index.html` do produto é autossuficiente e versionado em `outputs/revealjs-netlify/`. O Netlify publica esse arquivo estático; seu build apenas verifica que ele existe. O PPTX é saída local reproduzível. O deck da aula fica em `outputs/aula-expositiva/`, fora do Netlify.
 
-```bash
-uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
-uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
-```
+Após renderizar os três artefatos, `python scripts/verificar_artefatos.py` confere a contagem de slides, recursos do HTML, nomes de arquivos e números do Brasil contra o CSV. A leitura visual no projetor permanece no checklist.
 
-Render do deck de aula (explícito; **não** entra no `render:` padrão de `_quarto.yml`):
+## Começar pela leitura
 
-```bash
-uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
-```
+- [`docs/ferramentas.md`](docs/ferramentas.md): ferramentas, extensões e quem lê cada arquivo.
+- [`docs/plano-aula-2h.md`](docs/plano-aula-2h.md): núcleo de 80 minutos e atividades opcionais.
+- [`docs/checklist-instrutor.md`](docs/checklist-instrutor.md): inspeção final no projetor.
+- [`docs/roteiro-netlify.md`](docs/roteiro-netlify.md): publicação do HTML estático.
 
-O perfil `aula` define a pasta de saída e executa o pós-render automaticamente.
-
-Não há números fiscais neste README: eles só existem no CSV-contrato.
-
-## Ferramentas
-
-- Python: `pyproject.toml` + `uv`
-- Quarto: `_quarto.yml` (Reveal.js + PPTX a partir de `03-relatorio-qmd/`; o deck de aula é CLI à parte)
-- Netlify: `netlify.toml` publica **somente** `outputs/revealjs-netlify/` (build em `scripts/netlify_build.sh`; projeto `fiscal-monitor-2026`)
+Na aula, abrir o HTML simulado **antes** de [`01-demanda-simulada/instrutor/autopsia.md`](01-demanda-simulada/instrutor/autopsia.md).

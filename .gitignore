@@ -19,13 +19,17 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 
-# R (menção de ecossistema; não versionar sessões)
+# R
 .RData
 .Rhistory
 .Rproj.user/
+renv/library/
+renv/staging/
+.quarto-local-cache/
 
 # Quarto
 .quarto/
+figure/
 *_files/
 *_cache/
 /.luarc.json
@@ -35,6 +39,8 @@ outputs/pptx/*
 !outputs/pptx/.gitkeep
 outputs/revealjs-netlify/*
 !outputs/revealjs-netlify/.gitkeep
+!outputs/revealjs-netlify/index.html
+outputs/qa-*/
 outputs/aula-expositiva/*
 !outputs/aula-expositiva/.gitkeep
 outputs/*.pdf

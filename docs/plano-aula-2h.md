@@ -1,105 +1,38 @@
-# Plano de aula — 80 min + gordura
+# Plano de aula · 80 minutos + até 40 opcionais
 
-Minicurso *Prompt não é fonte*. Público: graduação mista em economia e ciências sociais aplicadas (calouro → formandos), laboratório de informática com VS Code. Núcleo **80 min** de propósito apertado; gordura **até 40 min** se a turma perguntar pouco. Sem números fiscais neste plano; eles só aparecem no CSV e no que o `.qmd` da Dimensão 3 lê. Números **do slop** podem aparecer no projetor porque são deliberadamente falsos.
+Público: graduação em economia e áreas próximas, do início ao fim do curso. A Diretoria de Pesquisa Aplicada é uma demanda simulada de estágio/trainee. A turma examina uma apresentação que convence visualmente, identifica o descuido com fontes e acompanha outra gerada de modo reproduzível. O [`CONTRATO.md`](../CONTRATO.md) v1.3 fixa o recorte.
 
-Deck de palco (instrutor): `aula/apresentacao-minicurso.qmd` → `outputs/aula-expositiva/`. Não lê o CSV. Cue no slide: `Abrir agora:` + caminho relativo. Hiperlink só para URL público.
+Objetivos: reconhecer indicador e convenção de sinal; perguntar por documento, edição e ano; localizar no CSV a linha que gera o gráfico; entender por que conhecer R e Python ajuda a avaliar código produzido por IA.
 
-A Diretoria de Pesquisa Aplicada é a demanda realista (estágio / trainee / júnior). Vocês são o trainee; o briefing é o e-mail da chefia; o prompt do colega é o atalho preguiçoso.
+## Núcleo de 80 minutos
 
-## Objetivos de aprendizado
+| Tempo | Condução | Arquivos e atividade |
+| ---: | --- | --- |
+| 5 min | Cena da reunião e cartaz “Prompt não é fonte” | `aula/apresentacao-minicurso.qmd` |
+| 8 min | Objetivos, extensões e regra “ler antes de rodar” | Atividade 0: abrir e executar `scripts/validar_contrato.py` |
+| 17 min | E-mail da gestora → prompt do júnior → HTML, 60 s de observação → autópsia | Atividade 1: três perguntas de fonte, em duplas. Abrir `01-demanda-simulada/instrutor/autopsia.md` **após** o HTML. |
+| 6 min | Cinco países, dois códigos, vintage, governo geral, saldo × NFSP | `CONTRATO.md` |
+| 16 min | Professor abre `baixar_fm.R`, reconstrói offline e valida o CSV | Atividade 2: localizar `BRA` · `2025` · `GGXONLB_NGDP`; alunos conferem sinal, edição e fonte. |
+| 13 min | Professor mostra o `.qmd` e as duas apresentações | `mini-fiscal-monitor.qmd`, Reveal.js local ou Netlify e PPTX |
+| 9 min | O que travar num prompt; por que aprender R e Python | Atividade 3: escrever uma instrução verificável; comparar com `roteiro-ia-profissional.md`. |
+| 6 min | Quiz das quatro perguntas e caminhos para continuar | Clone público e produto no Netlify |
 
-Ao sair, o aluno consegue:
+O deck de aula **não lê** o CSV. Números fiscais reais são mostrados ao abrir o CSV ou o produto. Os números do slop podem ser citados como parte da simulação. Cues de arquivo têm a forma `Abrir agora: caminho/relativo`; URLs públicos são links.
 
-1. **Distinguir** um HTML apresentável de uma rotina que se reroda.
-2. **Aplicar** as quatro perguntas (pergunta, indicador, fonte/vintage, reroda?) a qualquer número que chegue por chat.
-3. **Ler** um CSV-contrato — `iso3`, código do indicador, vintage — e localizar uma célula sem perguntar ao modelo.
+## Participação da turma
 
-O quiz do fecho verifica os três. Nenhum exige programar.
+- **Navegador:** ler arquivos e CSV no GitHub, ver o produto no Netlify.
+- **Editor + clone:** procurar país, ano, indicador e vintage no CSV.
+- **Python do laboratório:** rodar o validador, que usa somente a biblioteca padrão. Nenhum pacote é instalado durante a aula.
 
-## Três degraus de participação
+R e Quarto ficam na máquina do professor para a demonstração. A rota Python alternativa de reconstrução está no clone. Para casa, `scripts/preparar_lab.py` prepara o ambiente Python do laboratório de lacunas, com `uv sync --locked`.
 
-Cada atividade diz qual degrau basta ([`ferramentas.md`](ferramentas.md), [`requisitos-laboratorio.md`](requisitos-laboratorio.md)):
+## Até 40 minutos opcionais
 
-- **1 · navegador** — GitHub (CSV como tabela) + Netlify.
-- **2 · VS Code + clone** — abrir arquivos e procurar no CSV.
-- **3 · Python do laboratório** — rodar `validar_contrato.py` e `baixar_fm.py --offline` (só biblioteca padrão). **Cobre toda a aula; nada a instalar.**
+1. Reconstruir o CSV com R e com a rota Python e comparar as linhas.
+2. Explicar o ano fiscal da Índia nas notas do FMI.
+3. Tentar a consulta corrente com `Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --consultar-api`; se o serviço ou o pacote falhar, ler o erro sem substituir a edição congelada.
+4. Ler `renv.lock`, `uv.lock` e os chunks do `lab-lacunas.qmd`.
+5. Discutir o que seria necessário para uma afirmação de sustentabilidade da dívida.
 
-Para casa, não degrau: `python scripts/preparar_lab.py` monta o `.venv` (`uv`, `pandas`, `matplotlib`) para o `lab-lacunas.qmd`. O "clone" é a cópia do repositório na máquina (`git clone` ou Download ZIP).
-
-## Núcleo (80 min)
-
-### 5 min — cartaz e cena
-
-- Cartaz: "Wikipedia não é fonte" → "Prompt não é fonte".
-- "Vocês são o trainee." Cena 17h42, reunião às 18h.
-- As três dimensões em uma frase; ainda não abrir o contrato inteiro.
-
-### 8 min — antes de começar
-
-- Três objetivos (distinguir, aplicar, ler) e a **regra da aula: ler antes de rodar**. Nenhum comando "cola e roda": antes de executar um arquivo, abre-se o arquivo, diz-se o que ele faz e por que vamos rodá-lo. Vale para `validar_contrato.py`, `baixar_fm.py`, o `.qmd` e, para casa, `preparar_lab.py`.
-- Crash course de extensões em dois slides: o que cada arquivo é (`.md`, `.py`, `.csv`, `.qmd`, `.html`, `.pptx`, `.toml`/`.yml`/`.lock`, `.json`, `.scss`) e **quem lê o quê** (humano, Python, Quarto, navegador, IA). Ponto: o `.md` é referência para pessoa e para modelo; o `.csv` é a única fonte de número; o `.html` é saída.
-- Ferramentas na mesa e quem usa hoje (aluno / professor). Dizer a divisão: o laboratório forneceu VS Code e Python ([`pedido-laboratorio.md`](pedido-laboratorio.md)); o repositório trouxe contrato, dado e scripts; ninguém instala biblioteca hoje.
-  - `Abrir agora: docs/ferramentas.md`
-- **Leitura guiada de `scripts/validar_contrato.py`** (3 min): projetar o arquivo; docstring, constantes do topo (`ISO3_CANONICO`, `ISO3_PROIBIDOS = {"CHN", "COL"}`, `INDICADORES`, `COLUNAS`, `VINTAGE_OK` — o contrato virou código), `validar_esqueleto`, `validar_csv` (colunas, países, indicadores, anos, vintage, NA nos anos-chave), `main` (`STATUS:` ou `FALHA:`). Ler nomes e a lista de checagens, não linhas.
-- **Atividade 0 · Onboarding as is** (3 min, individual, nada a instalar): clonar ou Download ZIP, abrir no VS Code, `python scripts/validar_contrato.py` — sabendo o que vai aparecer. Esperado `STATUS: esqueleto OK` e `STATUS: CSV OK`. `FALHA:` diz o que faltou. É a primeira lição de projeto real: um repositório chega com o seu próprio teste de "estou pronto".
-
-### 17 min — demanda, slop, autópsia
-
-- Ler em voz alta o briefing da Diretoria (`01-demanda-simulada/briefing-supervisao.md`).
-- Projetar o prompt do colega (`01-demanda-simulada/prompt-do-junior.md`).
-- Abrir o slop. **60 segundos em silêncio.**
-  - `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`
-- **Atividade 1 · Três violações** (3 min, duplas, sem teclado): apontar três pontos em que o HTML viola o briefing. Não vale "o número está errado" — o CSV ainda não abriu. Três duplas falam; anotar sem corrigir.
-- Autópsia pelas quatro perguntas (`docs/checklist-rigor.md`), cruzando com o que a turma apontou. `instrutor/autopsia.md` está no clone; abrir **depois** do HTML.
-- Transição: "o resultado bom não mora nesta pasta."
-
-### 6 min — contrato (sem ler o arquivo inteiro)
-
-- Cinco países, dois códigos, vintage abril/2026.
-- México = LatAm; China fora; Colômbia saiu (entrou o Chile).
-- Calouros: governo geral ≠ central; primário ≠ nominal; vintage = edição, não "dados recentes".
-- `Abrir agora: CONTRATO.md` (só a tabela de recorte, se precisar).
-
-### 13 min — rotina Python e CSV
-
-- Pasta `02-dados-fiscal-monitor/`: dicionário (códigos, sem série) e notas de vintage.
-- Caminho da aula: abrir `baixar_fm.py` (onde está o `--offline`, o que lê em `data/raw/`, o que grava) e só então rodar no projetor; validador passa.
-- **Atividade 2 · Achem a linha** (5 min, individual, degrau 2; degrau 3 opcional): abrir `fm_weo_cache.csv` no VS Code ou no GitHub, localizar `BRA` · `2025` · `GGXONLB_NGDP`, ler o **sinal** de `value` e comparar com o card do slop. Ninguém diz o número: mão levantada, positivo ou negativo. Degrau 3: `python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline` (lido no slide anterior) e `python scripts/validar_contrato.py` — o CSV regravado a partir de `data/raw/` mantém a linha.
-- Abrir o CSV no projetor: colunas na ordem do contrato, a linha que a turma achou. **Não** copiar número para o slide.
-
-### 13 min — um `.qmd`, dois artefatos
-
-- `03-relatorio-qmd/mini-fiscal-monitor.qmd` lê **somente** o CSV. Mostrar o YAML e um chunk que lê o arquivo.
-- Produto no ar ou local: gráficos, tabela do ano-foco. Perguntar: "a linha da Atividade 2 está neste gráfico?"
-- PPTX (briefing interno da reunião) e Reveal.js (produto no navegador) saem do mesmo `.qmd`.
-- `Abrir agora: outputs/revealjs-netlify/` — ou o URL em `url_netlify`.
-- PPTX **não** vai ao Netlify.
-
-### 10 min — IA com contrato
-
-- **Atividade 3 · Uma trava** (3 min, individual, sem teclado): escrever uma linha que faltou no prompt das 17h42. Três voluntários leem.
-- Contraste com `03-relatorio-qmd/roteiro-ia-profissional.md`: a trava boa aponta para um arquivo (`CONTRATO.md`, o CSV), não para "seja preciso".
-- Prompt profissional não substitui o contrato. Colar um dos prompts no modelo só se rede e relógio deixarem.
-
-### 8 min — quiz, clone, URL
-
-- Quiz das quatro perguntas (3 min, oral, em coro): cinco afirmações, todas caem. Voltar aos três verbos.
-- Pacote: [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Autópsia só depois do slop.
-- Netlify é demo do professor; aluno não cria conta.
-- Para casa: ler e rodar `scripts/preparar_lab.py` (monta o `.venv` com `pandas` / `matplotlib`) e completar `lab-lacunas.qmd`; sem `uv`, as cinco perguntas de interpretação no fim dele.
-- Fechar: o campeonato não é o título em inglês; é o CSV que reroda. Três frases.
-
-## Gordura (até 40 min; pular se houver debate)
-
-Cada item abaixo é um slide com selo **se sobrar tempo** no deck:
-
-- Rebuild ao vivo do CSV (`baixar_fm.py --offline`).
-- Card do slop vs linha do CSV — agora a dívida também (abrir o arquivo, **não** ditar número).
-- Como um projeto puxa suas dependências: ler `scripts/preparar_lab.py` pelos nomes das funções (`uv sync --locked`, `uv.lock` = versões congeladas); rodar só se a rede deixar.
-- Chunks 2–3 de `03-relatorio-qmd/lab-lacunas.qmd` no projetor.
-- Site Netlify no ar: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
-- Slide r−g: o que "sustentável" exigiria (primário que estabiliza, r − g) **sem calcular número**.
-
-## O que não cabe nestas 2 h
-
-Paper, app Shinylive, conta Netlify da turma, incluir China "só para comparar", fase em R (RStudio existe no laboratório; o contrato mantém R como menção), laboratório completo de `lab-lacunas.qmd` (vira gordura / para casa).
+O checklist da projeção real fica em [`checklist-instrutor.md`](checklist-instrutor.md).

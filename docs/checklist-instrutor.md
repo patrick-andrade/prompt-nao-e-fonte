@@ -1,69 +1,34 @@
-# Checklist do instrutor (Onda 3)
+# Checklist do instrutor · contrato v1.3
 
-Inspeção humana. Sem número fiscal neste arquivo. O agente fecha código e esqueleto; **você** fecha o projetor. Fonte da verdade: [`CONTRATO.md`](../CONTRATO.md) v1.2. Aula: **24/09/2026**, manhã.
+Aula de 24/09/2026. O render técnico foi preparado no projeto; a inspeção final no projetor, no laboratório e no site deve ser feita antes da aula. Marque somente o que observou.
 
-Marcar na ordem. Cortar gordura se o relógio apertar.
+## Preparação técnica
 
-## Antes da aula
+- [ ] `Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline` reconstrói o CSV e `python scripts/validar_contrato.py` confirma schema, cinco países, dois indicadores, edição e chaves únicas.
+- [ ] O R do professor encontra os pacotes fixados em `renv.lock`; Quarto renderiza PPTX e Reveal.js do produto e o deck de aula.
+- [ ] `outputs/revealjs-netlify/index.html` abre sem internet e sem arquivo auxiliar; o PPTX está em `outputs/pptx/`.
+- [ ] `python scripts/verificar_artefatos.py` confirma os slides e os recursos depois do render.
+- [ ] Todos os slides de ambos os formatos do produto foram projetados: sem cortes, gráficos e fontes legíveis, anos e unidade visíveis; o crédito à OCDE aparece no final.
+- [ ] O deck de aula abre em `outputs/aula-expositiva/index.html`; cues de arquivo são relativos, links levam apenas a páginas públicas, memes e notas do apresentador são legíveis.
+- [ ] O [clone público](https://github.com/patrick-andrade/prompt-nao-e-fonte) mostra o contrato v1.3 e o novo HTML; o [Netlify](https://fiscal-monitor-2026.netlify.app) exibe a mesma versão.
 
-- [ ] `uv run python scripts/validar_contrato.py` passa (esqueleto + CSV).
-- [ ] Enviar [`pedido-laboratorio.md`](pedido-laboratorio.md) aos responsáveis pelo laboratório (obrigatório: VS Code, Python 3.10+, navegador; desejável: git e saída para GitHub). Guardar a resposta.
-- [ ] Numa máquina do lab, logado como aluno, clonar (ou Download ZIP) e rodar `python scripts/validar_contrato.py`: tem de imprimir `esqueleto OK` e `CSV OK`. Sem rede, levar o zip do GitHub num pendrive.
-- [ ] Opcional: `python scripts/preparar_lab.py --verificar` na mesma máquina, para saber se o para-casa (`uv` + `.venv`) funciona no lab ou só em casa.
-- [ ] `.vscode/tasks.json` aparece em `Terminal → Run Build Task` numa máquina do lab.
-- [ ] Briefing, prompt do junior e slop abrem no navegador (UTF-8, acentos).
-- [ ] Autópsia em `01-demanda-simulada/instrutor/autopsia.md` conferida **na mão** contra o CSV (não copiar número para o deck).
-- [ ] Deck de aula renderizado: `uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs` (HTML na raiz de `outputs/aula-expositiva/` após o pós-render automático).
-- [ ] Produto Reveal.js e PPTX renderizados (`outputs/revealjs-netlify/`, `outputs/pptx/`).
-- [ ] Repositório público [prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte) abre no navegador; zip opcional só se alguém estiver sem git.
-- [x] URL Netlify de produção colado em `url_netlify` no deck: [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app).
-- [ ] Notas de palestrante visíveis no modo apresentador; slides de gordura com selo **se sobrar tempo**.
+## Laboratório e material
 
-## Dimensão 1 — slop
+- [ ] Enviar [`pedido-laboratorio.md`](pedido-laboratorio.md); testar navegador, VS Code e Python 3.10+ no login de aluno.
+- [ ] No clone/Download ZIP completo, `python scripts/validar_contrato.py` imprime `esqueleto OK` e `CSV OK`. Testar o acesso ao GitHub e ao Netlify; levar cópia local caso a rede falhe.
+- [ ] Abrir `briefing-supervisao.md`, `prompt-do-junior.md` e o HTML simulado com acentos corretos.
+- [ ] Conferir a [matriz da autópsia](../01-demanda-simulada/instrutor/autopsia.md) contra os PDFs do BCB e as notas do FMI. No Brasil, NFSP positiva significa déficit; não chamar esses valores de saldo do FMI.
+- [ ] Se usar o zip opcional, conferir que exclui `aula/` e `instrutor/autopsia.md`. Para a Atividade 0, usar clone ou Download ZIP completo, pois o validador verifica essas pastas.
 
-- [ ] Briefing da Diretoria lido em voz alta (`01-demanda-simulada/briefing-supervisao.md`).
-- [ ] Prompt do colega no projetor (`01-demanda-simulada/prompt-do-junior.md`).
-- [ ] Slop 60 s em silêncio: `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`.
-- [ ] Autópsia **depois** do HTML, pelas quatro perguntas de [`checklist-rigor.md`](checklist-rigor.md).
-- [ ] Acusações da autópsia batem com o CSV (sinal do primário, recorte, geografia) — conferência na mão, sem ditar número certo.
+## Condução dos 80 minutos
 
-## Dimensão 2 — rotina
+- [ ] Mostrar e-mail → prompt → HTML, com 60 segundos de observação antes da autópsia.
+- [ ] Atividade 1 (3 min): perguntar por documento, ano, cobertura e sinal, sem caça a erro de geografia.
+- [ ] Abrir a autópsia depois do HTML; discutir vintage ausente, NFSP e mistura de anos/status, incluindo o ano fiscal indiano.
+- [ ] Abrir `baixar_fm.R` antes de executar; mostrar entrada JSON, metadados e saída CSV. Rodar offline e validar em Python.
+- [ ] Atividade 2 (5 min): alunos localizam a linha `BRA` · 2025 · `GGXONLB_NGDP` e distinguem o saldo do FMI da NFSP do BCB.
+- [ ] Mostrar o `.qmd`, o Reveal.js e o PPTX. Explicar que o site publica um HTML pronto; a API não roda no render nem no navegador.
+- [ ] Atividade 3 (3 min): cada aluno escreve uma trava verificável. Discutir por que conhecer R e Python ajuda a revisar código de IA.
+- [ ] Encerrar com pergunta, indicador, fonte/edição e possibilidade de refazer. Cortar atividades opcionais se o relógio apertar.
 
-- [ ] `uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline`.
-- [ ] `uv run python scripts/validar_contrato.py` de novo.
-- [ ] Dicionário aberto **sem** série numérica no markdown.
-- [ ] CSV aberto: colunas na ordem do contrato; nenhum número copiado para o deck.
-
-## Dimensão 3 — produto
-
-- [ ] Reveal.js do **produto** no projetor (local ou Netlify).
-- [ ] PPTX (briefing interno) existe em `outputs/pptx/` e **não** está no site.
-- [ ] Um gráfico + tabela do ano-foco; tema slate / indigo / sky.
-- [ ] Cinco países; México como LatAm; **sem China**; vintage no rodapé.
-- [ ] Adjetivo “sustentável” ausente sem critério.
-
-## Publicação
-
-- [x] Site `fiscal-monitor-2026` ligado ao git; publish só de `outputs/revealjs-netlify/` (não o slop, não o PPTX, não `outputs/aula-expositiva/`).
-- [x] URL [https://fiscal-monitor-2026.netlify.app](https://fiscal-monitor-2026.netlify.app) conferido no ar (5 países, sem China, vintage no rodapé).
-- [x] Mesmo URL colado no YAML `url_netlify` e deck rerenderizado.
-
-## Aula (80 + 40)
-
-- [ ] Núcleo cronometrado em 80 min (5 + 8 + 17 + 6 + 13 + 13 + 10 + 8).
-- [ ] Regra "ler antes de rodar" cumprida em todo comando: `validar_contrato.py`, `baixar_fm.py` e o `.qmd` abertos no projetor **antes** de executar (e `preparar_lab.py`, se a gordura chegar lá).
-- [ ] Abertura: vocês são o trainee; isto é o e-mail da Diretoria; isto é o prompt do colega.
-- [ ] "Antes de começar": três objetivos ditos em voz alta; slides de extensões apontados, não lidos; `validar_contrato.py` aberto e lido pelas constantes e nomes das funções; só depois a Atividade 0 (`python scripts/validar_contrato.py`) — dizer em voz alta o que o laboratório forneceu e o que o repositório trouxe; nada instalado.
-- [ ] Atividade 1 (3 min, duplas): três duplas falam; nada de número certo.
-- [ ] Atividade 2 (5 min): a turma acha `BRA` · 2025 · `GGXONLB_NGDP`; contar mãos (positivo / negativo) sem ditar valor.
-- [ ] Atividade 3 (3 min): três voluntários leem a trava; ligar ao `CONTRATO.md`.
-- [ ] Quiz no fecho, em coro; voltar aos três verbos.
-- [ ] Cues `Abrir agora:` com caminho relativo (sem OneDrive, sem `file://`).
-- [ ] Memes: rodapé de uso acadêmico visível; cortar os que não funcionarem.
-- [ ] Gordura só se sobrar tempo (rebuild, card vs CSV, dependências com `preparar_lab.py`, lab, site no ar, r−g).
-- [ ] UTF-8 no projetor (acentos, travessão, iso3).
-
-## Pacote
-
-- [ ] Clone público no projetor; pedir para **não** abrir a autópsia antes do slop.
-- [ ] Se gerar zip: `aluno/minicurso-prompt-nao-e-fonte.zip` sem `aula/` e sem `instrutor/autopsia.md` (inclui `scripts/preparar_lab.py`, `docs/ferramentas.md`, `.vscode/tasks.json`). Atenção: sem `aula/` e `instrutor/`, o validador reporta pasta ausente nesse zip — para a Atividade 0 use o **Download ZIP do GitHub** (repositório completo), não este.
+O plano com tempos está em [`plano-aula-2h.md`](plano-aula-2h.md). O público não precisa criar conta Netlify.

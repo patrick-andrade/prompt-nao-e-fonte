@@ -1,0 +1,101 @@
+/* Referência visual: OECD Economic Outlook, 2026/1. Adaptação sem marca. */
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Aptos", "Segoe UI", Arial, sans-serif;
+$presentation-heading-font: "Aptos Display", "Segoe UI", Arial, sans-serif;
+$presentation-heading-color: #0c2440;
+$presentation-heading-font-weight: 700;
+$body-bg: #ffffff;
+$body-color: #243a50;
+$link-color: #176fc1;
+$code-color: #176fc1;
+$presentation-title-slide-text-align: left;
+$presentation-font-size-root: 33px;
+
+/*-- scss:rules --*/
+.reveal {
+  --r-background-color: #ffffff;
+  --r-main-color: #243a50;
+  --r-heading-color: #0c2440;
+  --r-link-color: #176fc1;
+  --r-selection-background-color: #b7daf4;
+}
+
+.reveal .slides section {
+  text-align: left;
+  padding: 1.2rem 1.9rem 1.1rem;
+  box-sizing: border-box;
+}
+
+.reveal .slides section:not(#title-slide) h2 {
+  padding-bottom: 0.32em;
+  margin-bottom: 0.58em;
+  border-bottom: 5px solid #176fc1;
+  font-size: 1.35em;
+  letter-spacing: -0.025em;
+}
+
+.reveal #title-slide {
+  background: #0c2440;
+  color: #ffffff;
+  padding: 3.2rem 3.5rem;
+  border-left: 18px solid #49a9df;
+}
+
+.reveal #title-slide h1 {
+  color: #ffffff;
+  font-size: 2.45em;
+  line-height: 1.04;
+  max-width: 970px;
+  letter-spacing: -0.045em;
+}
+
+.reveal #title-slide .subtitle {
+  color: #cbe8f9;
+  font-size: 0.95em;
+  margin-top: 1.4em;
+}
+
+.reveal #title-slide .author,
+.reveal #title-slide .date {
+  color: #cbe8f9;
+  font-size: 0.55em;
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.28;
+}
+
+.reveal strong { color: #0c2440; }
+.reveal #title-slide strong { color: #ffffff; }
+.reveal a { color: #176fc1; }
+.reveal code {
+  color: #135d9b;
+  background: #eaf4fb;
+  padding: 0.03em 0.15em;
+}
+
+.reveal table {
+  font-size: 0.75em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.reveal table th {
+  color: #0c2440;
+  border-bottom: 3px solid #176fc1;
+}
+
+.reveal table td {
+  border-bottom: 1px solid #d6e6f1;
+}
+
+.reveal .slide-number,
+.reveal .footer {
+  color: #637d94;
+  font-size: 0.46em;
+}
+
+.reveal .progress { color: #176fc1; }
+.reveal .cell-output-display img { max-height: 435px; }
+.reveal .smaller { font-size: 0.82em; }

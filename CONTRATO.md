@@ -1,126 +1,64 @@
-# CONTRATO.md — v1.2
+# CONTRATO.md — v1.3
 
-**Cartaz:** Prompt não é fonte: análise de dados e IA em economia aplicada
+**Cartaz:** Prompt não é fonte: análise de dados e IA em economia aplicada.
 
-Este arquivo é a fonte da verdade do minicurso. Depois da Onda 0, agentes **não** inventam país, coluna, indicador, vintage nem formato. Qualquer dúvida sobre o produto lê-se aqui, não no prompt da sessão.
+Este é o contrato do minicurso. Agentes, scripts, apresentações e documentação devem concordar com ele. Não se infere país, coluna, indicador, vintage, formato ou número a partir de uma resposta de IA.
 
----
+## Estrutura e produtos
 
-## As três dimensões
+A raiz é `2026/`. Há três pastas numeradas de produto; `docs/`, `scripts/`, `outputs/`, `aluno/` e `aula/` são infraestrutura sem prefixo.
 
-A árvore tem **3 pastas numeradas de produto** mais pastas de **infraestrutura** sem prefixo (`docs/`, `scripts/`, `outputs/`, `aluno/`, `aula/`). Cada dimensão de produto tem README, entradas, saídas e teste de validação.
-
-| Dimensão | Pasta | Papel |
+| Dimensão | Pasta | Produto |
 | --- | --- | --- |
-| 1 — Demanda simulada e resultados | `01-demanda-simulada/` | Pedido da supervisão, prompt preguiçoso do trainee, HTML slop (bonito, ilustrativo, impreciso). Autópsia só em `instrutor/`. |
-| 2 — Análise real em Python | `02-dados-fiscal-monitor/` | Scripts que baixam, empilham, validam e gravam o CSV-contrato. Motor da rotina (abril/outubro). |
-| 3 — Do `.qmd` ao PPTX e ao Reveal.js | `03-relatorio-qmd/` | Um único `mini-fiscal-monitor.qmd` (Python) lê o CSV e gera PPTX e Reveal.js. No Netlify entra **só** o Reveal.js. |
+| 1 — Demanda simulada | `01-demanda-simulada/` | E-mail da chefia, prompt plausível de trainee, HTML visualmente convincente com falhas de fonte e autópsia do instrutor. |
+| 2 — Dados reais | `02-dados-fiscal-monitor/` | R reconstrói o CSV-contrato a partir do bruto congelado; Python é alternativa. Consulta à API é explícita e não troca a vintage sem revisão. |
+| 3 — Apresentação reprodutível | `03-relatorio-qmd/` | Um `mini-fiscal-monitor.qmd` em R lê só o CSV-contrato e gera PPTX e Reveal.js. |
 
-A **Diretoria de Pesquisa Aplicada** é a demanda realista de trabalho (estágio / trainee / júnior): e-mail da chefia, recorte travado, reunião no fim do expediente. Não é um tom a substituir no produto da Dimensão 3. O e-mail da Diretoria e o **PPTX** falam *como* a Diretoria (briefing interno da reunião). O Reveal.js no Netlify é o **produto** publicado. O deck de aula fala *com* o estudante (“vocês são o trainee”).
+A Diretoria de Pesquisa Aplicada é a demanda realista de estágio, trainee ou trabalho júnior. O e-mail e a apresentação para a reunião falam como produto profissional; o deck da aula fala com os estudantes.
 
-Saídas da Dimensão 3 (infraestrutura, não pastas numeradas):
+- PPTX → `outputs/pptx/`, apresentação interna de cerca de 10–12 slides para a reunião simulada de 20 minutos. Não vai ao Netlify.
+- Reveal.js → `outputs/revealjs-netlify/index.html`, HTML autossuficiente e versionado. Este é o único artefato publicado no Netlify.
+- Template PPTX → `03-relatorio-qmd/template-referencia.pptx`, entrada do render, não saída.
+- Aula → `aula/apresentacao-minicurso.qmd` e `outputs/aula-expositiva/`, fora do Netlify. O deck da aula não lê o CSV; a autópsia só é aberta depois do slop.
 
-- PPTX → `outputs/pptx/` (briefing interno da reunião; **não** vai ao Netlify)
-- Reveal.js → `outputs/revealjs-netlify/` (produto publicado; único artefato do Netlify)
-- Template de referência PPTX (Onda 2) é **entrada** em `03-relatorio-qmd/`, não em `outputs/`
+## Schema e recorte imutáveis nesta versão
 
-Artefato de **aula** (instrutor; não é produto da Dimensão 3):
+O v1.3 muda o fluxo de produção e apresentação, **não** os dados contratados.
 
-- Fonte: `aula/apresentacao-minicurso.qmd` (Reveal.js; **não** lê o CSV)
-- Saída: `outputs/aula-expositiva/`
-- HTML gerado **fora** do Netlify. A fonte `aula/` e a autópsia vivem no repositório público; na aula a autópsia abre-se **depois** do slop.
+- **Vintage fixa:** Fiscal Monitor / WEO abril/2026; `FM-2026-04` ou `WEO-2026-04` quando a origem correspondente for comprovada. A edição do Fiscal Monitor é *Fiscal Policy under Pressure: High Debt, Rising Risks*.
+- **Países nesta ordem:** `BRA`, `MEX`, `CHL`, `IND`, `IDN`. Brasil, México e Chile formam o núcleo LatAm; México não é América do Sul. China (`CHN`) fica fora; Colômbia não integra o recorte.
+- **Indicadores canônicos:** `GGXWDG_NGDP` (dívida bruta do governo geral, % do PIB) e `GGXONLB_NGDP` (saldo primário do governo geral, % do PIB). No saldo, positivo significa superávit.
+- **Anos:** 2000–2029, incluindo observações e projeções conforme a edição. O CSV não contém classificação de status; não chamar 2025 ou 2026 de realizado sem conferência na nota metodológica.
+- **CSV:** `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`.
+- **Colunas, nesta ordem:** `iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`.
 
-O resultado *bom* da demanda **não** vive na Dimensão 1: é o HTML Reveal.js / PPTX da Dimensão 3, gerado a partir do CSV.
+## Origem, execução e separação didática
 
----
+- A Dimensão 1 não lê `fm_weo_cache.csv`. Seus números são escolhidos manualmente para a simulação e auditados na autópsia com fonte, data, cobertura e convenção de sinal. Ela pode mostrar a NFSP nominal do BCB como parte da falha intencional; **isso não acrescenta indicador ao CSV ou à Dimensão 3**.
+- A Dimensão 2 é o único lugar que consulta FM/WEO ou escreve o CSV. `baixar_fm.R --offline` reconstrói o CSV do JSON recortado e versionado de abril/2026. `--consultar-api` usa `imfapi` para consulta exploratória da edição corrente, sem escrever o CSV-contrato: a função não fixa vintage histórica. O script Python oferece rota alternativa com a mesma proteção.
+- O `.qmd`, o PPTX e o Reveal.js da Dimensão 3 **só leem o CSV**. O render não consulta a API. O HTML publicado não busca dados em tempo de execução.
+- Números fiscais verdadeiros em relatórios e slides vêm apenas do cache, da API verificada ou de PDF extraído em recorte com `doc_extract`. Não inventar número em Markdown. Números do slop podem aparecer no deck da aula porque são citações do HTML simulado.
+- Pacotes R do professor ficam no ambiente local do projeto controlado por `renv.lock`. Python permanece em `pyproject.toml` + `uv`; usar `uv sync --locked` e `uv run`, sem instalação global. Não versionar segredos.
+- Netlify é demo do professor, projeto `fiscal-monitor-2026`, conectado ao Git. Publica apenas o Reveal.js pronto. Sem Shinylive; alunos não criam conta.
+- Pacote do aluno: clone de https://github.com/patrick-andrade/prompt-nao-e-fonte. Zip opcional de `scripts/empacotar_aluno.py`, sem `aula/` nem a autópsia.
+- Cue de arquivo em slide: `Abrir agora: caminho/relativo`. Hiperlink apenas para URL público; sem `file://` ou caminho OneDrive.
 
-## Cláusulas travadas (schema; vigentes em v1.2)
-
-Países, indicadores, vintage e caminho do CSV **não mudam** em relação ao v1.0. O bump v1.2 não altera o schema: entra o artefato de aula, a inspeção humana e as regras de cue.
-
-### Vintage e edição
-
-- **Vintage:** Fiscal Monitor / WEO **abril/2026**.
-- O script registra `FM-2026-04` ou `WEO-2026-04` (ou ambos, na coluna `vintage` / `source` conforme o caso).
-- Título da edição: *Fiscal Policy under Pressure: High Debt, Rising Risks*.
-
-### Países (iso3, ordem canônica)
-
-`BRA`, `MEX`, `CHL`, `IND`, `IDN`
-
-- Núcleo: Brasil, México, Chile (LatAm; México **não** é América do Sul — no material dizer LatAm).
-- Emergentes de destaque: Índia e Indonésia.
-- **Fora:** China (distorce escala e narrativa); Colômbia (trocada pelo Chile).
-
-Não incluir `CHN` em dado, gráfico, tabela ou texto de produto.
-
-### Indicadores
-
-- `GGXWDG_NGDP` — dívida bruta do governo geral, % do PIB
-- `GGXONLB_NGDP` — saldo primário do governo geral, % do PIB
-
-### Anos
-
-2000–2029 (realizado + projeção).
-
-### CSV canônico
-
-Caminho: `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`
-
-Colunas (nesta ordem):
-
-`iso3`, `country`, `year`, `indicator_code`, `indicator_name`, `value`, `unit`, `vintage`, `source`
-
----
-
-## Quem lê o quê
-
-- **Quarto, PPTX e Reveal.js da Dimensão 3 só leem esse CSV.** Render de aula do produto **não** chama API.
-- **O slop (Dimensão 1) não usa esse CSV.** Se o HTML slop ler `fm_weo_cache.csv`, o contraste didático cai.
-- **O deck de aula (`aula/apresentacao-minicurso.qmd`) não lê o CSV.** Aponta para caminhos no repositório e, quando houver, para o URL público do produto.
-- **Não inventar número do Brasil (nem dos outros) em README, AGENTS, docs ou slides stub.** Números **do slop** podem aparecer no deck de aula porque são deliberadamente falsos e estão no HTML. Número fiscal verdadeiro só vem do cache, da API ou de PDF extraído com `doc_extract`.
-- **Netlify:** demo do professor; alunos não criam conta. Site ligado ao git (projeto `fiscal-monitor-2026`). Artefato publicado = Reveal.js em `outputs/revealjs-netlify/`. PPTX não se hospeda. Deck de aula em `outputs/aula-expositiva/` **não** se publica. Não há app Shinylive nesta versão.
-- **Pacote do aluno:** clone de [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Zip opcional (`scripts/empacotar_aluno.py`) só para máquina sem git; se gerado, sem `aula/` e sem `instrutor/autopsia.md`.
-- **Python:** `pyproject.toml` + `uv`. R só como menção de ecossistema.
-- **UTF-8;** sem credenciais, tokens ou senhas no git.
-- **Cue de arquivo:** caminho relativo no repositório, no projetor como `Abrir agora: 01-demanda-simulada/entrega-slop/index.html`. Sem `file://`, sem OneDrive. Hiperlink só para URL público (GitHub, Netlify).
-
-Render do deck de aula (explícito; **não** entra no `render:` padrão de `_quarto.yml`):
+## Comandos e verificação
 
 ```bash
+Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
+uv run python scripts/validar_contrato.py
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
+quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
 ```
 
----
-
-## Inspeção humana (Onda 3)
-
-O agente fecha o código e o esqueleto. **Não** fecha o que só o instrutor vê no projetor. Ver [`docs/checklist-instrutor.md`](docs/checklist-instrutor.md). A cláusula de inspeção humana cobre, sem número fiscal neste arquivo:
-
-- Dimensão 1: slop legível no projetor; prompt e briefing; autópsia **depois** do HTML; conferir na mão as acusações da autópsia contra o CSV (não copiar número para o deck de aula).
-- Dimensão 2: `baixar_fm.py --offline` + `validar_contrato.py`; dicionário sem série.
-- Dimensão 3: `quarto render` Reveal.js **e** PPTX; gráficos e tabela; tema; “sustentável” ausente sem critério.
-- Publicação: deploy Netlify do git; colar o URL de produção no parâmetro `url_netlify` do deck; conferir no ar (5 países, sem China, vintage no rodapé).
-- Aula: cronometrar o núcleo de 80 min; cortar gordura e memes que não funcionarem; UTF-8 no projetor.
-- Pacote: clone do GitHub; autópsia só **depois** do slop. Zip opcional, se existir: sem `aula/`, sem `instrutor/autopsia.md`.
-
----
-
-## Validação
-
-```bash
-uv run python scripts/validar_contrato.py
-```
-
-- Onda 0 (CSV ainda ausente): o validador confirma o esqueleto e imprime que a Dimensão 2 está pendente (exit 0).
-- Com CSV presente: passa só se colunas, países, indicadores, vintage e ausência de NA crítico nos anos-chave baterem com este contrato (exit 1 se houver desvio).
-
----
+O validador exige as pastas, o schema, os países, os indicadores e a vintage, além de chaves únicas e valores numéricos. O HTML do produto deve ser autossuficiente e estar versionado antes do push. Inspeção humana no projetor, cronômetro, memes, URL e clone continuam no `docs/checklist-instrutor.md`.
 
 ## Versionamento
 
-**v1.2** (esta versão): pasta `aula/`, artefato `aula/apresentacao-minicurso.qmd`, saída `outputs/aula-expositiva/` (fora do Netlify), cláusula de inspeção humana (Onda 3), Diretoria como demanda realista de estágio/trainee, cues de arquivo = caminho relativo. Pacote do aluno = repositório público (zip opcional). Países, colunas, indicadores, vintage e CSV permanecem os do v1.1 / v1.0.
+**v1.3:** R principal com bruto congelado, Python alternativo, apresentação executiva concisa com referência visual creditada, Reveal.js estático versionado, slop com erros sutis de fonte e aula ajustada. Países, indicadores, anos, colunas e vintage permanecem os de v1.2.
 
-**v1.1:** a árvore deixa de ser cinco pastas numeradas e passa a ser três pastas de produto + infraestrutura.
+**v1.2:** deck de aula, saída fora do Netlify, inspeção humana e cues relativos. **v1.1:** três pastas de produto e infraestrutura sem número.
 
-Mudança de **país**, **coluna** ou **formato** = bump para **v1.3** neste arquivo **e** no validador. Agentes não “ajustam no feeling”.
+Qualquer mudança futura de país, coluna, indicador, vintage ou formato exige nova versão neste arquivo **e** em `scripts/validar_contrato.py`. Não ajustar no feeling.

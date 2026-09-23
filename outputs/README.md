@@ -1,28 +1,9 @@
-# Saídas geradas
+# Saídas do projeto
 
-Sem números fiscais aqui.
-
-| Pasta | Artefato | Destino |
+| Pasta | Artefato | Versionamento/publicação |
 | --- | --- | --- |
-| `outputs/pptx/` | PPTX do briefing interno da reunião (Dimensão 3) | **Não** vai ao Netlify |
-| `outputs/revealjs-netlify/` | HTML Reveal.js do **produto** (`index.html`) | Único publish do Netlify (`netlify.toml`) |
-| `outputs/aula-expositiva/` | HTML Reveal.js da aula (`aula/apresentacao-minicurso.qmd`) | Instrutor; **não** vai ao Netlify |
+| `pptx/` | Apresentação interna de 20 minutos | Gerada localmente; fora do Netlify |
+| `revealjs-netlify/` | `index.html` do produto | HTML autossuficiente **versionado**; único publish do Netlify |
+| `aula-expositiva/` | `index.html` da aula | Gerado localmente; fora do Netlify |
 
-O template de referência PPTX é **entrada** em `03-relatorio-qmd/template-referencia.pptx`, não nesta pasta.
-
-Render do produto:
-
-```bash
-uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify
-uv run -- quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
-```
-
-Render do deck de aula (explícito; fora do `render:` padrão de `_quarto.yml`):
-
-```bash
-uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
-```
-
-O Quarto aninha a subpasta da fonte no `--output-dir`; `scripts/achatar_saidas.py` achata `03-relatorio-qmd/` (produto) e `aula/` (deck).
-
-Publicação (demo do professor): [`docs/roteiro-netlify.md`](../docs/roteiro-netlify.md). Pacote da turma: clone [https://github.com/patrick-andrade/prompt-nao-e-fonte](https://github.com/patrick-andrade/prompt-nao-e-fonte). Zip opcional: `aluno/minicurso-prompt-nao-e-fonte.zip`.
+O `.qmd` da Dimensão 3 gera PPTX e Reveal.js a partir do mesmo CSV. O deck da aula é um `.qmd` separado, sem leitura do CSV. Comandos: [`README.md`](../README.md). O `post-render` em `_quarto.yml` usa `scripts/achatar_saidas.py` para colocar cada arquivo na raiz da pasta indicada.

@@ -1,0 +1,4 @@
+# O deck expositivo não executa R; dependências vêm do script e do produto.
+aula/
+outputs/
+aluno/

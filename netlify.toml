@@ -1,11 +1,6 @@
-# Publish = somente o Reveal.js da Dimensão 3.
-# PPTX, slop e deck de aula não entram. Demo do professor; alunos não criam conta.
-# Site ligado ao git (projeto fiscal-monitor-2026). Ver docs/roteiro-netlify.md.
+# O HTML autossuficiente já está versionado. O build apenas confere o arquivo.
+# PPTX, slop e deck de aula não entram no site.
 
 [build]
   publish = "outputs/revealjs-netlify"
   command = "bash scripts/netlify_build.sh"
-
-[build.environment]
-  PYTHON_VERSION = "3.13"
-  UV_PYTHON = "3.13"

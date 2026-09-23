@@ -3,115 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emerging Markets Fiscal Health — Dashboard</title>
+  <title>Fiscal Outlook | Emerging Economies</title>
   <style>
-    :root {
-      --bg: #0b1220;
-      --card: #121a2b;
-      --ink: #e8eefc;
-      --muted: #93a0bf;
-      --accent: #6ea8fe;
-      --ok: #3ddc97;
-      --warn: #ffb020;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", system-ui, sans-serif;
-      background: radial-gradient(1200px 600px at 10% -10%, #1b2a4a 0%, var(--bg) 55%);
-      color: var(--ink);
-    }
-    header, main { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    header h1 { margin: 0 0 8px; font-size: 1.8rem; letter-spacing: .02em; }
-    header p { margin: 0; color: var(--muted); }
-    .badge {
-      display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 999px;
-      background: #1e3a8a; color: #dbeafe; font-size: .8rem;
-    }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 28px 0; }
-    .card {
-      background: var(--card); border: 1px solid #243049; border-radius: 16px; padding: 16px 18px;
-    }
-    .card h2 { margin: 0; font-size: .85rem; color: var(--muted); font-weight: 600; }
-    .card .num { font-size: 1.8rem; margin: 8px 0 4px; font-weight: 700; }
-    .ok { color: var(--ok); }
-    .warn { color: var(--warn); }
-    .insight { background: linear-gradient(180deg, #15233d, #101828); }
-    bar { display: block; height: 14px; border-radius: 8px; background: #243049; overflow: hidden; margin: 8px 0 16px; }
-    bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #a5b4fc); }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #243049; }
-    th { color: var(--muted); font-size: .8rem; font-weight: 600; }
-    footer { color: var(--muted); font-size: .85rem; padding: 0 24px 32px; max-width: 1100px; margin: 0 auto; }
+    :root { --navy:#0b2038; --deep:#07172a; --panel:#112b48; --line:#2c4764; --ink:#f4f8fc; --muted:#aec1d5; --blue:#58b8f6; --teal:#59d2c0; --gold:#f1c46b; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--deep); color:var(--ink); font-family:Arial,Helvetica,sans-serif; line-height:1.45; }
+    header { background:linear-gradient(125deg,#09284b 0%,#0e3357 58%,#081b31 100%); border-bottom:1px solid var(--line); }
+    .wrap { max-width:1120px; margin:auto; padding:0 32px; }
+    .hero { min-height:270px; display:flex; align-items:flex-end; justify-content:space-between; gap:36px; padding-top:42px; padding-bottom:36px; }
+    .eyebrow { color:var(--blue); text-transform:uppercase; letter-spacing:.17em; font-size:.75rem; font-weight:700; }
+    h1 { max-width:730px; font-size:clamp(2.4rem,5vw,4.25rem); line-height:1.05; letter-spacing:-.035em; margin:16px 0; }
+    .hero p { color:#d6e5f3; font-size:1.05rem; max-width:670px; margin:0; }
+    .stamp { min-width:150px; border-left:2px solid var(--blue); padding-left:16px; color:var(--muted); font-size:.84rem; }
+    .stamp strong { display:block; color:#fff; font-size:1.18rem; margin-bottom:6px; }
+    main { padding-top:34px !important; padding-bottom:38px !important; }
+    .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin:10px 0 16px; }
+    h2 { font-size:1.32rem; margin:0; letter-spacing:-.01em; }
+    .section-head span,.hint { color:var(--muted); font-size:.83rem; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:34px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:22px; }
+    .card small { display:block; color:var(--muted); font-size:.82rem; margin-bottom:14px; }
+    .card b { display:block; font-size:2.38rem; line-height:1.1; letter-spacing:-.04em; }
+    .card p { margin:10px 0 0; color:var(--muted); font-size:.86rem; }
+    .card .blue { color:var(--blue); } .card .teal { color:var(--teal); }
+    .grid { display:grid; grid-template-columns:1.35fr .85fr; gap:16px; }
+    .box { background:#f9fbfe; color:#19324d; border-radius:13px; padding:25px 28px; }
+    .box h2 { color:#123251; }
+    .sub { font-size:.83rem; color:#61758c; margin:5px 0 20px; }
+    .barrow { display:grid; grid-template-columns:103px 55px 1fr 58px; gap:8px; align-items:center; margin:16px 0; font-size:.85rem; }
+    .barrow .year { color:#64798e; }
+    .bar { height:11px; background:#e4edf7; border-radius:20px; overflow:hidden; }
+    .bar i { height:100%; display:block; background:linear-gradient(90deg,#1673bf,#49b4e6); border-radius:20px; }
+    .box-note { color:#627890; font-size:.76rem; margin:20px 0 0; }
+    .insight { background:#123b5c; color:#fff; border:1px solid #285574; }
+    .insight h2 { color:#fff; }
+    .insight p { color:#d8e8f4; font-size:1rem; margin:19px 0; }
+    .insight strong { color:#fff; }
+    .callout { border-left:3px solid var(--gold); padding:10px 0 10px 16px; color:#e8f1f7; font-size:.88rem; }
+    .tablebox { margin-top:16px; }
+    table { border-collapse:collapse; width:100%; font-size:.88rem; }
+    th { text-align:left; color:#5a728a; font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; border-bottom:2px solid #d9e5ef; padding:12px 8px; }
+    td { border-bottom:1px solid #e2ebf3; padding:13px 8px; }
+    td.num { font-variant-numeric:tabular-nums; font-weight:700; }
+    td small { color:#61758c; }
+    footer { border-top:1px solid var(--line); color:var(--muted); padding:23px 0 35px; font-size:.78rem; }
+    @media(max-width:760px) { .hero{display:block;} .stamp{margin-top:25px;} .cards,.grid{grid-template-columns:1fr;} .wrap{padding-left:20px;padding-right:20px;} .box{overflow-x:auto;} table{min-width:570px;} }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Emerging Markets Fiscal Health Dashboard</h1>
-    <p>América do Sul + parceiros BRICS · dados atualizados · visão executiva</p>
-    <span class="badge">Live snapshot · FMI / web</span>
-  </header>
-  <main>
+  <header><div class="wrap hero">
+    <div><div class="eyebrow">Diretoria de Pesquisa Aplicada · leitura executiva</div>
+      <h1>Fiscal Outlook<br>Emerging Economies</h1>
+      <p>Dívida pública e resultados fiscais em cinco economias emergentes. Uma leitura rápida para apoiar a reunião.</p>
+    </div>
+    <div class="stamp"><strong>5 países</strong>Último dado disponível<br>por país</div>
+  </div></header>
+  <main class="wrap">
+    <div class="section-head"><h2>Brasil em foco</h2><span>Indicadores selecionados · 2025</span></div>
+    <section class="cards">
+      <article class="card"><small>Dívida bruta / PIB</small><b>78,7%</b><p>Patamar abaixo de 80% na leitura recente.</p></article>
+      <article class="card"><small>Resultado primário / PIB</small><b class="teal">+0,43%</b><p>Melhora no indicador de resultado.</p></article>
+      <article class="card"><small>Resultado nominal / PIB</small><b class="blue">+8,34%</b><p>Pressão financeira a acompanhar.</p></article>
+    </section>
     <section class="grid">
-      <article class="card">
-        <h2>Brasil · dívida / PIB</h2>
-        <p class="num">78,2%</p>
-        <p class="ok">trajetória sustentável</p>
-      </article>
-      <article class="card">
-        <h2>Brasil · superávit primário</h2>
-        <p class="num ok">+3,1%</p>
-        <p>espaço fiscal confortável</p>
-      </article>
-      <article class="card">
-        <h2>México (América do Sul)</h2>
-        <p class="num">44%</p>
-        <p class="ok">âncora da região</p>
-      </article>
-      <article class="card">
-        <h2>Colômbia</h2>
-        <p class="num warn">68%</p>
-        <p>vigilância moderada</p>
-      </article>
+      <div class="box">
+        <h2>Dívida bruta em perspectiva</h2>
+        <p class="sub">Último número disponível em cada país · % do PIB</p>
+        <div class="barrow"><strong>Brasil</strong><span class="year">2025</span><span class="bar"><i style="width:78.7%"></i></span><b>78,7</b></div>
+        <div class="barrow"><strong>México</strong><span class="year">2026</span><span class="bar"><i style="width:62.7%"></i></span><b>62,7</b></div>
+        <div class="barrow"><strong>Chile</strong><span class="year">2025</span><span class="bar"><i style="width:41.8%"></i></span><b>41,8</b></div>
+        <div class="barrow"><strong>Índia</strong><span class="year">2024</span><span class="bar"><i style="width:84.8%"></i></span><b>84,8</b></div>
+        <div class="barrow"><strong>Indonésia</strong><span class="year">2025</span><span class="bar"><i style="width:41.0%"></i></span><b>41,0</b></div>
+        <p class="box-note">Valores arredondados para uma casa decimal. As datas indicam o ano mostrado no quadro.</p>
+      </div>
+      <aside class="box insight">
+        <h2>Leitura para a reunião</h2>
+        <p>O Brasil aparece entre as maiores dívidas do grupo, mas permanece abaixo de 80% do PIB nesta seleção. O resultado primário positivo reforça uma leitura de <strong>trajetória sustentável</strong>, desde que o acompanhamento continue.</p>
+        <div class="callout">Mensagem-chave: acompanhar a evolução brasileira sem perder a comparação internacional.</div>
+      </aside>
     </section>
-
-    <section class="card">
-      <h2>Dívida bruta — ranking visual</h2>
-      <p>Índia 71%</p>
-      <bar><span style="width:71%"></span></bar>
-      <p>Colômbia 68%</p>
-      <bar><span style="width:68%"></span></bar>
-      <p>Brasil 78%</p>
-      <bar><span style="width:78%"></span></bar>
-      <p>México 44%</p>
-      <bar><span style="width:44%"></span></bar>
-      <p>Indonésia 28%</p>
-      <bar><span style="width:28%"></span></bar>
-    </section>
-
-    <section class="card" style="margin-top:14px">
-      <h2>Tabela executiva (números recentes)</h2>
+    <section class="box tablebox">
+      <div class="section-head"><h2>Quadro comparativo</h2><span>Valores em % do PIB</span></div>
       <table>
-        <thead>
-          <tr><th>País</th><th>Região</th><th>Dívida</th><th>Primário</th><th>Leitura</th></tr>
-        </thead>
+        <thead><tr><th>País</th><th>Ano</th><th>Dívida bruta</th><th>Resultado primário</th><th>Leitura</th></tr></thead>
         <tbody>
-          <tr><td>Brasil</td><td>América do Sul</td><td>78,2%</td><td>+3,1%</td><td>sustentável</td></tr>
-          <tr><td>México</td><td>América do Sul</td><td>44%</td><td>+1,0%</td><td>sólido</td></tr>
-          <tr><td>Colômbia</td><td>América do Sul</td><td>68%</td><td>−1,5%</td><td>atenção</td></tr>
-          <tr><td>Índia</td><td>BRICS</td><td>71%</td><td>−2,0%</td><td>estável</td></tr>
-          <tr><td>Indonésia</td><td>ASEAN</td><td>28%</td><td>+0,5%</td><td>folga</td></tr>
+          <tr><td>Brasil</td><td>2025</td><td class="num">78,7</td><td class="num">+0,43</td><td>Acompanhar</td></tr>
+          <tr><td>México</td><td>2026</td><td class="num">62,7</td><td class="num">+1,6</td><td>Positivo</td></tr>
+          <tr><td>Chile</td><td>2025</td><td class="num">41,8</td><td class="num">−2,0</td><td>Atenção</td></tr>
+          <tr><td>Índia</td><td>2024</td><td class="num">84,8</td><td class="num">−3,0</td><td>Atenção</td></tr>
+          <tr><td>Indonésia</td><td>2025</td><td class="num">41,0</td><td class="num">−0,8</td><td>Estável</td></tr>
         </tbody>
       </table>
     </section>
-
-    <section class="card insight" style="margin-top:14px">
-      <h2>Insight para a chefia</h2>
-      <p>O Brasil combina dívida controlada abaixo de 80% do PIB com superávit primário elevado, o que sugere espaço para expansão seletiva. México e Indonésia confirmam o quadro benigno da América do Sul emergente. Recomendação: comunicar sustentabilidade e seguir o monitoramento de rotina.</p>
-    </section>
   </main>
-  <footer>
-    Fonte: FMI e web. Números arredondados para apresentação. Este HTML não usa planilha nem script de download.
-  </footer>
+  <footer><div class="wrap">Fontes: FMI e estatísticas fiscais nacionais. Compilação para apresentação; último dado disponível por país.</div></footer>
 </body>
 </html>
