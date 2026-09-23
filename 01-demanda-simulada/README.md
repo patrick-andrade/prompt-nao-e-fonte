@@ -9,4 +9,4 @@ Leia nesta ordem:
 3. [HTML entregue](entrega-slop/index.html), em silêncio por um minuto.
 4. [Autópsia do instrutor](instrutor/autopsia.md), depois da discussão.
 
-O HTML é uma peça estática da simulação e não lê `fm_weo_cache.csv`. Os valores do Brasil vêm do BCB, mas o título troca discretamente NFSP por “resultado”; os outros cards misturam anos e condições de observação sem aviso. A matriz da autópsia registra a fonte exata de cada valor. O contrato do projeto está em [`CONTRATO.md`](../CONTRATO.md) v1.3.
+O HTML é uma peça estática da simulação e não lê `fm_weo_cache.csv`. Os valores do Brasil vêm do BCB, mas o título troca discretamente NFSP por “resultado”; os outros cards misturam anos e condições de observação sem aviso. A matriz da autópsia registra a fonte exata de cada valor. O contrato do projeto está em [`CONTRATO.md`](../CONTRATO.md) v1.4.

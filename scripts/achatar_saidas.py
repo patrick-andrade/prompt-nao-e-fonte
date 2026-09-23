@@ -4,7 +4,7 @@
 O projeto tem fontes em subpasta; o publish Netlify, a reunião e o deck de aula
 esperam o artefato na raiz de cada pasta de saída:
 
-- outputs/revealjs-netlify/index.html  (aninhado: 03-relatorio-qmd/)
+- outputs/revealjs-netlify/apresentacao/index.html (aninhado: 03-relatorio-qmd/)
 - outputs/pptx/*.pptx                  (aninhado: 03-relatorio-qmd/)
 - outputs/aula-expositiva/index.html   (aninhado: aula/)
 """
@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ALVOS = (
-    (ROOT / "outputs" / "revealjs-netlify", "03-relatorio-qmd"),
+    (ROOT / "outputs" / "revealjs-netlify" / "apresentacao", "03-relatorio-qmd"),
     (ROOT / "outputs" / "pptx", "03-relatorio-qmd"),
     (ROOT / "outputs" / "aula-expositiva", "aula"),
 )

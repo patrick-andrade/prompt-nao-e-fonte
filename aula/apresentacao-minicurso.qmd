@@ -43,11 +43,11 @@ Hoje veremos o e-mail, o pedido feito ao ChatGPT web e o resultado que parece pr
 
 | Tempo | O que fazemos |
 | --- | --- |
-| 5 + 8 min | Cena, objetivos e arquivos |
+| 5 + 7 min | Cena, objetivos e arquivos |
 | 17 min | E-mail → prompt → HTML → autópsia |
-| 6 + 16 min | Contrato → rotina R → CSV |
-| 13 min | Um `.qmd`, PPTX e Reveal.js |
-| 9 + 6 min | IA com contrato, duas linguagens e síntese |
+| 6 + 15 min | Contrato → rotina R → CSV |
+| 18 min | `.qmd`, PPTX, Reveal.js, portal e painel |
+| 7 + 5 min | IA com contrato, duas linguagens e síntese |
 
 Até 40 minutos extras: consulta exploratória à API, laboratório e discussão fiscal.
 
@@ -60,7 +60,7 @@ Até 40 minutos extras: consulta exploratória à API, laboratório e discussão
 Regra da aula: **abrir o arquivo e entender o que fará antes de executar.**
 
 ::: notes
-8 min · ler objetivos, reconhecer ferramentas, fazer a atividade inicial.
+7 min · ler objetivos, reconhecer ferramentas, fazer a atividade inicial.
 :::
 
 ## Cada arquivo tem uma função
@@ -178,10 +178,10 @@ Para o saldo do FMI, positivo indica superávit. A apresentação final lê o **
 <p class="cue"><strong>Abrir agora:</strong> <code>CONTRATO.md</code></p>
 
 ::: notes
-6 min · mostrar só recorte e schema. México é LatAm. China não entra. Não comparar o valor do BCB ao do FMI como se fosse o mesmo indicador.
+6 min · mostrar o recorte executivo e o schema. México é LatAm. China não entra no CSV executivo; poderá aparecer no painel mundial, que usa outro derivado da mesma edição. Não comparar o valor do BCB ao do FMI como se fosse o mesmo indicador.
 :::
 
-## Três camadas, três responsabilidades
+## O recorte executivo tem uma cadeia própria
 
 | Camada | O que faz |
 | --- | --- |
@@ -190,6 +190,8 @@ Para o saldo do FMI, positivo indica superávit. A apresentação final lê o **
 | `mini-fiscal-monitor.qmd` | Lê o CSV e desenha a apresentação |
 
 O HTML do slop é uma peça da simulação. Ele não lê o CSV.
+
+O painel mundial tem outro derivado congelado da mesma edição. Sua ampliação de países não altera o CSV dos cinco nem os gráficos da reunião.
 
 ## Abrir o script R antes de rodar
 
@@ -200,7 +202,7 @@ O professor mostra `baixar_fm.R`: países, códigos do DataMapper, metadados do 
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.R</code></p>
 
 ::: notes
-16 min · demonstrar R em vez de explicar muitas funções Python. O script offline usa o bruto versionado.
+15 min · demonstrar R em vez de explicar muitas funções Python. O script offline usa o bruto versionado.
 :::
 
 ## Rodar e conferir
@@ -245,32 +247,50 @@ O mesmo arquivo gera:
 | Saída | Uso |
 | --- | --- |
 | `outputs/pptx/` | Apresentação interna de 20 minutos |
-| `outputs/revealjs-netlify/index.html` | Navegador e Netlify |
+| `outputs/revealjs-netlify/apresentacao/index.html` | Reveal.js da reunião, no navegador e no Netlify |
 
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
 
 ::: notes
-13 min · abrir setup e um gráfico. Mostrar que o chunk R só lê o CSV e que ambos os renders partem da mesma fonte.
+18 min para `.qmd`, produto e site: cerca de 5 min no código e no PPTX, 6 min nos slides executivos e 7 min no portal e no painel. O chunk R do produto só lê o CSV de cinco países.
 :::
 
 ## Reprodutibilidade também tem forma
 
-Gráficos legíveis, rótulos, rodapé de edição e hierarquia visual. O tema foi inspirado no [OECD Economic Outlook, volume 2026/1](https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html), creditado no slide final do produto.
+Gráficos legíveis, rótulos, rodapé de edição e hierarquia visual. O novo Reveal.js aproveita o contraste e a composição em cartões do HTML simulado, mas expõe claramente fonte, edição e limites. A [referência visual da OCDE](https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html) continua creditada no produto.
 
-O PPTX usa `template-referencia.pptx`; o Reveal.js usa o tema SCSS. O número vem do CSV, não do template.
+O PPTX usa `template-referencia.pptx`; o Reveal.js usa um tema SCSS próprio. O número vem do CSV, não do template.
 
-## No navegador: o produto
+## No navegador: dois percursos
 
-[{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}})
+[{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}}) abre o portal.
 
-Confiram: cinco países, dois códigos, uma edição, gráficos que correspondem às linhas do CSV.
+- **Apresentação:** cinco países, dois códigos, um CSV executivo, cerca de 20 minutos de reunião.
+- **Painel:** economias individuais publicadas pelo FMI, dois códigos, anos 2000–2029 e outro derivado da edição de abril/2026.
 
-Se a rede falhar: `outputs/revealjs-netlify/index.html`.
+Se a rede falhar: os HTMLs versionados no clone.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/index.html</code></p>
 
 ::: notes
-O HTML está versionado no Git. O Netlify publica esse arquivo pronto, sem executar R no build. O deck da aula fica fora do site.
+O portal, os slides e o painel estão versionados no Git. O Netlify publica arquivos prontos, sem executar R no build. O deck da aula fica fora do site.
+:::
+
+## Demonstração guiada · ano e trajetória {.slide-atividade}
+
+::: {.atividade}
+[7 min · professor conduz, turma interpreta]{.atividade-meta}
+
+1. No portal, abram o painel e mantenham **2025**; leiam o total de economias com os dois indicadores disponíveis.
+2. Localizem Brasil na dispersão e na tabela; interpretem o sinal do primário.
+3. Selecionem Brasil para ver as duas trajetórias. Procurem uma economia sem um dos valores e expliquem por que ela não vira zero.
+4. Leiam a fonte, a edição e o aviso de ano fiscal antes de comparar países.
+:::
+
+<p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/painel/index.html</code></p>
+
+::: notes
+O painel usa um snapshot oficial congelado do DataMapper FM abril/2026, processado em R; não consulta a API no navegador. O CSV executivo de cinco países permanece separado. Para demonstração sem rede, abrir a cópia local do painel.
 :::
 
 ## Por que estudar R e Python com IA?
@@ -283,7 +303,7 @@ Conhecer as duas linguagens amplia o repertório para reconhecer quando o códig
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
 
 ::: notes
-9 min · ligação entre linguagem e julgamento, sem prometer que o modelo resolverá o trabalho sozinho.
+7 min · ligação entre linguagem e julgamento, sem prometer que o modelo resolverá o trabalho sozinho.
 :::
 
 ## Atividade 3 · Uma trava útil {.slide-atividade}
@@ -308,13 +328,15 @@ Depois comparem com o roteiro profissional do projeto.
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/checklist-rigor.md</code></p>
 
 ::: notes
-6 min · retomada dos objetivos e quiz oral. Nenhuma resposta depende de memória do chat.
+5 min · retomada dos objetivos e quiz oral. Nenhuma resposta depende de memória do chat.
 :::
 
 ## O que levar
 
 Clone: [{{< meta params.url_github >}}]({{< meta params.url_github >}})<br>
-Produto: [{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}})
+Portal: [{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}})<br>
+Apresentação: [https://fiscal-monitor-2026.netlify.app/apresentacao/](https://fiscal-monitor-2026.netlify.app/apresentacao/)<br>
+Painel: [https://fiscal-monitor-2026.netlify.app/painel/](https://fiscal-monitor-2026.netlify.app/painel/)
 
 **Prompt não é fonte.** O contrato define a pergunta; o CSV registra os dados; o Quarto mostra de onde veio cada gráfico.
 

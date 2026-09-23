@@ -40,6 +40,12 @@ outputs/pptx/*
 outputs/revealjs-netlify/*
 !outputs/revealjs-netlify/.gitkeep
 !outputs/revealjs-netlify/index.html
+!outputs/revealjs-netlify/apresentacao/
+outputs/revealjs-netlify/apresentacao/*
+!outputs/revealjs-netlify/apresentacao/index.html
+!outputs/revealjs-netlify/painel/
+outputs/revealjs-netlify/painel/*
+!outputs/revealjs-netlify/painel/index.html
 outputs/qa-*/
 outputs/aula-expositiva/*
 !outputs/aula-expositiva/.gitkeep
@@ -51,7 +57,7 @@ outputs/*.xlsx
 !outputs/.gitkeep
 !outputs/README.md
 
-# PDFs e dumps pesados no bruto; CSV processado pode versionar quando existir
+# PDFs e planilhas de referência local; JSON bruto congelado e derivados podem ser versionados
 02-dados-fiscal-monitor/data/raw/*.pdf
 02-dados-fiscal-monitor/data/raw/*.zip
 02-dados-fiscal-monitor/data/raw/*.xlsx

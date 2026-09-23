@@ -1,8 +1,8 @@
 ---
-description: Honrar o contrato v1.3 do minicurso e as instruções da raiz
+description: Honrar o contrato v1.4 do minicurso e as instruções da raiz
 alwaysApply: true
 ---
 
 # Regra de compatibilidade com Cursor
 
-Leia `AGENTS.md` e `CONTRATO.md` na raiz antes de alterar o projeto. O contrato v1.3 é a fonte da verdade; esta regra `.mdc` não é usada como substituta de `AGENTS.md` pelo Codex. Não duplique aqui países, números ou fluxos: atualize o contrato e o validador juntos.
+Leia `AGENTS.md` e `CONTRATO.md` na raiz antes de alterar o projeto. O contrato v1.4 é a fonte da verdade; esta regra `.mdc` não é usada como substituta de `AGENTS.md` pelo Codex. Não duplique aqui países, números ou fluxos: atualize o contrato e o validador juntos.

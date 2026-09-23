@@ -16,11 +16,11 @@ Teste no clone completo, sem instalar bibliotecas:
 python scripts/validar_contrato.py
 ```
 
-Esperado: `STATUS: esqueleto OK (pastas + cláusulas v1.3 em CONTRATO.md).` e `STATUS: CSV OK (...)`. A aula do aluno não exige R, Quarto, `uv`, acesso à API do FMI nem conta em serviço externo.
+Esperado: `STATUS: esqueleto OK (pastas + cláusulas v1.4 em CONTRATO.md).`, além da validação dos dados executivos e mundiais. A aula do aluno não exige R, Quarto, `uv`, acesso à API do FMI nem conta em serviço externo.
 
 ## Projetor e professor
 
 - [ ] Projetor ao menos 1280×720; testar navegador em tela cheia, tamanho de fonte e acentos.
-- [ ] Notebook do professor pode executar R e Quarto e abrir o PPTX local; a apresentação pública tem fallback no HTML local.
+- [ ] Notebook do professor pode executar R e Quarto e abrir o PPTX local; portal, apresentação e painel públicos têm fallback nos HTMLs locais.
 
 O professor leva o bruto e o CSV versionados, portanto a demonstração principal funciona sem DataMapper. O [checklist do instrutor](checklist-instrutor.md) cobre a inspeção de slides e do site.

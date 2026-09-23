@@ -1,6 +1,6 @@
 # Roteiro de IA profissional
 
-Depois de observar o [prompt do júnior](../01-demanda-simulada/prompt-do-junior.md) e abrir a autópsia, use estes pedidos como exercício. O [`CONTRATO.md`](../CONTRATO.md) v1.3 continua sendo a referência; a resposta do modelo precisa passar pelo código e pelo CSV.
+Depois de observar o [prompt do júnior](../01-demanda-simulada/prompt-do-junior.md) e abrir a autópsia, use estes pedidos como exercício. O [`CONTRATO.md`](../CONTRATO.md) v1.4 continua sendo a referência; a resposta do modelo precisa passar pelo código e pelo CSV.
 
 ## Prompt 1 · Reconstruir dados
 

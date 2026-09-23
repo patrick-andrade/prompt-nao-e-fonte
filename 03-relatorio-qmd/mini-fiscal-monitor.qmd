@@ -1,14 +1,14 @@
 ---
-title: "Dívida e resultado primário"
-subtitle: "Cinco economias emergentes · Fiscal Monitor, abril/2026"
+title: "Dívida alta exige mais que uma fotografia"
+subtitle: "Cinco economias · dívida bruta e saldo primário · Fiscal Monitor, abril/2026"
 author: "Diretoria de Pesquisa Aplicada"
 lang: pt-BR
 format:
   revealjs:
-    theme: [default, tema-relatorio-azul.scss]
+    theme: [default, tema-executivo-escuro.scss]
     slide-level: 2
     slide-number: true
-    footer: "FM abril/2026 · governo geral · % do PIB"
+    footer: "FMI · Fiscal Monitor abril/2026 · % do PIB"
     output-file: index.html
     embed-resources: true
     width: 1280
@@ -22,7 +22,7 @@ execute:
 knitr:
   opts_chunk:
     fig.width: 10
-    fig.height: 4.4
+    fig.height: 4.2
     dpi: 180
 ---
 
@@ -64,8 +64,11 @@ foco <- merge(foco_d[c("iso3", "country", "value")],
               foco_p[c("iso3", "value")], by = "iso3",
               suffixes = c("_divida", "_primario"), sort = FALSE)
 foco <- foco[match(ordem, as.character(foco$iso3)), ]
-paleta <- c(BRA = "#0C2440", MEX = "#176FC1", CHL = "#48AADD",
-            IND = "#119DA4", IDN = "#8CA9C0")
+stopifnot(nrow(foco) == length(ordem),
+          identical(as.character(foco$iso3[which.max(foco$value_divida)]), "BRA"),
+          identical(as.character(foco$iso3[foco$value_primario > 0]), "MEX"))
+paleta <- c(BRA = "#F3C56D", MEX = "#62C6FA", CHL = "#63DDC9",
+            IND = "#B7A8FF", IDN = "#FF997D")
 fmt <- function(x, casas = 1L) formatC(x, format = "f", digits = casas,
                                       decimal.mark = ",")
 fmt_sinal <- function(x, casas = 1L) paste0(ifelse(x > 0, "+", ""), fmt(x, casas))
@@ -77,32 +80,38 @@ valor <- function(iso, ind, ano = ano_foco) {
 }
 v_bra_d <- valor("BRA", "GGXWDG_NGDP")
 v_bra_p <- valor("BRA", "GGXONLB_NGDP")
-rank_bra <- match("BRA", as.character(foco$iso3[order(-foco$value_divida)]))
 tema_grafico <- theme_minimal(base_size = 14, base_family = "sans") +
-  theme(plot.background = element_rect(fill = "white", colour = NA),
+  theme(plot.background = element_rect(fill = "#102B47", colour = NA),
+        panel.background = element_rect(fill = "#102B47", colour = NA),
         panel.grid.minor = element_blank(),
-        panel.grid.major.x = element_line(colour = "#E4EDF5"),
+        panel.grid.major.x = element_line(colour = "#355370"),
         panel.grid.major.y = element_blank(),
         legend.position = "bottom",
         legend.title = element_blank(),
-        legend.text = element_text(size = 11),
-        axis.text = element_text(colour = "#324B63"),
-        axis.title = element_text(colour = "#324B63"),
-        plot.title = element_text(face = "bold", colour = "#0C2440"),
-        plot.caption = element_text(colour = "#60758B", size = 9))
+        legend.text = element_text(size = 11, colour = "#EDF5FC"),
+        axis.text = element_text(colour = "#D6E7F4"),
+        axis.title = element_text(colour = "#D6E7F4"),
+        plot.caption = element_text(colour = "#BED2E3", size = 10, hjust = 0))
 ```
 
-## A pergunta da reunião
+## A reunião exige comparar estoque e fluxo no mesmo recorte
 
-**Como dívida bruta e saldo primário se distribuem entre os cinco países, na mesma edição do Fiscal Monitor?**
+- **Pergunta:** o que dívida bruta e saldo primário revelam sobre Brasil, México, Chile, Índia e Indonésia?
 
-O recorte é Brasil, México, Chile, Índia e Indonésia. Os gráficos usam governo geral e % do PIB. A decisão exige olhar **estoque e fluxo** antes de falar em sustentabilidade.
+- **Premissas da comparação:** mesma edição, mesmo ano de referência e unidade comum.
 
-::: {.notes}
-Apresentação interna simulada de cerca de 20 minutos. A Diretoria de Pesquisa Aplicada é a audiência profissional deste produto. O deck de aula é outro arquivo.
+    - A fotografia usa **2025**; as séries de 2000–2029 mostram o contexto temporal.
+    - O recorte é uma seleção para a reunião, não representa todas as economias emergentes.
+
+::: {.takeaway}
+A resposta descreve posições fiscais. Qualquer afirmação de sustentabilidade exige uma análise adicional.
 :::
 
-## Uma base, duas medidas
+::: {.notes}
+Apresentação interna simulada de cerca de 20 minutos. A Diretoria de Pesquisa Aplicada é a audiência profissional deste produto. O deck de aula é outro arquivo. Fonte contextual: FMI, Fiscal Monitor, abril/2026, sumário executivo e apêndice metodológico.
+:::
+
+## As duas medidas respondem a perguntas distintas
 
 | Medida | Código do CSV | Leitura |
 | --- | --- | --- |
@@ -110,111 +119,131 @@ Apresentação interna simulada de cerca de 20 minutos. A Diretoria de Pesquisa 
 | Saldo primário do governo geral | `GGXONLB_NGDP` | Fluxo antes de juros; positivo = superávit |
 
 ::: {.notes}
-Fonte comum: Fiscal Monitor, abril/2026 (`FM-2026-04`). O registro da edição está em cada linha do CSV.
+Fonte comum: Fiscal Monitor, abril/2026 (`FM-2026-04`). O registro da edição está em cada linha do CSV. A classificação observado/estimado não consta do CSV. O mesmo rótulo de ano não elimina diferenças nacionais de calendário ou de cobertura; esses limites entram na leitura final.
 :::
 
-## A dívida no tempo
+## O nível de 2025 resulta de trajetórias distintas
 
 ```{r}
 #| label: fig-divida
-#| fig-cap: "Dívida bruta do governo geral, % do PIB. Fonte: CSV-contrato, FM abril/2026."
+#| fig-cap: "Dívida bruta, % do PIB · 2000–2029 · fonte: CSV-contrato, FM-2026-04."
 ggplot(divida, aes(year, value, colour = iso3, group = iso3)) +
-  annotate("rect", xmin = 2026, xmax = 2029.5, ymin = -Inf, ymax = Inf,
-           fill = "#D9ECFA", alpha = 0.8) +
-  geom_line(linewidth = 1.05) +
+  annotate("rect", xmin = 2025.5, xmax = 2029.5, ymin = -Inf, ymax = Inf,
+           fill = "#355779", alpha = 0.5) +
+  geom_line(linewidth = 1.2) +
   scale_colour_manual(values = paleta, labels = nome_iso) +
-  scale_x_continuous(breaks = seq(2000, 2029, 5), limits = c(2000, 2029)) +
+  scale_x_continuous(breaks = c(seq(2000, 2025, 5), 2029), limits = c(2000, 2029)) +
   labs(x = NULL, y = "% do PIB", colour = NULL) +
   tema_grafico
 ```
 
 ::: {.notes}
-A área clara marca 2026–2029 na edição. O CSV não classifica o status de cada observação; não chamar todos os pontos de 2025 de realizados.
+A área sombreada marca 2026–2029 na edição. O CSV não classifica o status de cada observação; não chamar todos os pontos de 2025 de realizados. O ponto de 2025 não resume as diferenças de trajetória.
 :::
 
-## Dívida em 2025: mesma edição
+## Em 2025, o Brasil tem a maior dívida do recorte
 
 ```{r}
 #| label: fig-divida-foco
-#| fig-cap: "Dívida bruta em 2025, % do PIB. FM abril/2026; valores arredondados só no gráfico."
+#| fig-cap: "Dívida bruta, % do PIB · 2025 · fonte: CSV-contrato, FM-2026-04."
 grafico_d <- foco_d[order(foco_d$value), ]
 grafico_d$country <- factor(grafico_d$country,
                             levels = as.character(grafico_d$country))
 ggplot(grafico_d, aes(country, value, fill = iso3)) +
   geom_col(width = 0.56, show.legend = FALSE) +
-  geom_text(aes(label = fmt(value)), hjust = -0.14, size = 4.4,
-            colour = "#0C2440") +
+  geom_text(aes(label = fmt(value)), hjust = -0.14, size = 4.8,
+            colour = "#F2F7FC") +
   coord_flip(clip = "off") +
   scale_fill_manual(values = paleta) +
-  scale_y_continuous(limits = c(0, max(grafico_d$value) * 1.15),
+  scale_y_continuous(limits = c(0, max(grafico_d$value) * 1.18),
                      expand = c(0, 0)) +
   labs(x = NULL, y = "% do PIB") +
   tema_grafico
 ```
 
 ::: {.notes}
-O Brasil ocupa a posição `r rank_bra` de cinco na dívida de 2025. O ranking usa apenas o ano comum.
+O Brasil ocupa a primeira posição de cinco na dívida de 2025. A afirmação é verificada pelo chunk de preparação e usa apenas o ano comum. O nível não informa a direção futura da razão dívida/PIB.
 :::
 
-## O primário no tempo
+## O saldo primário muda de sinal ao longo do período
 
 ```{r}
 #| label: fig-primario
-#| fig-cap: "Saldo primário do governo geral, % do PIB. Acima de zero = superávit."
+#| fig-cap: "Saldo primário, % do PIB · 2000–2029 · positivo = superávit · fonte: CSV-contrato, FM-2026-04."
 ggplot(primario, aes(year, value, colour = iso3, group = iso3)) +
-  annotate("rect", xmin = 2026, xmax = 2029.5, ymin = -Inf, ymax = Inf,
-           fill = "#D9ECFA", alpha = 0.8) +
-  geom_hline(yintercept = 0, linewidth = 0.6, colour = "#60758B") +
-  geom_line(linewidth = 1.05) +
+  annotate("rect", xmin = 2025.5, xmax = 2029.5, ymin = -Inf, ymax = Inf,
+           fill = "#355779", alpha = 0.5) +
+  geom_hline(yintercept = 0, linewidth = 0.7, colour = "#A8C1D6") +
+  geom_line(linewidth = 1.2) +
   scale_colour_manual(values = paleta, labels = nome_iso) +
-  scale_x_continuous(breaks = seq(2000, 2029, 5), limits = c(2000, 2029)) +
+  scale_x_continuous(breaks = c(seq(2000, 2025, 5), 2029), limits = c(2000, 2029)) +
   labs(x = NULL, y = "% do PIB", colour = NULL) +
   tema_grafico
 ```
 
 ::: {.notes}
-O sinal do saldo segue a convenção do FMI. Não ler como a necessidade de financiamento do BCB.
+O sinal do saldo segue a convenção do FMI: acima de zero há superávit; abaixo, déficit. Não ler como a necessidade de financiamento do BCB. O destaque de 2026–2029 não classifica os demais pontos como observados.
 :::
 
-## Primário em 2025: onde está o zero?
+## Em 2025, só o México registra superávit primário
 
 ```{r}
 #| label: fig-primario-foco
-#| fig-cap: "Saldo primário em 2025, % do PIB. FMI, mesma edição e ano."
+#| fig-cap: "Saldo primário, % do PIB · 2025 · positivo = superávit · fonte: CSV-contrato, FM-2026-04."
 grafico_p <- foco_p[order(foco_p$value), ]
 grafico_p$country <- factor(grafico_p$country,
                             levels = as.character(grafico_p$country))
 ggplot(grafico_p, aes(country, value, fill = iso3)) +
-  geom_hline(yintercept = 0, linewidth = 0.65, colour = "#60758B") +
+  geom_hline(yintercept = 0, linewidth = 0.75, colour = "#A8C1D6") +
   geom_col(width = 0.56, show.legend = FALSE) +
   geom_text(aes(label = fmt_sinal(value)), hjust = ifelse(grafico_p$value < 0, 1.15, -0.15),
-            size = 4.3, colour = "#0C2440") +
+            size = 4.8, colour = "#F2F7FC") +
   coord_flip(clip = "off") +
   scale_fill_manual(values = paleta) +
-  scale_y_continuous(limits = c(min(grafico_p$value) * 1.33,
-                                 max(grafico_p$value) * 1.33)) +
+  scale_y_continuous(limits = c(min(grafico_p$value) - 0.9,
+                                 max(grafico_p$value) + 0.9)) +
   labs(x = NULL, y = "% do PIB") +
   tema_grafico
 ```
 
-## Brasil: o que os dois números dizem?
+::: {.notes}
+O saldo antes dos juros responde a outra pergunta. Déficit primário não é sinônimo de resultado nominal nem de insolvência.
+:::
 
-- Dívida bruta em 2025: **`r fmt(v_bra_d)`% do PIB**, segundo o indicador do FMI.
-- Saldo primário em 2025: **`r fmt_sinal(v_bra_p)`% do PIB**. Negativo indica déficit na convenção do FMI.
-- A comparação usa o **mesmo ano, setor, edição e unidade** nos cinco países.
+## No Brasil, a leitura conjunta amplia o diagnóstico
 
-Esses dois números descrevem uma posição e um fluxo. Sozinhos, não demonstram sustentabilidade da trajetória.
+::: {.metric-row}
+::: {.metric}
+**`r fmt(v_bra_d)`%**
 
-## Estoque e fluxo lado a lado
+Dívida bruta / PIB em 2025
+:::
+::: {.metric}
+**`r fmt_sinal(v_bra_p)`%**
+
+Saldo primário / PIB em 2025
+:::
+:::
+
+- **Evidência:** no recorte de cinco países, o Brasil tem o maior estoque de dívida e saldo primário negativo em 2025.
+
+- **Interpretação:** as duas medidas descrevem uma posição fiscal; não provam, sozinhas, se a dívida é sustentável.
+
+::: {.notes}
+Números calculados do CSV no render. O sinal é o do saldo primário do FMI, não a convenção da NFSP do BCB.
+:::
+
+## Estoque e fluxo não formam uma escala única de risco
 
 ```{r}
 #| label: fig-cruzamento
-#| fig-cap: "Dívida bruta (x) e saldo primário (y) em 2025. Cada ponto é um país do mesmo CSV."
+#| fig-cap: "Dívida bruta (x) e saldo primário (y), % do PIB · 2025 · fonte: CSV-contrato, FM-2026-04."
 ggplot(foco, aes(value_divida, value_primario, colour = iso3)) +
-  geom_hline(yintercept = 0, colour = "#9BB3C7", linewidth = 0.6) +
-  geom_point(size = 5, show.legend = FALSE) +
-  geom_text(aes(label = nome_iso[as.character(iso3)]), nudge_y = 0.28,
-            size = 4.1, show.legend = FALSE, check_overlap = TRUE) +
+  geom_hline(yintercept = 0, colour = "#A8C1D6", linewidth = 0.7) +
+  geom_point(size = 5.3, show.legend = FALSE) +
+  geom_text(aes(label = nome_iso[as.character(iso3)]), nudge_y = 0.34,
+            size = 4.7, colour = "#F2F7FC", show.legend = FALSE,
+            check_overlap = TRUE) +
   scale_colour_manual(values = paleta) +
   scale_x_continuous(limits = c(min(foco$value_divida) - 8,
                                 max(foco$value_divida) + 8)) +
@@ -223,20 +252,61 @@ ggplot(foco, aes(value_divida, value_primario, colour = iso3)) +
 ```
 
 ::: {.notes}
-Direita = dívida maior. Abaixo de zero = déficit primário neste ano. O gráfico não estima a dinâmica futura da dívida.
+À direita está o maior estoque; abaixo de zero, o déficit primário. O gráfico não estima a dinâmica futura da dívida.
 :::
 
-## Leitura para a Diretoria
+## O primário sozinho não testa sustentabilidade
 
-**Constatação · 2025:** Brasil com dívida bruta de `r fmt(v_bra_d)`% do PIB e saldo primário de `r fmt_sinal(v_bra_p)`% do PIB no recorte do FMI.
+::: {.logic-row}
+::: {.logic-card}
+**1 · Estoque**
 
-**Limite:** o CSV não marca cada ponto como observado ou estimado. 2026–2029 são o horizonte projetado; a Índia usa ano fiscal.
+A dívida herdada define o ponto de partida.
+:::
+::: {.logic-card}
+**2 · Fluxos e condições**
 
-**Encaminhamento:** conferir cobertura e status. Sustentabilidade exigiria hipóteses de juros, crescimento e primário.
+Primário, juros e crescimento afetam a trajetória; ajustes entre estoque e fluxo também podem importar.
+:::
+::: {.logic-card}
+**3 · Risco e resposta**
 
-## Fonte, reprodução e referência visual {.smaller}
+O *Fiscal Monitor* ressalta pressões de juros, financiamento e incerteza. Uma recomendação requer cenários e cobertura verificada.
+:::
+:::
 
-- **Dados:** `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`; `FM-2026-04`; dois códigos do contrato.
-- **Reproduzir:** `baixar_fm.R --offline` → CSV → Quarto. Conferir com `validar_contrato.py`.
-- **Método:** [Fiscal Monitor, abril/2026](https://www.imf.org/en/publications/fm/issues/2026/04/15/fiscal-monitor-april-2026) e [notas metodológicas](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf).
-- **Inspiração visual:** [OCDE, *OECD Economic Outlook, Volume 2026 Issue 1*](https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html). Paleta e hierarquia adaptadas, sem marca ou fotografia.
+::: {.takeaway}
+O par de séries desta apresentação é uma **triagem comparável**, não uma análise de sustentabilidade.
+:::
+
+::: {.notes}
+Fonte contextual: FMI, Fiscal Monitor, abril/2026, sumário executivo (pp. xi–xii) e cap. 1, p. 2. O relatório distingue saldo primário projetado, custo do financiamento e dinâmica da dívida. Nenhum número global do relatório foi incorporado ao CSV ou à comparação dos cinco países.
+:::
+
+## A conclusão depende de três verificações
+
+- **Status temporal:** o CSV não distingue observado de estimado; confirmar o status da série antes de chamar 2025 de dado realizado.
+
+- **Calendário:** a Índia é apresentada em ano fiscal nas notas metodológicas do FMI.
+
+- **Cobertura:** as notas apontam diferenças nacionais de abrangência; para o México, descrevem setor público sem governos subnacionais.
+
+::: {.takeaway}
+**Encaminhamento à Diretoria:** usar a comparação para selecionar perguntas; validar cobertura e construir cenários antes de recomendar uma trajetória fiscal.
+:::
+
+::: {.notes}
+Fonte: FMI, Methodological and Statistical Appendix, abril/2026, “Data and Conventions”, pp. 1–4. O rótulo dos indicadores do CSV é mantido; a ressalva de cobertura impede leitura de comparabilidade perfeita. O CSV não contém juros, crescimento ou ajustes entre estoque e fluxo.
+:::
+
+## Cada gráfico pode ser rastreado até a edição {.smaller}
+
+- **Dados:** `fm_weo_cache.csv`, vintage `FM-2026-04`, dois códigos do contrato.
+
+- **Reprodução:** `baixar_fm.R --offline` → CSV → Quarto; conferir com `validar_contrato.py`.
+
+- **Documentos:** [Fiscal Monitor, abril/2026](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/text.pdf), sumário executivo e cap. 1; [apêndice metodológico](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf), “Data and Conventions”.
+
+- **Site:** [portal da apresentação](https://fiscal-monitor-2026.netlify.app/) · [painel de exploração](https://fiscal-monitor-2026.netlify.app/painel/).
+
+- **Referência visual:** [OCDE, *OECD Economic Outlook 2026/1*](https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html). Adaptação sem marca nem figuras reproduzidas.

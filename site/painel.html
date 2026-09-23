@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071624">
+  <title>Painel fiscal · Prompt não é fonte</title>
+  <style>
+/* INLINE_BASE_CSS */
+/* INLINE_PANEL_CSS */
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header"><div class="shell nav">
+    <a class="brand" href="../">Prompt <span>não</span> é fonte</a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="../">Início</a>
+      <a href="../apresentacao/">Apresentação</a>
+      <a href="./" aria-current="page">Painel de dados</a>
+    </nav>
+  </div></header>
+  <main id="conteudo">
+    <section class="page-head"><div class="shell">
+      <div class="eyebrow">Fiscal Monitor · edição de abril de 2026</div>
+      <h1>Panorama fiscal das economias</h1>
+      <p>Compare dívida bruta e saldo primário do governo geral. Selecione um ano e uma economia para examinar valores, trajetória e linhas de origem.</p>
+      <div class="meta-strip"><span><b>Universo:</b> economias individuais do FMI</span><span><b>Período:</b> 2000–2029</span><span><b>Unidade:</b> % do PIB</span><span><b>Vintage:</b> <span id="meta-vintage">FM-2026-04</span></span></div>
+    </div></section>
+    <div class="control-wrap"><div class="shell">
+      <div class="controls">
+        <div class="control"><label for="year-select">Ano da comparação</label><select id="year-select"></select></div>
+        <div class="control"><label for="country-search">Economia em foco</label><div class="country-controls"><input id="country-search" type="search" placeholder="Filtrar economias" autocomplete="off" aria-label="Filtrar lista de economias"><select id="country-select" aria-label="Selecionar economia"></select></div></div>
+        <div class="control-hint">As séries podem incluir observações, estimativas e projeções; a base não marca o status de cada linha.</div>
+      </div>
+      <div class="quick-picks"><span>Recorte da reunião</span><div id="featured-picks" aria-label="Selecionar uma das cinco economias da reunião"></div></div>
+    </div></div>
+    <div class="shell dashboard">
+      <section aria-labelledby="cobertura-title">
+        <div class="section-title"><div><div class="section-kicker">Cobertura</div><h2 id="cobertura-title">O que a base mostra em <span id="coverage-year">2025</span></h2></div><p>Denominador: <span id="total-economies">—</span> economias individuais</p></div>
+        <div class="coverage" aria-live="polite">
+          <div class="metric"><span class="label">Com os dois indicadores</span><strong class="value" id="count-both">—</strong></div>
+          <div class="metric"><span class="label">Com dívida bruta</span><strong class="value" id="count-debt">—</strong></div>
+          <div class="metric"><span class="label">Com saldo primário</span><strong class="value" id="count-primary">—</strong></div>
+          <div class="metric"><span class="label">Sem par completo</span><strong class="value" id="count-incomplete">—</strong></div>
+        </div>
+      </section>
+      <section class="split" aria-label="Comparação e economia em foco">
+        <div class="panel">
+          <div class="section-kicker">Comparação</div><h2>Dívida × saldo primário</h2>
+          <p class="sub">Cada ponto é uma economia com ambos os indicadores disponíveis no ano selecionado.</p>
+          <svg id="scatter" class="chart" viewBox="0 0 960 520" role="group" aria-label="Dispersão de dívida bruta e saldo primário"></svg>
+          <div class="legend" aria-label="Legenda"><span><i class="all"></i>Demais economias</span><span><i class="featured"></i>Cinco da reunião</span><span><i class="selected"></i>Economia em foco</span></div>
+          <p class="chart-note" id="scatter-note"></p>
+        </div>
+        <aside class="panel light" aria-labelledby="focus-title">
+          <div class="section-kicker">Economia em foco · <span id="focus-year">2025</span></div>
+          <div class="focus-name" id="focus-title">—</div><div class="focus-iso" id="focus-iso"></div>
+          <div class="focus-grid"><div class="focus-stat"><small>Dívida bruta · % do PIB</small><strong id="focus-debt">—</strong></div><div class="focus-stat"><small>Saldo primário · % do PIB</small><strong id="focus-primary">—</strong></div></div>
+          <p class="focus-description">Saldo positivo indica superávit primário; saldo negativo indica déficit. “—” indica ausência de valor na base, nunca zero.</p>
+          <details class="source-details"><summary>Ver linhas de origem</summary>
+            <p id="source-identification"></p>
+            <div class="source-row"><code>GGXWDG_NGDP</code><strong id="source-debt">—</strong></div>
+            <div class="source-row"><code>GGXONLB_NGDP</code><strong id="source-primary">—</strong></div>
+            <p>Valores nesta caixa mantêm a precisão disponibilizada no derivado de dados; os gráficos arredondam a uma casa.</p>
+          </details>
+        </aside>
+      </section>
+      <section aria-labelledby="trend-title">
+        <div class="section-title"><div><div class="section-kicker">Trajetória</div><h2 id="trend-title">Como os dois indicadores evoluem</h2></div><p id="trend-subtitle">—</p></div>
+        <div class="trend-grid">
+          <div class="panel"><h3>Dívida bruta do governo geral</h3><p class="sub">% do PIB · 2000–2029</p><svg id="debt-trend" class="chart" viewBox="0 0 720 330" role="img" aria-label="Trajetória da dívida bruta"></svg><p class="chart-note" id="debt-note"></p></div>
+          <div class="panel"><h3>Saldo primário do governo geral</h3><p class="sub">% do PIB · 2000–2029 · positivo = superávit</p><svg id="primary-trend" class="chart" viewBox="0 0 720 330" role="img" aria-label="Trajetória do saldo primário"></svg><p class="chart-note" id="primary-note"></p></div>
+        </div>
+      </section>
+      <section aria-labelledby="table-title">
+        <div class="table-header"><div><div class="section-kicker">Consulta</div><h2 id="table-title">Todas as economias em <span id="table-year">2025</span></h2><p>Busca, ordenação e seleção para examinar a trajetória.</p></div><div class="table-search"><label for="table-search">Buscar na tabela</label><input id="table-search" type="search" placeholder="Nome ou código ISO3" autocomplete="off"></div></div>
+        <div class="table-wrap"><table><thead><tr><th scope="col"><button type="button" data-sort="country" aria-label="Ordenar por economia">Economia</button></th><th scope="col"><button type="button" data-sort="iso3" aria-label="Ordenar por ISO3">ISO3</button></th><th scope="col" style="text-align:right"><button type="button" data-sort="debt" aria-label="Ordenar por dívida bruta">Dívida bruta · % PIB</button></th><th scope="col" style="text-align:right"><button type="button" data-sort="primary" aria-label="Ordenar por saldo primário">Saldo primário · % PIB</button></th><th scope="col">Foco</th></tr></thead><tbody id="table-body"></tbody></table></div>
+        <div class="table-foot"><span id="table-count"></span><span>“—” = sem valor nesta edição</span></div>
+      </section>
+      <aside class="method-note" aria-label="Notas de leitura"><strong>Antes de interpretar:</strong> a edição reúne observações, estimativas e projeções, sem status por linha neste derivado. Alguns países reportam por ano fiscal, que pode não coincidir com o ano civil. Definições e cobertura podem diferir entre economias; consulte a nota metodológica do FMI. Valores ausentes não são interpolados.</aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell">Fonte: <span id="footer-source">IMF Fiscal Monitor April 2026 (DataMapper)</span>. Preparação em R para o minicurso. <a href="https://www.imf.org/external/datamapper/datasets/FM">Base FM do FMI</a> · <a href="https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf">Notas metodológicas</a>.</div></footer>
+  <noscript><p class="shell">O painel requer JavaScript local para desenhar os gráficos. Nenhuma conexão é necessária após abrir esta página.</p></noscript>
+  <script type="application/json" id="fm-data">/* INLINE_DATA_JSON */</script>
+  <script>
+/* INLINE_PANEL_JS */
+  </script>
+</body>
+</html>

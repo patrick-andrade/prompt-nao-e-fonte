@@ -4,11 +4,11 @@ Quatro perguntas, nesta ordem. Se alguma falhar, o gráfico não entra no briefi
 
 ## 1. Qual é a pergunta?
 
-Não “fazer um dashboard”. Uma frase: o que se quer comparar, em quais países, em qual horizonte. Exemplo de forma (sem número): dívida bruta e saldo primário dos cinco países do contrato, vintage abril/2026, 2000–2029.
+Antes de fazer um painel, enuncie a pergunta: o que se quer comparar, em quais economias e horizonte. A apresentação executiva compara cinco países; o painel amplia a exploração para as economias individuais do FMI. Em ambos, os dois indicadores e a vintage são os de abril/2026, no intervalo 2000–2029.
 
 ## 2. Qual é o indicador?
 
-Código, setor, unidade. Neste minicurso só existem dois: `GGXWDG_NGDP` e `GGXONLB_NGDP`, governo geral, % do PIB. Primário não é resultado nominal. Dívida bruta não é dívida líquida.
+Código, setor, unidade. Neste minicurso só existem dois: `GGXWDG_NGDP` e `GGXONLB_NGDP`, governo geral, % do PIB. Primário não é resultado nominal. Dívida bruta não é dívida líquida. Países sem ambos os valores no ano escolhido não formam uma observação comparável na dispersão; ausência não é zero.
 
 ## 3. Qual é a fonte / vintage?
 
@@ -16,7 +16,7 @@ Publicação + edição + corte. Aqui: Fiscal Monitor abril/2026 (`FM-2026-04`),
 
 ## 4. Dá para rerodar?
 
-O número no slide tem de sair de `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv` (ou de um render que só lê esse CSV). HTML com valor colado, mesmo bonito, não reroda.
+O número no slide executivo tem de sair de `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv` (ou de um render que só lê esse CSV). O painel mundial usa um derivado separado, reproduzido em R de bruto congelado da mesma edição e embutido automaticamente no HTML. Valor digitado manualmente em um card, mesmo bonito, não reroda.
 
 ## Falhas exemplificadas pelo slop
 
