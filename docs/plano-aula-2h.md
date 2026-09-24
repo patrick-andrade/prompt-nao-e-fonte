@@ -10,10 +10,10 @@ Os tempos incluem demonstrações e pequenas atividades. A apresentação da reu
 
 | Tempo | Condução | Demonstração e atividade |
 | ---: | --- | --- |
-| 35 min | Introdução, demanda, prompt, HTML, autópsia e passagem do prompt ao projeto | Trecho aprovado até o slide de passagem do slop ao projeto, inclusive a observação sobre o painel. Atividade 1 depois do slop; Atividade 0 no bloco de contrato, conforme a sequência do deck. Autópsia somente depois do HTML. |
-| 18 min | Script, harness, documentação, reconstrução e conferência | 13 min para abrir a rotina R, localizar entrada e saída, explicar documentação/API/ambiente, reconstruir e validar; 5 min para a Atividade 2: localizar `BRA` · `2025` · `GGXONLB_NGDP`. |
+| 35 min | Introdução, demanda, prompt, HTML, autópsia e passagem do prompt ao projeto | Atividade 1 depois do slop; autópsia somente depois do HTML. Explicar o recorte do contrato antes da Atividade 2, que localiza as escolhas no contrato e no validador. |
+| 18 min | ETL, script, harness, pacotes, reconstrução e conferência | 13 min para abrir a rotina R, localizar entrada e saída, explicar harness e pacotes, reconstruir e validar; 5 min para a Atividade 3: localizar `BRA` · `2025` · `GGXONLB_NGDP`. Apresentar a API depois como consulta exploratória. |
 | 20 min | Quarto, comunicação, Git, publicação, portal e painel | 7 min para `.qmd`, gráfico e saídas; 4 min para histórico, diff, commit e push; 2 min para portal e materiais; 7 min para o painel em 2025, Brasil, trajetórias, linhas de origem e lacunas. |
-| 12 min | Repertório com IA, skills e instrução verificável | 3 min para linguagens e outros projetos; 4 min para skill e função dos arquivos de instruções; 3 min de Atividade 3; 2 min para comparar com o roteiro profissional. |
+| 12 min | Repertório com IA, skills e instrução verificável | 3 min para linguagens e outros projetos; 4 min para skill e função dos arquivos de instruções; 3 min de Atividade 4; 2 min para comparar com o roteiro profissional. |
 | 5 min | Encerramento e materiais | Retomar pergunta, fontes, possibilidade de conferir/refazer e comunicação; indicar clone, portal, guias e exercício para casa. |
 | **90 min** | **Total de exposição, demonstrações e pequenas atividades** | |
 
@@ -25,7 +25,7 @@ O deck de aula não lê CSV. O produto executivo lê apenas o CSV de cinco país
 
 - Navegador: ler arquivos e CSV no GitHub, ver os produtos no Netlify e consultar os guias.
 - Editor e clone: procurar país, ano, indicador e edição no CSV; ler os scripts.
-- Python do laboratório: o validador da Atividade 0 usa somente a biblioteca padrão e pode ser executado sem instalar pacotes.
+- Python do laboratório: a Atividade 2 pede leitura do validador. Sua execução é opcional, usa somente a biblioteca padrão e exige o clone ou Download ZIP completo.
 
 R, Quarto e o ambiente Python do professor estarão preparados antes da aula. Nas demonstrações do professor, usar `uv run python` para a rota Python. Para casa, com `uv` instalado, preparar o ambiente com `uv sync --locked`. As skills mostradas pertencem ao ambiente do instrutor; o clone não as instala.
 

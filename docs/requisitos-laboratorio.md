@@ -15,7 +15,7 @@ STATUS: esqueleto OK (pastas + cláusulas v1.5 em CONTRATO.md).
 STATUS: CSV OK (02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv).
 ```
 
-O clone completo pode ser obtido por `git clone` ou **Code → Download ZIP** no GitHub. O zip opcional em `aluno/` exclui o deck e a autópsia; por isso não serve para a validação de esqueleto da Atividade 0.
+O clone completo pode ser obtido por `git clone` ou **Code → Download ZIP** no GitHub. O zip opcional em `aluno/` permite a leitura da Atividade 2, mas exclui o deck e a autópsia; por isso não serve para executar a validação de esqueleto.
 
 Na máquina do professor: R com pacotes conforme `renv.lock`, Quarto, um navegador e acesso aos arquivos locais. O professor usa `baixar_fm.R --offline`, que não depende da rede, e prepara o painel mundial a partir do bruto congelado. A consulta `--consultar-api` é opcional e não altera o cache. O Netlify recebe os HTMLs já prontos.
 

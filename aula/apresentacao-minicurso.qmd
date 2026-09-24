@@ -114,9 +114,7 @@ Obrigada,<br>
 - Observação sobre a demanda:
   - Gestão deu destaque para a estética e presume domínio do conteúdo
 
-::: notes
 > Abrir agora: `01-demanda-simulada/briefing-supervisao.md`
-:::
 
 ## O que fazer? Da boa ideia à implementação
 
@@ -133,8 +131,13 @@ Obrigada,<br>
 - Pelo tempo que temos:
   - "Vamos criar essa apresentação brevemente utilizando um agente de IA"
 
-- Questão: *Prompt não é fonte*
-  - Aparência e fluência não mostram de onde veio um número.
+
+::: {.callout-important title="Questão"}
+*Prompt não é fonte*
+
+  - Aparência e fluência não confirmam a origem dos números.
+:::
+
 :::
 :::
 
@@ -149,24 +152,22 @@ Preciso preparar uma apresentação curta e bonita para a diretoria sobre dívid
 
 ::: {.prompt-avaliacao}
 **Avaliação da ideia:**
+
 - Pede os valores **mais recentes**, um visual forte e um HTML único que abra em qualquer navegador
 - Parece um pedido plausível
     - Mas não fornece informações sobre a fonte dos dados ou a metodologia utilizada
 
 > Abrir agora: `01-demanda-simulada/prompt-do-junior.md`
+
 :::
 
-## O HTML parece pronto
+## O resultado do *prompt*
 
-Vamos abrir o arquivo `.html`
+O HTML parece pronto. Vamos abrir o arquivo.
 
-Quais afirmações vocês conseguiriam defender na reunião?
-
-::: notes
 > Abrir agora: `01-demanda-simulada/entrega-slop/index.html`
 
-Não antecipar a autópsia. Pedir que a turma observe ano, rótulo, fonte e conclusão.
-:::
+Quais afirmações vocês conseguiriam defender na reunião?
 
 
 ## Atividade 1: reflexão sobre o conteúdo geral {.slide-atividade}
@@ -179,28 +180,29 @@ Avalie os resultados e frases da apresentação.
 2. A que ano e cobertura ele se refere?
 3. O sinal significa o quê naquela fonte?
 
-- Nota: não é erro de ortografia, geografia ou digitação.
 :::
 
-::: notes
-Evitar uma caça a erro de geografia; o recorte do HTML está correto. O foco é cuidado com fontes.
+
+::: {.callout-tip}
+Não é erro de ortografia, geografia ou digitação.
 :::
 
 ## Como confiar no conteúdo gerado pela IA?
 
 O que temos na apresentação?
+
 - O HTML mostra o ano, mas não informa detalhes de **edição** da fonte.
   - Todos os países têm a mesma fonte?
     - É o "mesmo dado" mesmo?
     - Ou talvez existam estimativas e projeções misturadas com ano fiscal?
 
-::: notes
 > Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`
-:::
+
 
 ## Autópsia do HTML: o que falta
 
 1ª observação: uma troca discreta de conceito
+
 - No card do Brasil, o título fala em **resultado**
   - Os valores `+0,43` e `+8,34% do PIB` vieram da **necessidade de financiamento do setor público** do BCB em 2025.
   - Na NFSP, sinal positivo indica **déficit**.
@@ -212,21 +214,11 @@ O que temos na apresentação?
 [BCB, estatísticas fiscais de janeiro de 2026](https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf); [metodologia](https://www.bcb.gov.br/content/estatisticas/Documents/notas_metodologicas/estatisticas-fiscais/estatisticasfiscais.pdf).
 :::
 
-::: notes
-> Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`.
-:::
+## 1º apontamento: documentar o processo
 
-## 1º apontamento: cada arquivo tem um uso
+A facilidade de gerar conteúdo convincente não substitui a necessidade de **documentar o que foi feito**.
 
-A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos convincentes
-
-  - Não substituem a necessidade de **documentar o que foi feito**
-  - Ao fim, para *melhor uso*, o *conhecimento do uso* dos recursos e boas práticas é essencial
-
-- Tipos de arquivos:
-  - `.html`: a apresentação que vimos no navegador.
-  - `.md` (Markdown): instruções que lemos em um editor de texto.
-  - `.qmd` (Quarto Markdown): o arquivo editável do relatório, que criei para gerar apresentações em `.pptx` e `.html`.
+- Conhecer os recursos e as boas práticas ajuda a usar melhor os modelos de linguagem.
 
 
 # De um *prompt* para um <u>projeto</u>
@@ -246,39 +238,28 @@ A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos c
 
 > Abrir agora: `docs/ferramentas.md`
 
-## Atividade 0: o contrato e sua checagem {.slide-atividade}
 
-Um "contrato de IA"
+## O que um contrato faz
 
-- É o arquivo que registra as escolhas do projeto para a equipe e a IA consultarem a cada etapa.
+> Abrir agora: `CONTRATO.md`
+
+- Um "contrato de IA" registra as escolhas do projeto para a equipe e a IA consultarem a cada etapa.
+- **Recorte da comparação:**
+    - `BRA → MEX → CHL → IND → IDN`, nessa ordem; anos 2000–2029; edição **FM abril/2026**.
+    - `GGXWDG_NGDP` = dívida bruta do governo geral; `GGXONLB_NGDP` = saldo primário do governo geral.
+- **Regra de leitura:** no saldo do FMI, positivo indica superávit.
+- **Arquivo comum:** a apresentação final lê o **mesmo CSV** para todos os países.
+
+## Atividade 2: o contrato e sua checagem {.slide-atividade}
 
 ::: {.atividade}
 [Python básico]{.atividade-meta}
 
 - Abram `CONTRATO.md` e vejam quais escolhas já foram registradas.
 - Em `scripts/validar_contrato.py`, localizem a lista de países, os dois códigos de indicadores e a versão do contrato.
-- Caso queiram, rodem o script na raiz do projeto:
-  - (Se estiver só no navegador, leia o script no GitHub)
-
-    `python scripts/validar_contrato.py`
-
-  - Procurem **esqueleto OK** e **CSV OK**.
-    - São sinais de que o script conferiu a estrutura e as bases. 
 :::
 
-::: notes
 > Abrir agora: `scripts/validar_contrato.py`
-:::
-
-## O que um contrato faz
-
-> Abrir agora: `CONTRATO.md`
-
-- **Recorte da comparação:**
-    - `BRA → MEX → CHL → IND → IDN`, nessa ordem; anos 2000–2029; edição **FM abril/2026**.
-    - `GGXWDG_NGDP` = dívida bruta do governo geral; `GGXONLB_NGDP` = saldo primário do governo geral.
-- **Regra de leitura:** no saldo do FMI, positivo indica superávit.
-- **Arquivo comum:** a apresentação final lê o **mesmo CSV** para todos os países.
 
 ## "One prompt, one kill": um pedido basta?
 
@@ -291,78 +272,7 @@ Da *pergunta ao ChatGPT* para um *projeto*
 - **Harness:** o ambiente de execução que permite interagir com o modelo.
 :::
 
-
-## Projeto e execução
-
-O recorte executivo tem uma cadeia própria
-
-Para este projeto  
-
-- É preciso definir o recorte → reconstruir os dados → validar o CSV → gerar a apresentação
-
-Prática  
-
-- Ao abrir outro chat, indique `CONTRATO.md` (ou a pasta `docs/`), os arquivos já produzidos e escreva a próxima tarefa. O novo pedido precisa desse contexto.
-- Confira o resultado de cada etapa antes de seguir
-  - O contrato orienta o trabalho e o validador testa parte do que foi combinado.
-  - Vale a pena criar "gates" para controlar o progresso do projeto.
-
-
-## Do AI slop (generativo) a para um projeto (determinístico)
-
-A apresentação gerada
-
-- O HTML do slop é uma peça da simulação (ele não lê o `.csv`)
-
-Prompt não é fonte
-
-- O contrato define a pergunta
-- Bases de dados entram como *inputs*
-- Scripts e notebooks são usados para processar os dados e gerar os resultados.
-
-| Camada | O que faz |
-| --- | --- |
-| `data/raw/*.json` | Guarda o recorte bruto e a edição de abril/2026 |
-| `baixar_fm.R --offline` | Reconstrói o CSV contratado |
-| `mini-fiscal-monitor.qmd` | Lê o CSV e desenha a apresentação |
-| `scripts/validar_contrato.py` | Valida o contrato e os dados |
-
-::: {.callout-note title="Observação"}
-Há ainda um **painel mundial**, que é um outro derivado do projeto.  
-- Ele não é parte do recorte executivo original (5 países), mas é útil para explorar a edição de abril/2026.
-:::
-
-
-## Começando um projeto de análise de dados
-
-**ETL (*Extract, Transform, Load*)**
-
-- Processo de extrair dados brutos, transformá-los e carregá-los em uma tabela pronta para análise.
-
-Na pasta `02-dados-fiscal-monitor`, o script `scripts/baixar_fm.R --offline` reconstrói o CSV executivo:
-
-- **Extrair:** `jsonlite::fromJSON()` lê os JSONs congelados da edição de abril/2026 em `data/raw/`
-- **Transformar:** o script seleciona os países, anos e indicadores do contrato e organiza as colunas
-- **Carregar:** `writeLines()` grava `data/processed/fm_weo_cache.csv`, usado na apresentação
-
-> Abrir agora: `02-dados-fiscal-monitor/scripts/baixar_fm.R`
-
-
-## Onde entra o *harness* nessa fase do ETL?
-
-Boa prática: criar um projeto no *harness* (ou na IDE)
-
-> IDE = *Integrated Development Environment* (ambiente de desenvolvimento integrado)
-
-O ambiente: liga a conversa aos arquivos e às ferramentas disponíveis.
-
-- Neste projeto: o agente pode ler o contrato, ajudar a escrever o script e executar comandos, conforme as permissões.
-- O resultado fica em arquivos que podemos abrir e conferir.
-
-Pedidos (*tasks*)
-
-- Indica qual arquivo usar, o que produzir e como conferir.
-    - Antes de executar, vale pedir um plano e examinar as alterações propostas.
+## Boas práticas aplicadas a projetos com IA
 
 ::: {.callout-note}
 Boas práticas de desenvolvimento de software ajudam a organizar o trabalho com IA.
@@ -370,19 +280,14 @@ Boas práticas de desenvolvimento de software ajudam a organizar o trabalho com 
 Você não precisa ser programador para seguir essas práticas, mas precisa conhecer o que está disponível e como usar.
 :::
 
-::: {.callout-tip title="Saiba mais"}
-Guia inicial: [Codex na Prática](https://patrick-andrade.github.io/guias/codex-na-pratica.html).
-:::
-
-
 ## A documentação do projeto
 
-Documentação
+**Documentação**
 
 - Registrar escolhas e instruções para continuar o trabalho.
     - Aqui: contrato, dicionário dos indicadores, plano de implementação, etc.
 
-Projeto e ETL
+Projeto e dados
 
 - Auditabilidade: permitir que outra pessoa confira o caminho do resultado
     - Qual arquivo e qual linha sustentam o número do gráfico?
@@ -396,8 +301,96 @@ Projeto e ETL
 Abrir agora: `02-dados-fiscal-monitor/dicionario-indicadores.md`
 :::
 
+## Projeto e execução
 
-## O "E" do ETL: extração e checagem da coleta de dados
+O recorte executivo tem uma cadeia própria
+
+- É preciso definir o recorte → reconstruir os dados → validar o CSV → gerar a apresentação
+
+Prática  
+
+- Ao abrir outro chat, indique `CONTRATO.md` (ou a pasta `docs/`), os arquivos já produzidos e escreva a próxima tarefa. O novo pedido precisa desse contexto.
+- Confira o resultado de cada etapa antes de seguir
+  - O contrato orienta o trabalho e o validador testa parte do que foi combinado.
+  - Vale a pena criar "gates" para controlar o progresso do projeto.
+
+
+## Do AI slop (generativo) a um projeto (determinístico)
+
+**A apresentação gerada**
+
+- O HTML do slop é uma peça da simulação (ele não lê o `.csv`)
+
+**Prompt não é fonte**
+
+- O contrato define a pergunta
+- Bases de dados entram como *inputs*
+- Scripts e notebooks são usados para processar os dados e gerar os resultados.
+
+| Camada | O que faz |
+| --- | --- |
+| `data/raw/*.json` | Guarda o recorte bruto e a edição de abril/2026 |
+| `baixar_fm.R --offline` | Reconstrói o CSV contratado |
+| `mini-fiscal-monitor.qmd` | Lê o CSV e desenha a apresentação |
+| `scripts/validar_contrato.py` | Valida o contrato e os dados |
+
+
+## Começando um projeto de análise de dados
+
+**ETL (*Extract, Transform, Load*)**
+
+- Processo de extrair dados brutos, transformá-los e carregá-los em uma tabela pronta para análise.
+
+**Exemplo de arquivos e funções**
+- Na pasta `02-dados-fiscal-monitor`, o script `scripts/baixar_fm.R --offline` reconstrói o CSV executivo:
+    - *Extrair:* `jsonlite::fromJSON()` lê os JSONs congelados da edição de abril/2026 em `data/raw/`
+    - *Transformar:* o script seleciona os países, anos e indicadores do contrato e organiza as colunas
+    - *Carregar:* `writeLines()` grava `data/processed/fm_weo_cache.csv`, usado na apresentação
+
+> Abrir agora: `02-dados-fiscal-monitor/scripts/baixar_fm.R`
+
+
+## Onde entra o *harness* nessa fase do ETL?
+
+Boa prática: criar um projeto no *harness* (ou na IDE)
+
+> IDE = *Integrated Development Environment* (ambiente de desenvolvimento integrado)
+
+**O ambiente**
+
+- Liga a conversa aos arquivos e às ferramentas disponíveis.
+    - Neste projeto: o agente pode ler o contrato, ajudar a escrever o script e executar comandos, conforme as permissões.
+    - O resultado fica em arquivos que podemos abrir e conferir.
+
+**Pedidos** (*tasks*)
+
+- Indica qual arquivo usar, o que produzir e como conferir.
+    - Antes de executar, vale pedir um plano e examinar as alterações propostas.
+
+::: {.callout-tip title="Saiba mais"}
+Guia inicial: [Codex na Prática](https://patrick-andrade.github.io/guias/codex-na-pratica.html).
+:::
+
+
+## E os pacotes usados pelo código?
+
+- Pacotes acrescentam funções às linguagens.
+
+    - `jsonlite`, por exemplo, permite ler os arquivos JSON no R.
+    - As versões utilizadas também fazem parte do ambiente do projeto.
+
+- Os arquivos de versões ajudam a preparar esse ambiente em outra máquina.
+
+    - `renv.lock`: pacotes R, gerenciados pelo `renv`.
+    - `pyproject.toml` e `uv.lock`: dependências Python e versões resolvidas pelo `uv`.
+
+- Os comandos ficam disponíveis para repetir depois.
+
+Na aula, usar o ambiente já preparado. O arquivo `renv.lock` mostra as versões dos pacotes R.
+
+> Abrir agora: `renv.lock`
+
+## Executar e conferir a reconstrução
 
 Rodar e conferir
 
@@ -417,7 +410,7 @@ uv run python .\scripts\validar_contrato.py
     - *Obs.:* leitura econômica exige conferir conceitos e fontes
 
 
-## Atividade 2: achem a linha {.slide-atividade}
+## Atividade 3: achem a linha {.slide-atividade}
 
 ::: {.atividade}
 [Individual · navegador ou editor]{.atividade-meta}
@@ -431,7 +424,7 @@ uv run python .\scripts\validar_contrato.py
 :::
 
 
-## API no processo de ETL
+## API: consulta exploratória
 
 API (interface de programação de aplicações)
 
@@ -443,23 +436,6 @@ Neste código
 - A consulta atual serve para exploração; não substitui os dados congelados de abril/2026.
 
 > Abrir agora: `02-dados-fiscal-monitor/scripts/baixar_fm.R`
-
-
-## E os pacotes usados pelo código?
-
-- Pacotes acrescentam funções às linguagens.
-
-    - `jsonlite`, por exemplo, permite ler os arquivos JSON no R.
-    - As versões utilizadas também fazem parte do ambiente do projeto.
-
-- Os arquivos de versões ajudam a preparar esse ambiente em outra máquina.
-
-    - `renv.lock`: pacotes R, gerenciados pelo `renv`.
-    - `pyproject.toml` e `uv.lock`: dependências Python e versões resolvidas pelo `uv`.
-
-- Os comandos ficam disponíveis para repetir depois.
-
-> Abrir agora: `renv.lock` para ver as versões dos pacotes R. Na aula, usar o ambiente já preparado.
 
 
 ## Um `.qmd`, duas apresentações
@@ -476,7 +452,7 @@ Neste código
 | `.html` com Reveal.js | Slides da reunião no navegador |
 
 
-> Abrir agora: `03-relatorio-qmd/mini-fiscal-monitor.qmd` para ver o conteúdo da apresentação.
+> Abrir agora: `03-relatorio-qmd/mini-fiscal-monitor.qmd`
 
 ## Comunicar o resultado também dá trabalho
 
@@ -629,7 +605,7 @@ Ao retomar um trabalho com IA:
 <p class="cue"><strong>Abrir agora:</strong> <code>AGENTS.md</code></p>
 :::
 
-## Atividade 3: uma instrução que dê para conferir {.slide-atividade}
+## Atividade 4: uma instrução que dê para conferir {.slide-atividade}
 
 ::: {.atividade}
 [Individual]{.atividade-meta}

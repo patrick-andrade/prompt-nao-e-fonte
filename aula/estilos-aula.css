@@ -226,7 +226,7 @@
   color: #637d94;
 }
 
-/* Micro-atividades do núcleo (A1–A3). */
+/* Micro-atividades do núcleo (A1–A4). */
 .reveal .atividade {
   margin: 0.6em auto 0;
   padding: 0.8em 1.1em;
@@ -293,10 +293,10 @@
 }
 
 /* Ajustes locais para caber na projeção, sem alterar a fonte aprovada da aula. */
-.reveal #atividade-0-o-contrato-e-sua-checagem {
+.reveal #atividade-2-o-contrato-e-sua-checagem {
   font-size: 0.85em;
 }
 
-.reveal #do-ai-slop-generativo-a-para-um-projeto-determinístico {
+.reveal #do-ai-slop-generativo-a-um-projeto-determinístico {
   font-size: 0.9em;
 }
