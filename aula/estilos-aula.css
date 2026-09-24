@@ -1,20 +1,149 @@
 /* Estilos só do deck de aula (não alterar o tema do produto). */
 
-.cue {
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fontes/SourceSans3-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fontes/SourceSans3-Italic-variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+.reveal {
+  font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3 {
+  font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+  font-weight: 800;
+}
+
+.reveal .slides section:not(#title-slide) h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0.9em;
+  line-height: 1.13;
+}
+
+.reveal .cue {
   display: block;
-  margin-top: 0.9em;
-  padding: 0.45em 0.85em;
-  border-left: 4px solid #176fc1;
-  background: #eaf4fb;
+  margin-top: 0.65em;
+  padding: 0.35em 0.65em;
+  border-radius: 0.25em;
+  background: #eff6fb;
   color: #0c2440;
-  font-size: 0.72em;
+  font-size: 0.6em;
   text-align: left;
 }
 
-.cue code {
+.reveal .cue code {
   font-size: 0.95em;
   background: #dbeefa;
   padding: 0.05em 0.35em;
+}
+
+.reveal .email-card {
+  padding: 0.6em 0.9em;
+  border: 1px solid #d6e6f1;
+  border-radius: 0.3em;
+  background: #f7fafc;
+  font-size: 0.62em;
+  line-height: 1.22;
+}
+
+.reveal .slide-contexto ul {
+  font-size: 0.92em;
+}
+
+.reveal .email-card p {
+  margin: 0.3em 0;
+}
+
+.reveal .email-head {
+  padding-bottom: 0.45em;
+  margin-bottom: 0.45em;
+  border-bottom: 1px solid #d6e6f1;
+}
+
+.reveal .email-head p {
+  margin: 0;
+}
+
+.reveal .ideia-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.35em;
+  align-items: start;
+}
+
+.reveal .ideia-imagem,
+.reveal .ideia-texto {
+  min-width: 0;
+}
+
+.reveal .ideia-imagem img.roll-safe {
+  display: block;
+  max-height: 350px;
+  width: 100%;
+  object-fit: contain;
+  margin: 0;
+}
+
+.reveal .ideia-imagem .meme-caption {
+  margin: 0.3em 0 0;
+  font-size: 0.9em;
+  font-weight: 800;
+}
+
+.reveal .ideia-imagem .meme-credito {
+  margin: 0.25em 0 0;
+  font-size: 0.42em;
+  color: #637d94;
+}
+
+.reveal .ideia-texto {
+  font-size: 0.85em;
+}
+
+.reveal .ideia-texto ul {
+  margin-left: 0.8em;
+}
+
+.reveal .prompt-integral {
+  padding: 0.55em 0.75em;
+  border-radius: 0.3em;
+  background: #eff6fb;
+  font-size: 0.68em;
+  line-height: 1.25;
+}
+
+.reveal .prompt-integral p {
+  margin: 0;
+}
+
+.reveal .prompt-label {
+  margin: 0 0 0.35em;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.reveal .prompt-avaliacao {
+  margin-top: 0.5em;
+  font-size: 0.74em;
+  line-height: 1.25;
+}
+
+.reveal .prompt-avaliacao p {
+  margin: 0.22em 0;
 }
 
 .selo-gordura {
@@ -129,4 +258,13 @@
 
 .reveal .tabela-compacta code {
   font-size: 0.95em;
+}
+
+/* Ajustes locais para caber na projeção, sem alterar a fonte aprovada da aula. */
+.reveal #atividade-0-o-contrato-e-sua-checagem {
+  font-size: 0.85em;
+}
+
+.reveal #do-ai-slop-generativo-a-para-um-projeto-determinístico {
+  font-size: 0.9em;
 }

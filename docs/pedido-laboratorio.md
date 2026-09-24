@@ -16,7 +16,7 @@ Teste no clone completo, sem instalar bibliotecas:
 python scripts/validar_contrato.py
 ```
 
-Esperado: `STATUS: esqueleto OK (pastas + cláusulas v1.4 em CONTRATO.md).`, além da validação dos dados executivos e mundiais. A aula do aluno não exige R, Quarto, `uv`, acesso à API do FMI nem conta em serviço externo.
+Esperado: `STATUS: esqueleto OK (pastas + cláusulas v1.5 em CONTRATO.md).`, além da validação dos dados executivos e mundiais. A aula do aluno não exige R, Quarto, `uv`, acesso à API do FMI nem conta em serviço externo.
 
 ## Projetor e professor
 

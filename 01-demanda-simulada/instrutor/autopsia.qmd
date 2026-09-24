@@ -1,0 +1,45 @@
+---
+title: "Autópsia do HTML"
+lang: pt-BR
+format:
+  html:
+    output-file: autopsia.html
+    theme: cosmo
+    embed-resources: true
+execute:
+  enabled: false
+---
+
+## Resumo
+
+O HTML respeita o recorte de cinco países e não comete erro geográfico evidente.
+
+As falhas estão na **proveniência dos números, na combinação de anos e conceitos e na interpretação das séries**.
+
+## Matriz de auditoria
+
+| Valor exibido | Fonte exata | Ano | Cobertura | Convenção de sinal | Inferência indevida ou informação ausente |
+| --- | --- | --- | --- | --- | --- |
+| Brasil: dívida **78,7% do PIB** | [BCB, *Estatísticas fiscais*, nota de 30/01/2026](https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf), DBGG | Fechamento de 2025 | Governo Federal, INSS, estados e municípios, na definição do BCB | Estoque positivo | Aparece ao lado da dívida do FMI para os demais países sem explicitar a diferença de definição e cobertura. No CSV FM, a dívida do Brasil em 2025 é **93,329176% do PIB**; os dois valores não devem ser tratados como intercambiáveis. |
+| Brasil: “resultado primário” **+0,43% do PIB** | Mesma nota do BCB, déficit primário pela **NFSP**; [Manual de Estatísticas Fiscais do BCB](https://www.bcb.gov.br/content/estatisticas/Documents/notas_metodologicas/estatisticas-fiscais/estatisticasfiscais.pdf) | 2025 | Setor público consolidado | **NFSP positiva = déficit** | O título e o sinal `+` sugerem superávit. A frase “melhora no indicador” também não se sustenta nessa medida: o déficit passou de **0,40%** em 2024 para **0,43%** em 2025. O saldo primário do FMI para Brasil 2025 é **−0,388479% do PIB**, em outro conceito e cobertura. |
+| Brasil: “resultado nominal” **+8,34% do PIB** | Mesma nota do BCB, déficit nominal pela **NFSP** | 2025 | Setor público consolidado | **NFSP positiva = déficit** | O `+` não representa superávit. O resultado nominal não integra o CSV contratado, que contém somente dívida bruta e saldo primário do governo geral. |
+| México: dívida **62,7**; primário **+1,6** | `fm_weo_cache.csv`, `MEX`, códigos `GGXWDG_NGDP` e `GGXONLB_NGDP`, vintage `FM-2026-04`; valores **62,680153** e **1,602886** arredondados. [Fiscal Monitor, abril/2026](https://www.imf.org/external/datamapper/datasets/FM) | 2026 | Setor público sem governos subnacionais, % do PIB; ver [nota de cobertura do FMI](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf) | Saldo primário positivo = superávit | “Último dado disponível” não distingue uma **projeção** da edição de abril/2026 de um valor observado. |
+| Chile: dívida **41,8**; primário **−2,0** | Mesmo CSV e códigos, `CHL`, vintage `FM-2026-04`; **41,774031** e **−1,993155** arredondados | 2025 | Governo geral, % do PIB | Saldo negativo = déficit | Edição, códigos e status do ponto não aparecem no HTML. O CSV não classifica a linha como observada ou estimada. |
+| Índia: dívida **84,8**; primário **−3,0** | Mesmo CSV e códigos, `IND`, vintage `FM-2026-04`; **84,781769** e **−2,958179** arredondados. [Apêndice metodológico do FMI](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf) | 2024 no FMI | Governo geral; [ano fiscal abril/2024–março/2025](https://dsbb.imf.org/sdds/dqaf-base/country/IND/category/GGO00) | Saldo negativo = déficit | O rótulo “2024” parece ano civil. A mesma edição do CSV também contém 2025 e 2026 para a Índia; 2024 não é simplesmente o último ano disponível. |
+| Indonésia: dívida **41,0**; primário **−0,8** | Mesmo CSV e códigos, `IDN`, vintage `FM-2026-04`; **41,021123** e **−0,757286** arredondados | 2025 | Governo geral, % do PIB | Saldo negativo = déficit | Edição, status do ponto e arredondamento não são documentados no HTML. |
+
+## Questões de discussão
+
+1. “Mais recente” significa **mesmo ano, edição e status**?
+    - Sim, o quadro até indica os anos 2024, 2025 e 2026 para cada país. Mas são as mesmas tabelas?
+2. Citar como fonte “FMI e estatísticas fiscais nacionais” é uma garantia?
+    - Isso permite localizar documento, tabela, indicador e cobertura de cada valor?
+3. O sinal `+` tem o mesmo significado na **NFSP do BCB** e no **saldo primário do FMI**?
+4. Que cálculo ou hipótese sustenta a frase “trajetória sustentável”?
+    - A apresentação não apresenta nenhum cálculo ou referência a um documento do FMI que explique a metodologia. A frase é uma inferência indevida.
+
+::: {.callout-tip title="Extra"}
+5. Como os valores foram selecionados e inseridos no HTML?
+    - Os valores foram selecionados e inseridos manualmente no HTML; ele não lê `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`. O CSV registra a edição, mas não informa em uma coluna se cada ponto é observado ou estimado. Por isso, não é possível atribuir automaticamente esse status a 2025. O México em 2026 está no horizonte projetado; para a Índia, o ano da tabela segue o calendário fiscal indicado pelo FMI.
+:::
+

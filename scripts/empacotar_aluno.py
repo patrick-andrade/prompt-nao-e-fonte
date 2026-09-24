@@ -66,7 +66,6 @@ ARQUIVOS = [
     "docs/ferramentas.md",
     "docs/checklist-rigor.md",
     "scripts/validar_contrato.py",
-    "scripts/preparar_lab.py",
     "scripts/achatar_saidas.py",
     "scripts/gerar_site.py",
     ".vscode/tasks.json",
@@ -74,7 +73,8 @@ ARQUIVOS = [
 ]
 
 PROIBIDOS_NO_ZIP = (
-    "instrutor/autopsia.md",
+    "instrutor/autopsia.qmd",
+    "instrutor/autopsia.html",
     "01-demanda-simulada/instrutor/",
     "aula/",
     "outputs/aula-expositiva/",
@@ -117,7 +117,7 @@ def main() -> int:
                 return 1
 
     print(f"STATUS: zip em {DESTINO.relative_to(ROOT).as_posix()}")
-    print(f"STATUS: {len(ARQUIVOS)} arquivos; sem instrutor/autopsia.md nem aula/.")
+    print(f"STATUS: {len(ARQUIVOS)} arquivos; sem instrutor/ nem aula/.")
     return 0
 
 

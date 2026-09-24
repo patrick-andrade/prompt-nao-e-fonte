@@ -1,4 +1,4 @@
-# CONTRATO.md — v1.4
+# CONTRATO.md — v1.5
 
 **Cartaz:** Prompt não é fonte: análise de dados e IA em economia aplicada.
 
@@ -20,10 +20,11 @@ A Diretoria de Pesquisa Aplicada é a demanda realista de estágio, trainee ou t
 - Portal Netlify → `outputs/revealjs-netlify/index.html`, com acesso a `apresentacao/index.html` (Reveal.js autossuficiente) e `painel/index.html` (BI estático no navegador). Somente essa árvore é publicada.
 - Template PPTX → `03-relatorio-qmd/template-referencia.pptx`, entrada do render, não saída.
 - Aula → `aula/apresentacao-minicurso.qmd` e `outputs/aula-expositiva/`, fora do Netlify. O deck da aula não lê o CSV; a autópsia só é aberta depois do slop.
+- Autópsia → `01-demanda-simulada/instrutor/autopsia.qmd`, renderizada em `01-demanda-simulada/instrutor/autopsia.html` para abrir no navegador. Os dois arquivos ficam fora do Netlify e do zip opcional do aluno.
 
 ## Schemas e recortes da versão
 
-O v1.4 preserva o recorte executivo da v1.3 e acrescenta um derivado mundial separado para o painel.
+O v1.5 preserva o recorte executivo e o derivado mundial da v1.4; altera apenas o formato da autópsia do instrutor.
 
 - **Vintage fixa:** Fiscal Monitor / WEO abril/2026; `FM-2026-04` ou `WEO-2026-04` quando a origem correspondente for comprovada. A edição do Fiscal Monitor é *Fiscal Policy under Pressure: High Debt, Rising Risks*.
 - **Países executivos nesta ordem:** `BRA`, `MEX`, `CHL`, `IND`, `IDN`. Brasil, México e Chile formam o núcleo LatAm; México não é América do Sul. China (`CHN`) e Colômbia (`COL`) ficam fora desse CSV e da reunião simulada.
@@ -54,11 +55,14 @@ uv run python scripts/validar_contrato.py
 quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to revealjs --output-dir outputs/revealjs-netlify/apresentacao
 quarto render 03-relatorio-qmd/mini-fiscal-monitor.qmd --to pptx --output-dir outputs/pptx
 uv run -- quarto render aula/apresentacao-minicurso.qmd --profile aula --to revealjs
+quarto render 01-demanda-simulada/instrutor/autopsia.qmd --to html
 ```
 
 O validador exige o schema das duas bases, bruto congelado com SHA-256, economias individuais no mundial, indicadores/vintage/chaves únicas/valores finitos, equivalência CSV–JSON e conciliação da sobreposição dos cinco países. O portal e o Reveal.js devem estar versionados antes do push. Inspeção humana no projetor, cronômetro, memes, URL e clone continuam no `docs/checklist-instrutor.md`.
 
 ## Versionamento
+
+**v1.5:** a autópsia da Dimensão 1 passa de Markdown a Quarto HTML autossuficiente, com matriz de fontes revisada; o deck da aula aponta para o HTML local. Países, indicadores, vintage, CSV executivo, derivado mundial e publicação no Netlify permanecem os da v1.4.
 
 **v1.4:** mantém o CSV executivo de cinco países e cria derivado mundial separado para o painel, a partir de snapshots oficiais do DataMapper FM de abril/2026; portal estático passa a publicar apresentação e painel. `fmdatabase.xlsx` da página do relatório contém dados de figuras/tabelas, não as séries mundiais completas; fica como referência local, sem entrar no Git. O PDF integral também fica local e fora do site.
 

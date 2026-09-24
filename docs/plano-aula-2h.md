@@ -1,39 +1,42 @@
-# Plano de aula · 80 minutos + até 40 opcionais
+# Plano de aula · 90 minutos de exposição + 30 de discussão e folga
 
-Público: graduação em economia e áreas próximas, do início ao fim do curso. A Diretoria de Pesquisa Aplicada é uma demanda simulada de estágio/trainee. A turma examina uma apresentação que convence visualmente, identifica o descuido com fontes e acompanha outra gerada de modo reproduzível. O [`CONTRATO.md`](../CONTRATO.md) distingue o recorte executivo de cinco países do universo mundial do painel.
+Público: graduação em economia e áreas próximas, com diferentes experiências em programação e IA. O caso da Diretoria de Pesquisa Aplicada liga uma demanda de estágio/trainee à exploração e à comunicação de projetos com IA. A turma examina uma apresentação convincente, confere suas fontes e acompanha a produção de outra com dados e procedimentos documentados.
 
-Objetivos: reconhecer indicador e convenção de sinal; perguntar por documento, edição e ano; localizar no CSV a linha que gera o gráfico; entender por que conhecer R e Python ajuda a avaliar código produzido por IA.
+Objetivos: reconhecer indicador e convenção de sinal; localizar a origem de um resultado; entender como arquivos, código, documentação e ambiente permitem refazer o trabalho; conhecer o uso de harness, Git, Quarto e skills no projeto. O [`CONTRATO.md`](../CONTRATO.md) distingue o recorte executivo de cinco países do universo mundial do painel.
 
-## Núcleo de 80 minutos
+## Exposição de 90 minutos
 
-| Tempo | Condução | Arquivos e atividade |
+Os tempos incluem demonstrações e pequenas atividades. A apresentação da reunião simulada dura cerca de 20 minutos, mas a aula mostra apenas trechos desse produto.
+
+| Tempo | Condução | Demonstração e atividade |
 | ---: | --- | --- |
-| 5 min | Cena da reunião e cartaz “Prompt não é fonte” | `aula/apresentacao-minicurso.qmd` |
-| 7 min | Objetivos, extensões e regra “ler antes de rodar” | Atividade 0: abrir e executar `scripts/validar_contrato.py` |
-| 17 min | E-mail da gestora → prompt do júnior → HTML, 60 s de observação → autópsia | Atividade 1: três perguntas de fonte, em duplas. Abrir `01-demanda-simulada/instrutor/autopsia.md` **após** o HTML. |
-| 6 min | Cinco países, dois códigos, vintage, governo geral, saldo × NFSP | `CONTRATO.md` |
-| 15 min | Professor abre `baixar_fm.R`, reconstrói offline e valida o CSV executivo | Atividade 2: localizar `BRA` · `2025` · `GGXONLB_NGDP`; alunos conferem sinal, edição e fonte. |
-| 18 min | Professor mostra o `.qmd`, PPTX, Reveal.js, portal e painel | Cerca de 5 min no código/PPTX, 6 min nos slides executivos e 7 min de demonstração guiada: ano 2025 → Brasil na dispersão/tabela → trajetória → fonte e lacunas. |
-| 7 min | O que travar num prompt; por que aprender R e Python | Atividade 3: escrever uma instrução verificável; comparar com `roteiro-ia-profissional.md`. |
-| 5 min | Quiz das quatro perguntas e caminhos para continuar | Clone público, portal e duas rotas no Netlify |
+| 35 min | Introdução, demanda, prompt, HTML, autópsia e passagem do prompt ao projeto | Trecho aprovado até o slide de passagem do slop ao projeto, inclusive a observação sobre o painel. Atividade 1 depois do slop; Atividade 0 no bloco de contrato, conforme a sequência do deck. Autópsia somente depois do HTML. |
+| 18 min | Script, harness, documentação, reconstrução e conferência | 13 min para abrir a rotina R, localizar entrada e saída, explicar documentação/API/ambiente, reconstruir e validar; 5 min para a Atividade 2: localizar `BRA` · `2025` · `GGXONLB_NGDP`. |
+| 20 min | Quarto, comunicação, Git, publicação, portal e painel | 7 min para `.qmd`, gráfico e saídas; 4 min para histórico, diff, commit e push; 2 min para portal e materiais; 7 min para o painel em 2025, Brasil, trajetórias, linhas de origem e lacunas. |
+| 12 min | Repertório com IA, skills e instrução verificável | 3 min para linguagens e outros projetos; 4 min para skill e função dos arquivos de instruções; 3 min de Atividade 3; 2 min para comparar com o roteiro profissional. |
+| 5 min | Encerramento e materiais | Retomar pergunta, fontes, possibilidade de conferir/refazer e comunicação; indicar clone, portal, guias e exercício para casa. |
+| **90 min** | **Total de exposição, demonstrações e pequenas atividades** | |
 
-O deck de aula **não lê** nenhum CSV. O produto executivo continua lendo só o CSV de cinco países; o painel usa outro derivado preparado em R da mesma edição, com as economias individuais do FMI. Números fiscais reais são mostrados ao abrir o CSV, a apresentação ou o painel. Os números do slop podem ser citados como parte da simulação. Cues de arquivo têm a forma `Abrir agora: caminho/relativo`; URLs públicos são links.
+Os guias práticos de [Codex](https://patrick-andrade.github.io/guias/codex-na-pratica.html), [Git e GitHub](https://patrick-andrade.github.io/guias/git-na-pratica.html), [Quarto](https://patrick-andrade.github.io/guias/quarto-na-pratica.html) e [Skills](https://patrick-andrade.github.io/guias/skills-na-pratica.html) entram nos respectivos blocos. Abrir brevemente para mostrar um exemplo e deixar a leitura integral para depois. Não instalar ferramentas nem depender de geração ao vivo pela IA.
+
+O deck de aula não lê CSV. O produto executivo lê apenas o CSV de cinco países; o painel usa o derivado mundial da mesma edição. Números reais são mostrados ao abrir os dados e os produtos. Cues de arquivo têm a forma `Abrir agora: caminho/relativo`; links levam a URLs públicos.
 
 ## Participação da turma
 
-- **Navegador:** ler arquivos e CSV no GitHub, ver o portal, os slides e o painel no Netlify.
-- **Editor + clone:** procurar país, ano, indicador e vintage no CSV.
-- **Python do laboratório:** rodar o validador, que usa somente a biblioteca padrão. Nenhum pacote é instalado durante a aula.
+- Navegador: ler arquivos e CSV no GitHub, ver os produtos no Netlify e consultar os guias.
+- Editor e clone: procurar país, ano, indicador e edição no CSV; ler os scripts.
+- Python do laboratório: o validador da Atividade 0 usa somente a biblioteca padrão e pode ser executado sem instalar pacotes.
 
-R e Quarto ficam na máquina do professor para a demonstração. A rota Python alternativa de reconstrução está no clone. Para casa, `scripts/preparar_lab.py` prepara o ambiente Python do laboratório de lacunas, com `uv sync --locked`.
+R, Quarto e o ambiente Python do professor estarão preparados antes da aula. Nas demonstrações do professor, usar `uv run python` para a rota Python. Para casa, com `uv` instalado, preparar o ambiente com `uv sync --locked`. As skills mostradas pertencem ao ambiente do instrutor; o clone não as instala.
 
-## Até 40 minutos opcionais
+## Discussão e folga de 30 minutos
 
-1. Reconstruir o CSV com R e com a rota Python e comparar as linhas.
-2. Explicar o ano fiscal da Índia nas notas do FMI.
-3. Tentar a consulta corrente com `Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --consultar-api`; se o serviço ou o pacote falhar, ler o erro sem substituir a edição congelada.
-4. Ler `renv.lock`, `uv.lock` e os chunks do `lab-lacunas.qmd`.
-5. Discutir o que seria necessário para uma afirmação de sustentabilidade da dívida.
-6. Explorar outros anos e economias no painel e verificar como ausências alteram o universo comparável.
+Reservar esse período para perguntas, comentários e atrasos nas transições. Os slides “se sobrar tempo” são complementos, escolhidos conforme a discussão; não constituem um segundo bloco obrigatório de exposição.
 
-O checklist da projeção real fica em [`checklist-instrutor.md`](checklist-instrutor.md).
+- Comparar a reconstrução em R e Python com os mesmos brutos.
+- Retomar o calendário fiscal da Índia e os limites de comparabilidade.
+- Examinar os arquivos de versões e a preparação do ambiente.
+- Discutir o que seria necessário para avaliar sustentabilidade da dívida.
+- Explorar outro ano e uma economia com valor ausente no painel.
+
+Se a rede falhar, abrir os HTMLs locais; guias externos ficam para consulta posterior. A inspeção física e o cronômetro ficam no [`checklist-instrutor.md`](checklist-instrutor.md).

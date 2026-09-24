@@ -25,10 +25,10 @@
     },
     {
       "label": "Preparar ambiente para casa (uv + .venv)",
-      "detail": "python scripts/preparar_lab.py — instala só o executável uv se faltar, uv sync --locked e validador. Ler o arquivo antes.",
+      "detail": "uv sync --locked — cria o ambiente isolado do projeto; requer uv instalado.",
       "type": "shell",
-      "command": "python",
-      "args": ["scripts/preparar_lab.py"],
+      "command": "uv",
+      "args": ["sync", "--locked"],
       "options": { "cwd": "${workspaceFolder}" },
       "group": "none",
       "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },

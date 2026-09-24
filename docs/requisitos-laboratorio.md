@@ -11,7 +11,7 @@ O aluno participa com navegador, VS Code e Python 3.10+; nenhuma biblioteca prec
 Antes de executar, a turma abre o script e lê seu cabeçalho, constantes e checagens. O validador usa só a biblioteca padrão. Esperado no clone completo:
 
 ```text
-STATUS: esqueleto OK (pastas + cláusulas v1.4 em CONTRATO.md).
+STATUS: esqueleto OK (pastas + cláusulas v1.5 em CONTRATO.md).
 STATUS: CSV OK (02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv).
 ```
 
@@ -19,4 +19,4 @@ O clone completo pode ser obtido por `git clone` ou **Code → Download ZIP** no
 
 Na máquina do professor: R com pacotes conforme `renv.lock`, Quarto, um navegador e acesso aos arquivos locais. O professor usa `baixar_fm.R --offline`, que não depende da rede, e prepara o painel mundial a partir do bruto congelado. A consulta `--consultar-api` é opcional e não altera o cache. O Netlify recebe os HTMLs já prontos.
 
-Para casa, o aluno pode preparar a rota Python com `python scripts/preparar_lab.py` ou, se já tiver `uv`, `uv sync --locked`. O laboratório de lacunas usa `pandas` e `matplotlib` do ambiente isolado; R e Quarto não são exigidos do aluno. Sem credenciais ou conta Netlify.
+Para casa, com `uv` instalado, o aluno pode executar `uv sync --locked` na raiz do clone para criar o `.venv` com o Python e os pacotes fixados pelo projeto. O laboratório de lacunas usa `pandas` e `matplotlib` desse ambiente; R e Quarto não são exigidos do aluno. Sem credenciais ou conta Netlify.

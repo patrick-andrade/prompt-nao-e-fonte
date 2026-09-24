@@ -10,6 +10,8 @@ O projeto Netlify `fiscal-monitor-2026` publica o diretório `outputs/revealjs-n
 
 O build do Netlify apenas verifica os três HTMLs já versionados. A transformação em R do snapshot oficial, o Quarto e o gerador do site são executados **localmente antes do commit**, não no servidor. O navegador não chama a API do FMI; o painel usa dados embutidos de uma edição fixa. O PPTX e o deck do instrutor continuam fora do site.
 
+A navegação do portal e do painel aponta explicitamente para `index.html`, para funcionar também quando os arquivos locais são abertos sem servidor. As rotas públicas acima continuam disponíveis. Links para referências, guias e GitHub exigem internet.
+
 ## Antes do push
 
 1. Reconstruir e validar o CSV executivo e o derivado mundial pelos comandos do [`README.md`](../README.md). Conferir URL, hash e edição do snapshot bruto; não trocá-lo por consulta corrente à API.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valida o CONTRATO.md v1.4 e as duas bases fiscais congeladas.
+"""Valida o CONTRATO.md v1.5 e as duas bases fiscais congeladas.
 
 Uso (na raiz do repositório, pasta 2026/):
 
@@ -51,7 +51,7 @@ RAW_SHA256 = {
     "datamapper_countries_2026-04.json": "f74b5bc5eeb69f3da3edcd19caaab95d94f02a476c1382590a77024164d3b836",
 }
 
-VERSION = "v1.4"
+VERSION = "v1.5"
 ISO3_CANONICO = ("BRA", "MEX", "CHL", "IND", "IDN")
 ISO3_PROIBIDOS = {"CHN", "COL"}
 INDICADORES = ("GGXWDG_NGDP", "GGXONLB_NGDP")
@@ -93,12 +93,16 @@ PASTAS_OBRIGATORIAS = (
 ARQUIVOS_OBRIGATORIOS = (
     ROOT / "AGENTS.md",
     ROOT / "aula" / "apresentacao-minicurso.qmd",
+    ROOT / "01-demanda-simulada" / "instrutor" / "autopsia.qmd",
+    ROOT / "01-demanda-simulada" / "instrutor" / "autopsia.html",
     ROOT / "02-dados-fiscal-monitor" / "scripts" / "baixar_fm.R",
     ROOT / "03-relatorio-qmd" / "mini-fiscal-monitor.qmd",
 )
 
 CLAUSULAS_CONTRATO = (
-    "v1.4",
+    "v1.5",
+    "01-demanda-simulada/instrutor/autopsia.qmd",
+    "01-demanda-simulada/instrutor/autopsia.html",
     "BRA",
     "MEX",
     "CHL",

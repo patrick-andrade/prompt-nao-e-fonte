@@ -21,6 +21,7 @@ from xml.etree import ElementTree as ET
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
+from pptx.oxml.xmlchemy import OxmlElement
 from pptx.util import Inches, Pt
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,6 +118,18 @@ def _set_placeholder_font(shape, *, size: int, color: str, bold: bool = False) -
     paragraph.font.size = Pt(size)
     paragraph.font.bold = bold
     paragraph.font.color.rgb = RGBColor.from_string(color)
+    # Pandoc substitui os parágrafos de exemplo. A formatação precisa estar
+    # também nos níveis do placeholder para os novos parágrafos a herdarem.
+    styles = shape.text_frame._txBody.find(f"{{{A}}}lstStyle")
+    for level in range(1, 10):
+        properties = styles.find(f"{{{A}}}lvl{level}pPr")
+        if properties is None:
+            properties = OxmlElement(f"a:lvl{level}pPr")
+            styles.append(properties)
+        previous = properties.find(f"{{{A}}}defRPr")
+        if previous is not None:
+            properties.remove(previous)
+        properties.append(deepcopy(paragraph._p.pPr.defRPr))
 
 
 def _add_layout_bar(layout, x: float, y: float, width: float, height: float) -> None:
@@ -143,20 +156,29 @@ def style_layouts(pptx_path: Path) -> None:
         for shape in layout.shapes:
             if not shape.is_placeholder:
                 continue
+            original_left, original_width = shape.left, shape.width
             kind = str(shape.placeholder_format.type)
-            if "TITLE" in kind:
+            if "SUBTITLE" in kind:
+                _set_placeholder_font(shape, size=20, color="CBE8F9")
+                shape.top, shape.height = Inches(3.25), Inches(1.8)
+            elif "TITLE" in kind:
                 _set_placeholder_font(
-                    shape, size=47 if index == 0 else 31,
+                    shape, size=36 if index == 0 else 26,
                     color="FFFFFF" if index == 0 else "0C2440", bold=True,
                 )
-            elif "SUBTITLE" in kind:
-                _set_placeholder_font(shape, size=23, color="CBE8F9")
+                shape.top = Inches(1.15 if index == 0 else 0.15)
+                shape.height = Inches(1.8 if index == 0 else 0.9)
             elif "FOOTER" in kind or "DATE" in kind or "SLIDE_NUMBER" in kind:
                 _set_placeholder_font(
                     shape, size=9, color="CBE8F9" if index == 0 else "637D94"
                 )
             elif shape.has_text_frame:
                 _set_placeholder_font(shape, size=19, color="243A50")
+                shape.top, shape.height = Inches(1.35), Inches(4.0)
+            # Criar uma transformação local só com top/height zera x/cx.
+            # Preservar também a posição horizontal e a largura herdadas.
+            shape.left = original_left if original_left is not None else Inches(0.5)
+            shape.width = original_width if original_width is not None else Inches(9.0)
         if index == 0:
             _add_layout_bar(layout, 0, 0, 0.18, 5.625)
         else:

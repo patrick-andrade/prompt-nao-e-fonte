@@ -1,6 +1,6 @@
 # Regras para agentes
 
-Leia e honre [`CONTRATO.md`](CONTRATO.md) **v1.4** antes de alterar o minicurso. Ele é a fonte da verdade para países, indicadores, vintage, CSV, artefatos e publicação. Esta é a instrução de repositório para o Codex; `.cursor/rules/minicurso.mdc` é apenas a ponte para o Cursor.
+Leia e honre [`CONTRATO.md`](CONTRATO.md) **v1.5** antes de alterar o minicurso. Ele é a fonte da verdade para países, indicadores, vintage, CSV, artefatos e publicação. Esta é a instrução de repositório para o Codex; `.cursor/rules/minicurso.mdc` é apenas a ponte para o Cursor.
 
 - Escreva em português UTF-8. Não invente número fiscal, país, indicador, coluna, formato ou fonte. Números deliberadamente enganosos da Dimensão 1 precisam de lastro documentado na autópsia.
 - CSV executivo: países na ordem `BRA`, `MEX`, `CHL`, `IND`, `IDN`; `CHN` e `COL` ficam fora. México pertence à LatAm, não à América do Sul. O painel tem derivado mundial separado, com economias individuais do catálogo FM, incluindo `CHN` e `COL` quando disponíveis; sem agregados.

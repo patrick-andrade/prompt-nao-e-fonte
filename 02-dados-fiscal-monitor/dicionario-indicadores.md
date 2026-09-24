@@ -1,4 +1,4 @@
-# Dicionário de indicadores (contrato v1.4)
+# Dicionário de indicadores (contrato v1.5)
 
 Códigos travados. Séries numéricas **não** vivem neste arquivo: estão no CSV executivo e no derivado mundial separado.
 

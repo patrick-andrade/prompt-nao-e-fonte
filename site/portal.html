@@ -43,26 +43,26 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <header class="site-header"><div class="shell nav">
-    <a class="brand" href="./">Prompt <span>não</span> é fonte</a>
+    <a class="brand" href="./index.html">Prompt <span>não</span> é fonte</a>
     <nav class="nav-links" aria-label="Navegação principal">
-      <a href="./" aria-current="page">Início</a>
-      <a href="./apresentacao/">Apresentação</a>
-      <a href="./painel/">Painel de dados</a>
+      <a href="./index.html" aria-current="page">Início</a>
+      <a href="./apresentacao/index.html">Apresentação</a>
+      <a href="./painel/index.html">Painel de dados</a>
     </nav>
   </div></header>
   <main id="conteudo">
     <section class="shell hero" aria-labelledby="titulo">
       <div>
         <div class="eyebrow">Semana da Economia · PUC · 2026</div>
-        <h1 id="titulo">Uma conclusão só vale quando o caminho até a <em>fonte</em> pode ser refeito.</h1>
-        <p class="hero-lead">O minicurso parte de uma entrega convincente, examina suas falhas e reconstrói a análise fiscal com indicadores, edição e dados verificáveis.</p>
-        <div class="hero-meta"><span>Fiscal Monitor · abril de 2026</span><span>Governo geral · % do PIB</span><span>2000–2029</span></div>
+        <h1 id="titulo">Projetos com IA: da pergunta à <em>comunicação dos resultados</em>.</h1>
+        <p class="hero-lead">Uma análise fiscal conduz a exploração de arquivos, código e recursos de IA. Ao longo do caso, discutimos como documentar escolhas, conferir fontes, reproduzir resultados e preparar uma apresentação.</p>
+        <div class="hero-meta"><span>24/09/2026</span><span>90 min de exposição</span><span>30 min de discussão e folga</span></div>
       </div>
       <aside class="path" aria-label="Percurso da aula">
         <div class="path-title">Percurso da aula</div>
         <div class="path-step"><b>01</b><div><strong>Observe a entrega</strong><p>O visual pode convencer antes de as fontes serem conferidas.</p></div></div>
-        <div class="path-step"><b>02</b><div><strong>Confira a origem</strong><p>Indicador, sinal, cobertura, edição e linha de dados.</p></div></div>
-        <div class="path-step"><b>03</b><div><strong>Apresente com limites</strong><p>Compare e interprete sem esconder lacunas.</p></div></div>
+        <div class="path-step"><b>02</b><div><strong>Organize o projeto</strong><p>Fontes, arquivos e instruções para conferir e refazer o trabalho.</p></div></div>
+        <div class="path-step"><b>03</b><div><strong>Revise e compartilhe</strong><p>Registre versões e comunique os resultados com suas referências e limites.</p></div></div>
       </aside>
     </section>
     <section class="route-section" aria-labelledby="rotas">
@@ -73,15 +73,15 @@
             <div class="number">01 · Recorte executivo</div>
             <h3>Apresentação</h3>
             <p>Cinco economias, dois indicadores e um argumento com fonte e ressalvas. Brasil, México, Chile, Índia e Indonésia permanecem no recorte fixo da reunião.</p>
-            <small>Produzida pelo Quarto a partir do CSV executivo · aproximadamente 20 minutos</small>
-            <a class="button" href="./apresentacao/">Abrir apresentação <span aria-hidden="true">→</span></a>
+            <small>Produzida pelo Quarto a partir do CSV executivo · reunião simulada de aproximadamente 20 minutos</small>
+            <a class="button" href="./apresentacao/index.html">Abrir apresentação <span aria-hidden="true">→</span></a>
           </article>
           <article class="route">
             <div class="number">02 · Exploração em aula</div>
             <h3>Painel fiscal</h3>
             <p>Escolha o ano e uma economia individual do FMI. Compare dívida e saldo primário, examine a trajetória e revele a linha usada em cada valor.</p>
             <small>Base mundial preparada em R · lacunas preservadas · interação no navegador</small>
-            <a class="button secondary" href="./painel/">Explorar painel <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="./painel/index.html">Explorar painel <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
@@ -89,7 +89,19 @@
     <section class="shell closing" aria-labelledby="metodo">
       <div><div class="eyebrow">Método</div><h2 id="metodo">O que acompanhar em cada gráfico</h2></div>
       <div><p>Os dados são da edição de abril de 2026 do Fiscal Monitor. Comparar números exige observar as definições e também o que a base não informa.</p>
-        <ul><li>Dívida bruta e saldo primário referem-se ao governo geral, em % do PIB.</li><li>Saldo primário positivo é superávit; negativo é déficit.</li><li>O painel informa a cobertura de cada ano e preserva valores ausentes.</li><li>A edição reúne observações, estimativas e projeções; confira notas de país e ano fiscal antes de concluir.</li></ul>
+        <ul><li>Os indicadores são dívida bruta e saldo primário do governo geral, em % do PIB; as notas do FMI detalham diferenças nacionais de cobertura.</li><li>Saldo primário positivo é superávit; negativo é déficit.</li><li>O painel informa quantas economias têm valores disponíveis em cada ano e preserva as ausências.</li><li>A edição reúne observações, estimativas e projeções; confira notas de país e ano fiscal antes de concluir.</li></ul>
+      </div>
+    </section>
+    <section class="shell closing" aria-labelledby="materiais">
+      <div><div class="eyebrow">Para continuar</div><h2 id="materiais">Arquivos e guias práticos</h2></div>
+      <div><p>O <a href="https://github.com/patrick-andrade/prompt-nao-e-fonte">repositório do minicurso</a> reúne os arquivos, os dados e as instruções. Os guias de Patrick Andrade são leituras curtas para retomar os recursos apresentados na aula.</p>
+        <ul>
+          <li><a href="https://patrick-andrade.github.io/guias/codex-na-pratica.html">Codex na Prática</a>: trabalhar com um agente de IA na pasta do projeto.</li>
+          <li><a href="https://patrick-andrade.github.io/guias/git-na-pratica.html">Git e GitHub na Prática</a>: conferir alterações, registrar versões e enviar o trabalho.</li>
+          <li><a href="https://patrick-andrade.github.io/guias/quarto-na-pratica.html">Quarto na Prática</a>: reunir texto e análise no arquivo que gera a entrega.</li>
+          <li><a href="https://patrick-andrade.github.io/guias/skills-na-pratica.html">Skills na Prática</a>: guardar e reutilizar instruções para tarefas recorrentes.</li>
+        </ul>
+        <p>Os produtos fiscais locais funcionam sem rede. O acesso aos guias e ao GitHub exige internet.</p>
       </div>
     </section>
   </main>

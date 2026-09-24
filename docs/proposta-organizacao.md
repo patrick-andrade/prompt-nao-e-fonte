@@ -1,6 +1,6 @@
 # Organização do repositório
 
-Árvore em uso na raiz `2026/`, alinhada ao [`CONTRATO.md`](../CONTRATO.md) v1.4:
+Árvore em uso na raiz `2026/`, alinhada ao [`CONTRATO.md`](../CONTRATO.md) v1.5:
 
 ```text
 AGENTS.md                         instruções concisas para Codex

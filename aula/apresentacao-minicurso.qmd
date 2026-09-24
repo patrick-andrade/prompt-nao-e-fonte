@@ -1,7 +1,7 @@
 ---
 title: "Prompt não é fonte"
-subtitle: "Análise de dados e IA em economia aplicada · 80 minutos + atividades opcionais"
-author: "Patrick Andrade · PUC · Semana da Economia"
+subtitle: "Análise de dados e IA em economia aplicada"
+author: "Prof. Dr. Patrick Andrade | Semana de Economia PUC-SP, 2026"
 date: 2026-09-24
 lang: pt-BR
 params:
@@ -13,7 +13,7 @@ format:
     css: estilos-aula.css
     slide-level: 2
     slide-number: true
-    footer: "Prompt não é fonte · aula do instrutor · fora do Netlify"
+    footer: "Prof. Dr. Patrick Andrade, PUC-SP | Semana de Economia 2026 | Minicurso \"Prompt não é fonte\""
     output-file: index.html
     preview-links: false
     date-format: "DD/MM/YYYY"
@@ -21,47 +21,198 @@ execute:
   enabled: false
 ---
 
-## Vocês são o trainee
+## Introdução
 
-A Diretoria de Pesquisa Aplicada precisa de uma apresentação para uma reunião às 18h. A gestora espera que o conteúdo esteja resolvido; o diretor não terá tempo para revisar.
+Bem-vindos ao minicurso "Prompt não é fonte".
 
-Hoje veremos o e-mail, o pedido feito ao ChatGPT web e o resultado que parece pronto para a reunião.
+Objetivo geral do curso:
+- Explorar a diferença entre uma apresentação convincente e uma análise auditável e reprodutível, com foco em dados e inteligência artificial aplicada a economia.
 
-::: notes
-5 min · cena e objetivo. Esta demanda profissional é a ficção da Dimensão 1. Não abrir CSV nem autópsia ainda.
-:::
 
-## O cartaz da aula
+## Trilha do minicurso
 
-![](imagens/wikipedia-nao-e-fonte.svg){fig-alt="Meme visual sobre a busca de informação" .meme}
+- O que vamos explorar
+  - Objetivos, cena e arquivos
+  - Dimensão 1: e-mail → prompt → HTML → autópsia
+  - Dimensão 2: contrato → rotina R → CSV
+  - Dimensão 3: Quarto markdown (`.qmd`), apresentações (PPTX, Reveal.js), portal e painel
+  - Dimensão 4: IA com contrato, conhecimento de recursos e síntese
 
-**Prompt não é fonte.** Aparência e fluência não mostram de onde veio um número.
+## Objetivos de aprendizado
 
-<p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
-
-## O caminho de hoje
-
-| Tempo | O que fazemos |
-| --- | --- |
-| 5 + 7 min | Cena, objetivos e arquivos |
-| 17 min | E-mail → prompt → HTML → autópsia |
-| 6 + 15 min | Contrato → rotina R → CSV |
-| 18 min | `.qmd`, PPTX, Reveal.js, portal e painel |
-| 7 + 5 min | IA com contrato, duas linguagens e síntese |
-
-Até 40 minutos extras: consulta exploratória à API, laboratório e discussão fiscal.
-
-## Ao sair, vocês conseguirão
-
-1. **Distinguir** apresentação convincente de análise auditável.
-2. **Perguntar** qual é o indicador, a fonte, a edição e a convenção de sinal.
-3. **Localizar** a célula usada no gráfico e reconstruir o CSV a partir do bruto.
+- Ao sair, vocês conseguirão
+  1. **Distinguir** apresentação convincente de análise auditável e reprodutível.
+  2. **Perguntar** qual é o indicador, a fonte, a edição e a convenção de sinal.
+  3. **Localizar** a célula usada no gráfico e reconstruir o CSV a partir do bruto.
 
 Regra da aula: **abrir o arquivo e entender o que fará antes de executar.**
 
-::: notes
-7 min · ler objetivos, reconhecer ferramentas, fazer a atividade inicial.
+
+## Contexto da aula {.slide-contexto}
+
+- Let's pretend...
+  - Você é um (jovem) profissional (pode ser um *trainee*) em uma unidade de *research* de uma instituição.
+  - A Diretoria de Pesquisa Aplicada precisa de uma apresentação para uma reunião às 18h.
+    - O(a) gestor(a) espera que o conteúdo esteja pronto e o diretor não poderá revisar o trabalho (sem tempo)
+
+- Vamos começar por
+  - Ler o e-mail com a demanda
+  - Construir um pedido para o ChatGPT web
+  - Analisar o resultado que parece pronto para a reunião
+
+## Demanda simulada
+
+::: {.email-card}
+::: {.email-head}
+**De:** Gestora da Diretoria de Pesquisa Aplicada<br>
+**Para:** Time de research<br>
+**Assunto:** Reunião quadro fiscal: apresentação para diretoria hoje<br>
+**Enviado:** 13h30
 :::
+
+Boa tarde pessoal,
+
+A direção da nossa área pediu uma apresentação curta para a reunião das 18h. Precisaremos de uma leitura visual da dívida pública e dos resultados fiscais de países emergentes.
+
+A ideia é colocar o Brasil em contexto com México, Chile, Índia e Indonésia.
+
+Teremos 20 minutos. Priorizem gráficos claros, poucos textos e uma mensagem que ele consiga levar para a conversa. Minha sugestão é utilizar números mais recentes que encontrarem para cada país.
+
+O diretor vai entrar direto na reunião e não terá tempo de revisar a apresentação antes.
+
+Eu não sei qual máquina estará disponível, então deixem a apresentação pronta para projetar e abrir no navegador.
+
+Se houver alguma conclusão sobre o Brasil, coloquem-na em destaque. Quero algo bem apresentado e fácil de acompanhar.
+
+Obrigada,<br>
+**Gestora · Diretoria de Pesquisa Aplicada**
+:::
+
+
+## O e-mail da gestão
+
+- Demanda:
+  - Uma apresentação visual para Brasil, México, Chile, Índia e Indonésia
+  - Há prazo e audiência
+  - Mensagem não fornece tabela, convenções ou procedimento de pesquisa
+
+- Observação sobre a demanda:
+  - Gestão deu destaque para a estética e presume domínio do conteúdo
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
+
+
+## O que fazer? Da boa ideia à implementação
+
+::: {.ideia-grid}
+::: {.ideia-imagem}
+![](imagens/roll-safe.jpg){fig-alt="Roll Safe aponta para a própria cabeça com expressão confiante" .roll-safe}
+
+<p class="meme-caption">I have an idea</p>
+<p class="meme-credito">Imagem: <a href="https://imgflip.com/memetemplate/103240651/Roll-Safe-Black-Guy-Pointing-at-His-Head">template Roll Safe no Imgflip</a>.</p>
+:::
+
+::: {.ideia-texto}
+
+- Pelo tempo que temos:
+  - "Vamos criar essa apresentação brevemente utilizando um agente de IA"
+
+- Questão: *Prompt não é fonte*
+  - Aparência e fluência não mostram de onde veio um número.
+:::
+:::
+
+
+## O pedido feito ao ChatGPT web gratuito
+
+<p class="prompt-label">Prompt pedido:</p>
+
+::: {.prompt-integral}
+Preciso preparar uma apresentação curta e bonita para a diretoria sobre dívida pública e resultado fiscal do Brasil, México, Chile, Índia e Indonésia. Use os valores mais recentes disponíveis para cada país, faça uma comparação visual e coloque uma leitura do Brasil no final. Não domino ainda todas as bases, então organize o conteúdo de um jeito que eu consiga explicar na reunião. Quero um arquivo HTML único, com os estilos no próprio arquivo, para abrir em qualquer navegador mesmo sem suíte Office ou leitor de PDF. Pode usar uma estética de relatório executivo, com título em inglês se ficar melhor.
+:::
+
+::: {.prompt-avaliacao}
+**Avaliação da ideia:**
+- Pede os valores **mais recentes**, um visual forte e um HTML único que abra em qualquer navegador
+- Parece um pedido plausível
+    - Mas não fornece informações sobre a fonte dos dados ou a metodologia utilizada
+
+:::
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/prompt-do-junior.md</code></p>
+
+
+## O HTML parece pronto
+
+Vamos abrir o arquivo `.html`
+
+Quais afirmações vocês conseguiriam defender na reunião?
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/entrega-slop/index.html</code></p>
+
+::: notes
+Não antecipar a autópsia. Pedir que a turma observe ano, rótulo, fonte e conclusão.
+:::
+
+
+## Atividade 1: reflexão sobre o conteúdo geral {.slide-atividade}
+
+::: {.atividade}
+
+Avalie os resultados e frases da apresentação.
+
+1. Qual documento e qual tabela o sustentam?
+2. A que ano e cobertura ele se refere?
+3. O sinal significa o quê naquela fonte?
+
+- Nota: não é erro de ortografia, geografia ou digitação.
+:::
+
+::: notes
+Evitar uma caça a erro de geografia; o recorte do HTML está correto. O foco é cuidado com fontes.
+:::
+
+## Como confiar no conteúdo gerado pela IA?
+
+O que temos na apresentação?
+- O HTML mostra o ano, mas não informa detalhes de **edição** da fonte.
+  - Todos os países têm a mesma fonte?
+    - É o "mesmo dado" mesmo?
+    - Ou talvez existam estimativas e projeções misturadas com ano fiscal?
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.html</code></p>
+
+
+## Autópsia do HTML: o que falta
+
+1ª observação: uma troca discreta de conceito
+- No card do Brasil, o título fala em **resultado**
+  - Os valores `+0,43` e `+8,34% do PIB` vieram da **necessidade de financiamento do setor público** do BCB em 2025.
+  - Na NFSP, sinal positivo indica **déficit**.
+  - Para um saldo primário, positivo indica **superávit**
+  - **Uma palavra trocada muda a leitura**
+
+::: {.callout-note title="Abrir"}
+`01-demanda-simulada/instrutor/autopsia.html`
+:::
+
+::: {.callout-note title = "Fonte"}
+[BCB, estatísticas fiscais de janeiro de 2026](https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf); [metodologia](https://www.bcb.gov.br/content/estatisticas/Documents/notas_metodologicas/estatisticas-fiscais/estatisticasfiscais.pdf).
+:::
+
+## 1º apontamento: cada arquivo tem um uso
+
+A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos convincentes
+  - Não substituem a necessidade de **documentar o que foi feito**
+  - Ao fim, para *melhor uso*, o *conhecimento do uso* dos recursos e boas práticas é essencial
+
+- Tipos de arquivos:
+  - `.html`: a apresentação que vimos no navegador.
+  - `.md` (Markdown): instruções que lemos em um editor de texto.
+  - `.qmd` (Quarto Markdown): o arquivo editável do relatório, que criei para gerar apresentações em `.pptx` e `.html`.
+
+
+# De um *prompt* para um <u>projeto</u>
 
 ## Cada arquivo tem uma função
 
@@ -78,102 +229,38 @@ Regra da aula: **abrir o arquivo e entender o que fará antes de executar.**
 
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/ferramentas.md</code></p>
 
-## Atividade 0 · Ler o validador {.slide-atividade}
+## Atividade 0: o contrato e sua checagem {.slide-atividade}
+
+Um "contrato de IA"
+
+- É o arquivo que registra as escolhas do projeto para a equipe e a IA consultarem a cada etapa.
 
 ::: {.atividade}
-[3 min · individual · Python básico]{.atividade-meta}
+[Python básico]{.atividade-meta}
 
-No clone, abram `scripts/validar_contrato.py`. Localizem a lista de países, os dois códigos e a versão do contrato. Depois rodem:
+- Abram `CONTRATO.md` e vejam quais escolhas já foram registradas.
+- Em `scripts/validar_contrato.py`, localizem a lista de países, os dois códigos de indicadores e a versão do contrato.
+- Caso queiram, rodem o script na raiz do projeto:
+  - (Se estiver só no navegador, leia o script no GitHub)
 
-`python scripts/validar_contrato.py`
+    `python scripts/validar_contrato.py`
 
-Procurem **esqueleto OK** e **CSV OK**. Se estiverem só no navegador, leiam o arquivo no GitHub.
+  - Procurem **esqueleto OK** e **CSV OK**.
+    - São sinais de que o script conferiu a estrutura e as bases. 
 :::
 
 <p class="cue"><strong>Abrir agora:</strong> <code>scripts/validar_contrato.py</code></p>
 
-## O e-mail da gestora
+## O que um contrato faz
 
-Uma apresentação visual para Brasil, México, Chile, Índia e Indonésia. Há prazo e audiência; a mensagem não fornece tabela, convenção de sinal ou procedimento de pesquisa.
+- **Recorte da comparação:**
 
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
+    - `BRA → MEX → CHL → IND → IDN`, nessa ordem; anos 2000–2029; edição **FM abril/2026**.
+    - `GGXWDG_NGDP` = dívida bruta do governo geral; `GGXONLB_NGDP` = saldo primário do governo geral.
 
-::: notes
-17 min · começa a Dimensão 1. Ler o e-mail inteiro. A gestora valoriza a estética e presume domínio do conteúdo.
-:::
+- **Regra de leitura:** no saldo do FMI, positivo indica superávit.
+- **Arquivo comum:** a apresentação final lê o **mesmo CSV** para todos os países.
 
-## O pedido feito ao ChatGPT gratuito
-
-Um estudante iniciante pede os valores **mais recentes**, um visual forte e um HTML único que abra em qualquer navegador.
-
-É um pedido plausível. O problema pode surgir no caminho entre “mais recente” e “comparável”.
-
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/prompt-do-junior.md</code></p>
-
-## O HTML parece pronto
-
-Abram o arquivo e olhem **60 segundos em silêncio**. Quais afirmações vocês conseguiriam defender na reunião?
-
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/entrega-slop/index.html</code></p>
-
-::: notes
-Não antecipar a autópsia. Pedir que a turma observe ano, rótulo, fonte e conclusão.
-:::
-
-## Atividade 1 · Três perguntas {.slide-atividade}
-
-::: {.atividade}
-[3 min · em duplas · sem teclado]{.atividade-meta}
-
-Escolham três números ou frases do HTML. Para cada um, perguntem:
-
-1. Qual documento e qual tabela o sustentam?
-2. A que ano e cobertura ele se refere?
-3. O sinal significa o quê naquela fonte?
-:::
-
-::: notes
-Ouvir três duplas. Evitar uma caça a erro de geografia; o recorte do HTML está correto. O foco é cuidado com fontes.
-:::
-
-## Autópsia: valor, fonte e inferência
-
-O HTML mostra o ano, mas não informa a **edição** da fonte. Mostra cinco países com anos diferentes, sem explicar observação, estimativa, projeção ou ano fiscal.
-
-A matriz do instrutor cruza **valor exibido · fonte exata · ano · cobertura · convenção de sinal · inferência indevida**.
-
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.md</code></p>
-
-::: notes
-Abrir a autópsia somente agora. Ela está no clone público; não no zip opcional.
-:::
-
-## Uma troca discreta de conceito
-
-No card do Brasil, o título fala em **resultado**. Os valores `+0,43` e `+8,34% do PIB` vieram da **necessidade de financiamento do setor público** do BCB em 2025.
-
-Na NFSP, sinal positivo indica **déficit**. Para um saldo primário, positivo indica **superávit**. Uma palavra trocada muda a leitura.
-
-Fonte: [BCB, estatísticas fiscais de janeiro de 2026](https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf); [metodologia](https://www.bcb.gov.br/content/estatisticas/Documents/notas_metodologicas/estatisticas-fiscais/estatisticasfiscais.pdf).
-
-## “Mais recente” para quem?
-
-| Card | Ano exibido | Pergunta que falta |
-| --- | ---: | --- |
-| Brasil, Chile, Indonésia | 2025 | Realizado ou estimado? |
-| México | 2026 | Projeção de qual edição? |
-| Índia | 2024 | Qual ano fiscal? |
-
-O FMI registra a Índia por ano fiscal nas [notas metodológicas de abril/2026](https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/msa.pdf). O gráfico do HTML não explica essa diferença.
-
-## O contrato fixa a comparação
-
-`BRA → MEX → CHL → IND → IDN` · dois indicadores · anos 2000–2029 · vintage **FM abril/2026**.
-
-`GGXWDG_NGDP` = dívida bruta do governo geral.<br>
-`GGXONLB_NGDP` = saldo primário do governo geral.
-
-Para o saldo do FMI, positivo indica superávit. A apresentação final lê o **mesmo CSV** para todos os países.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>CONTRATO.md</code></p>
 
@@ -181,7 +268,40 @@ Para o saldo do FMI, positivo indica superávit. A apresentação final lê o **
 6 min · mostrar o recorte executivo e o schema. México é LatAm. China não entra no CSV executivo; poderá aparecer no painel mundial, que usa outro derivado da mesma edição. Não comparar o valor do BCB ao do FMI como se fosse o mesmo indicador.
 :::
 
-## O recorte executivo tem uma cadeia própria
+## "One prompt, one kill": um pedido basta?
+
+Da *pergunta ao ChatGPT* para um *projeto*
+- Usar o potencial dos modelos de LLM atuais envolve **mais do que um prompt**
+
+::: {.callout-note title="Modelo e harness"}
+- **Modelo:** o modelo de linguagem é a base do sistema.
+- **Harness:** o ambiente de execução que permite interagir com o modelo.
+:::
+
+
+## Projeto e execução
+
+O recorte executivo tem uma cadeia própria
+
+Para este projeto  
+- É preciso definir o recorte → reconstruir os dados → validar o CSV → gerar a apresentação
+
+Prática  
+- Ao abrir outro chat, indique `CONTRATO.md` (ou a pasta `docs/`), os arquivos já produzidos e escreva a próxima tarefa. O novo pedido precisa desse contexto.
+- Confira o resultado de cada etapa antes de seguir
+  - O contrato orienta o trabalho e o validador testa parte do que foi combinado.
+  - Vale a pena criar "gates" para controlar o progresso do projeto.
+
+
+## Do AI slop (generativo) a para um projeto (determinístico)
+
+A apresentação gerada
+- O HTML do slop é uma peça da simulação (ele não lê o `.csv`)
+
+Prompt não é fonte
+- O contrato define a pergunta
+- Bases de dados entram como *inputs*
+- Scripts e notebooks são usados para processar os dados e gerar os resultados.
 
 | Camada | O que faz |
 | --- | --- |
@@ -189,187 +309,378 @@ Para o saldo do FMI, positivo indica superávit. A apresentação final lê o **
 | `baixar_fm.R --offline` | Reconstrói o CSV contratado |
 | `mini-fiscal-monitor.qmd` | Lê o CSV e desenha a apresentação |
 
-O HTML do slop é uma peça da simulação. Ele não lê o CSV.
 
-O painel mundial tem outro derivado congelado da mesma edição. Sua ampliação de países não altera o CSV dos cinco nem os gráficos da reunião.
+::: {.callout-note title="Observação"}
+Há ainda um **painel mundial**, que é um outro derivado do projeto.  
+- Ele não é parte do recorte executivo original (5 países), mas é útil para explorar a edição de abril/2026.
+:::
 
 ## Abrir o script R antes de rodar
 
-O professor mostra `baixar_fm.R`: países, códigos do DataMapper, metadados do JSON e a ordem das colunas. A lógica central é pequena:
+- O arquivo `.R` guarda as instruções que o R vai executar.
 
-`jsonlite::fromJSON()` → selecionar país/ano/indicador → gravar `fm_weo_cache.csv`.
+    - Entrada: arquivos `.json` com os dados guardados da edição de abril/2026.
+    - Processamento: selecionar países, anos e indicadores; organizar as colunas.
+    - Saída: `fm_weo_cache.csv`, a tabela que alimenta a apresentação.
+
+- No código, `jsonlite::fromJSON()` lê o JSON. Vamos localizar essa leitura e a gravação do CSV.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.R</code></p>
 
 ::: notes
-15 min · demonstrar R em vez de explicar muitas funções Python. O script offline usa o bruto versionado.
+Bloco de 18 min: script, harness, documentação, execução, Atividade 2, API e ambiente. Reservar 5 min para a atividade; distribuir os outros 13 min pela explicação e demonstração. Mostrar a rotina preparada, sem gerar código novo ao vivo. O script offline usa o bruto versionado.
 :::
+
+## Onde entra o harness nessa tarefa?
+
+- O ambiente liga a conversa aos arquivos e às ferramentas disponíveis.
+
+    - Neste projeto, o agente pode ler o contrato, ajudar a escrever o script e executar comandos, conforme as permissões.
+    - O resultado fica em arquivos que podemos abrir e conferir.
+
+- O pedido precisa dizer qual arquivo usar, o que produzir e como conferir.
+
+    - Antes de executar, vale pedir um plano e examinar as alterações propostas.
+
+- Para retomar depois: [Codex na Prática](https://patrick-andrade.github.io/guias/codex-na-pratica.html).
+
+::: notes
+Retomar a distinção entre modelo e harness já apresentada. Abrir o guia por cerca de 30 s e mostrar o exemplo de pasta. A demonstração usa arquivos preparados; não depende de uma resposta nova do agente. Não explicar planos comerciais nem atalhos específicos de aplicativo.
+:::
+
+## O que fica documentado?
+
+- Documentação: registrar escolhas e instruções para continuar o trabalho.
+
+    - Aqui: contrato, dicionário dos indicadores e notas sobre a edição.
+
+- Auditabilidade: permitir que outra pessoa confira o caminho do resultado.
+
+    - Qual arquivo e qual linha sustentam o número do gráfico?
+
+- Reprodutibilidade: deixar dados, código e ambiente para repetir a produção.
+
+    - Refazer o resultado ajuda a conferir o processo; a interpretação ainda precisa de revisão.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/dicionario-indicadores.md</code></p>
 
 ## Rodar e conferir
 
+- Executar a rotina preparada e depois conferir o arquivo produzido:
+
 ```bash
 Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
-python scripts/validar_contrato.py
+uv run python scripts/validar_contrato.py
 ```
 
-O validador confere colunas, países, ordem, indicadores, vintage, valores finitos e chaves únicas. A execução offline não precisa da rede.
+- `--offline` usa os dados guardados no projeto, sem consultar a internet.
+
+    - O ambiente do professor já está preparado.
+    - O validador confere colunas, países, indicadores, edição e chaves repetidas, entre outras regras.
+
+- Passar no teste confirma essas regras. A leitura econômica exige conferir conceitos e fontes.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv</code></p>
 
-## Atividade 2 · Achem a linha {.slide-atividade}
+## Atividade 2: achem a linha {.slide-atividade}
 
 ::: {.atividade}
 [5 min · individual · navegador ou editor]{.atividade-meta}
 
-No CSV, localizem `BRA` · `2025` · `GGXONLB_NGDP`. Leiam `value`, `unit`, `vintage` e `source`.
+- No CSV, localizem `BRA` · `2025` · `GGXONLB_NGDP`.
 
-O sinal do **saldo do FMI** tem a mesma interpretação do card do **BCB**? Expliquem a diferença sem transformar as duas séries em uma só.
+    - Leiam `value`, `unit`, `vintage` e `source`: valor, unidade, edição e fonte.
+    - Qual desses campos permite saber a edição utilizada?
+
+- O sinal do saldo do FMI tem a mesma interpretação do card do BCB?
+
+    - Expliquem a diferença considerando o conceito de cada série.
 :::
 
 ::: notes
-Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de mostrar a fonte. A tarefa de Python é a validação simples, que já rodaram na Atividade 0.
+Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de mostrar a fonte. Quem estiver só no navegador pode procurar a linha no GitHub. O CSV não informa o status de cada observação; não atribuir automaticamente a 2025 a condição de realizado.
 :::
 
-## API atual não é edição histórica
+## Consultar uma API e guardar uma edição
 
-`baixar_fm.R --consultar-api` usa `imfapi` para **inspecionar a consulta corrente** do Fiscal Monitor.
+- Uma API permite que um programa faça pedidos a outro serviço.
 
-A função documentada não seleciona uma vintage histórica. Por isso a consulta **não regrava** o CSV de abril/2026.
+    - Aqui, o script pode pedir dados ao FMI usando o pacote R `imfapi`.
+    - A consulta corrente pode trazer uma edição diferente daquela usada neste trabalho.
+
+- Para refazer a comparação, guardamos os dados da edição escolhida.
+
+    - `--consultar-api` serve à exploração e não regrava o CSV de abril/2026.
+    - Mudar a edição exige rever o contrato e gerar os resultados novamente.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/notas-vintage-2026-04.md</code></p>
 
+## E os pacotes usados pelo código?
+
+- Pacotes acrescentam funções às linguagens.
+
+    - `jsonlite`, por exemplo, permite ler os arquivos JSON no R.
+    - As versões utilizadas também fazem parte do ambiente do projeto.
+
+- Os arquivos de versões ajudam a preparar esse ambiente em outra máquina.
+
+    - `renv.lock`: pacotes R, gerenciados pelo `renv`.
+    - `pyproject.toml` e `uv.lock`: dependências Python e versões resolvidas pelo `uv`.
+
+- Na aula, o ambiente já está preparado. Os comandos ficam disponíveis para repetir depois.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>renv.lock</code></p>
+
 ## Um `.qmd`, duas apresentações
 
-O produto de reunião tem cerca de **11 slides**: pergunta, método, comparação, trajetórias, Brasil, limites e síntese.
+- O Quarto lê o arquivo `.qmd` e gera o documento de saída.
 
-O mesmo arquivo gera:
+    - O arquivo reúne texto e trechos de código, chamados de *chunks*.
+    - No produto da reunião, o código R lê o CSV e produz os gráficos.
+    - **Renderizar** é executar esse processo de geração.
 
 | Saída | Uso |
 | --- | --- |
-| `outputs/pptx/` | Apresentação interna de 20 minutos |
-| `outputs/revealjs-netlify/apresentacao/index.html` | Reveal.js da reunião, no navegador e no Netlify |
+| `.pptx` | Apresentação da reunião no PowerPoint |
+| `.html` com Reveal.js | Slides da reunião no navegador |
 
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
 
 ::: notes
-18 min para `.qmd`, produto e site: cerca de 5 min no código e no PPTX, 6 min nos slides executivos e 7 min no portal e no painel. O chunk R do produto só lê o CSV de cinco países.
+Bloco de 20 min: Quarto e comunicação (7 min), Git e publicação (4 min), portal (2 min), painel (7 min). Mostrar um chunk, seu gráfico e as saídas. O produto tem 12 slides contando a capa; só lê o CSV executivo. O deck desta aula tem execução desabilitada e não lê o CSV.
 :::
 
-## Reprodutibilidade também tem forma
+## Comunicar o resultado também dá trabalho
 
-Gráficos legíveis, rótulos, rodapé de edição e hierarquia visual. O novo Reveal.js aproveita o contraste e a composição em cartões do HTML simulado, mas expõe claramente fonte, edição e limites. A [referência visual da OCDE](https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html) continua creditada no produto.
+- No gráfico, precisamos conseguir ler o que está sendo comparado.
 
-O PPTX usa `template-referencia.pptx`; o Reveal.js usa um tema SCSS próprio. O número vem do CSV, não do template.
+    - Título, rótulos, unidade e ano orientam a leitura.
+    - Fonte, edição e ressalvas permitem examinar a comparação.
+
+- A apresentação tem arquivos próprios para a aparência.
+
+    - `template-referencia.pptx`: modelo do PowerPoint.
+    - `.scss`: regras de estilo dos slides no navegador.
+
+- Para rever esse fluxo: [Quarto na Prática](https://patrick-andrade.github.io/guias/quarto-na-pratica.html).
+
+::: notes
+Abrir PPTX e Reveal.js. Mostrar um gráfico e sua origem no chunk; não percorrer a reunião inteira. Manter o crédito à referência visual da OCDE no produto: https://www.oecd.org/en/publications/oecd-economic-outlook-volume-2026-issue-1_2d1956f0-en.html. Abrir brevemente o guia; deixar a leitura para depois. Os valores vêm do CSV, não do modelo visual.
+:::
+
+## Como saber o que a IA alterou?
+
+- O Git registra versões dos arquivos de um projeto.
+
+    - A comparação entre versões, ou *diff*, mostra o que foi acrescentado e retirado.
+    - Um *commit* registra um estado dos arquivos selecionados, com uma mensagem sobre a mudança.
+
+- Antes de registrar, leiam as alterações e confiram os resultados.
+
+    - Um texto pode melhorar e ainda perder uma fonte ou uma ressalva.
+    - O histórico ajuda a localizar essa mudança e recuperar uma versão anterior.
+
+- Leitura para depois: [Git e GitHub na Prática](https://patrick-andrade.github.io/guias/git-na-pratica.html).
+
+::: notes
+Mostrar o histórico e a diferença de um arquivo de texto do próprio projeto, em modo de leitura. Usar o commit da revisão final como exemplo. Não criar um commit ao vivo. Abrir o guia por cerca de 30 s.
+:::
+
+## Da pasta do projeto à publicação
+
+- Git e GitHub têm funções diferentes.
+
+    - O Git guarda o histórico local.
+    - O GitHub recebe a cópia enviada pelo *push*. Um *clone* traz o repositório e seu histórico para outra máquina.
+
+- Neste projeto, o Netlify publica os HTMLs preparados e enviados ao repositório.
+
+    - Publicamos portal, apresentação executiva e painel.
+    - O deck da aula, o PPTX e a autópsia ficam fora do site.
+
+- Antes do envio, conferir os arquivos escolhidos e o que pode ser público.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>docs/roteiro-netlify.md</code></p>
 
 ## No navegador: dois percursos
 
-[{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}}) abre o portal.
+- O [portal do minicurso]({{< meta params.url_netlify >}}) reúne os produtos e materiais.
 
-- **Apresentação:** cinco países, dois códigos, um CSV executivo, cerca de 20 minutos de reunião.
-- **Painel:** economias individuais publicadas pelo FMI, dois códigos, anos 2000–2029 e outro derivado da edição de abril/2026.
+    - **Apresentação:** cinco países e dois indicadores, para a reunião de 20 minutos.
+    - **Painel:** economias individuais do FMI, por ano e trajetória.
 
-Se a rede falhar: os HTMLs versionados no clone.
+- Os produtos usam bases separadas, da edição de abril/2026.
+
+    - As páginas contêm os resultados preparados, sem consultar a API.
+    - Sem rede, usamos os HTMLs locais; os guias ficam para depois.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/index.html</code></p>
 
-::: notes
-O portal, os slides e o painel estão versionados no Git. O Netlify publica arquivos prontos, sem executar R no build. O deck da aula fica fora do site.
-:::
-
-## Demonstração guiada · ano e trajetória {.slide-atividade}
+## Demonstração guiada: ano e trajetória {.slide-atividade}
 
 ::: {.atividade}
 [7 min · professor conduz, turma interpreta]{.atividade-meta}
 
-1. No portal, abram o painel e mantenham **2025**; leiam o total de economias com os dois indicadores disponíveis.
-2. Localizem Brasil na dispersão e na tabela; interpretem o sinal do primário.
-3. Selecionem Brasil para ver as duas trajetórias. Procurem uma economia sem um dos valores e expliquem por que ela não vira zero.
-4. Leiam a fonte, a edição e o aviso de ano fiscal antes de comparar países.
+1. Abram o painel em **2025** e leiam o total de economias com os dois indicadores.
+2. Localizem Brasil na dispersão e na tabela; interpretem o sinal do saldo primário.
+3. Selecionem Brasil para ver as trajetórias e abrir as linhas de origem.
+4. Procurem uma economia com valor ausente: por que ela não vira zero?
+5. Leiam fonte, edição e aviso de ano fiscal antes de comparar.
 :::
 
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/painel/index.html</code></p>
 
 ::: notes
-O painel usa um snapshot oficial congelado do DataMapper FM abril/2026, processado em R; não consulta a API no navegador. O CSV executivo de cinco países permanece separado. Para demonstração sem rede, abrir a cópia local do painel.
+O painel usa o snapshot congelado do DataMapper FM abril/2026, processado em R. O CSV executivo permanece separado. Em 2025, selecionar Eritrea (ERI) para mostrar a ausência dos dois indicadores; depois voltar a Brazil (BRA). Se a rede falhar, abrir a cópia local; não consultar a API durante a aula.
 :::
 
 ## Por que estudar R e Python com IA?
 
-**R:** ler a rotina estatística e produzir gráficos no Quarto.<br>
-**Python:** validar schema, testar arquivos e usar uma rota alternativa para os mesmos dados.
+- Conhecer a linguagem ajuda a ler e revisar o código produzido.
 
-Conhecer as duas linguagens amplia o repertório para reconhecer quando o código gerado consulta a fonte errada, troca um sinal ou mistura edições.
+    - No R: localizar a leitura dos dados, a seleção de linhas e a construção do gráfico.
+    - No Python: entender as verificações do contrato e a rota alternativa de reconstrução.
+
+- O mesmo cuidado vale para outros trabalhos com IA.
+
+    - Num fichamento, conferir a passagem citada; num relatório, a origem da tabela.
+    - É possível pedir ajuda ao agente para explicar o código e conferir a explicação no arquivo.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
 
 ::: notes
-7 min · ligação entre linguagem e julgamento, sem prometer que o modelo resolverá o trabalho sozinho.
+Bloco de 12 min: repertório de linguagens e projetos (3 min), skills e exemplo de arquivo (4 min), Atividade 3 (3 min), comparação com roteiro profissional (2 min). Abrir a rota Python para localizar entrada e saída, sem reconstruir novamente o CSV.
 :::
 
-## Atividade 3 · Uma trava útil {.slide-atividade}
+## E quando o procedimento se repete?
+
+- Uma *skill* guarda instruções reutilizáveis para uma tarefa.
+
+    - O arquivo `SKILL.md` descreve quando usar e quais passos seguir.
+    - A pasta pode incluir exemplos ou scripts de apoio.
+
+- Nesta revisão da aula, usamos duas:
+
+    - `humanizer`: revisar marcas de texto de IA sem inventar fatos.
+    - `apresentacao-bullets`: organizar ideias e explicações nos níveis dos bullets.
+
+- Vamos ver um exemplo em [Skills na Prática](https://patrick-andrade.github.io/guias/skills-na-pratica.html).
+
+::: notes
+Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo de SKILL.md. Explicar nome, descrição e instruções sem instalar nada. As duas skills usadas nesta revisão pertencem ao ambiente do instrutor; não pressupor que estejam instaladas no clone dos alunos. A skill orienta o procedimento, e o resultado continua sujeito a conferência.
+:::
+
+## Instruções em arquivos: qual usar?
+
+| Arquivo | O que registra neste trabalho |
+| --- | --- |
+| `CONTRATO.md` | Escolhas do projeto: recorte, dados e entregas |
+| `AGENTS.md` | Orientações ao agente que trabalha na pasta |
+| `SKILL.md` | Procedimento reutilizável para uma tarefa |
+| `README.md` | Apresentação do projeto e como começar |
+
+- Ao retomar o trabalho, indiquem os arquivos relevantes e a próxima tarefa.
+
+    - Registrem no projeto as decisões que precisarão consultar depois.
+    - Confiram se as instruções e os arquivos entregues ainda concordam.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>AGENTS.md</code></p>
+
+## Atividade 3: uma instrução que dê para conferir {.slide-atividade}
 
 ::: {.atividade}
 [3 min · individual]{.atividade-meta}
 
-Escrevam uma instrução para a IA que impediria **uma** falha do HTML. Ela deve apontar para uma fonte, edição, código, convenção ou teste verificável.
+- Escrevam uma instrução para evitar **uma** falha do HTML inicial.
 
-Depois comparem com o roteiro profissional do projeto.
+    - Indiquem a fonte ou o arquivo que a IA deve consultar.
+    - Digam o que deve existir no resultado.
+    - Expliquem como vocês vão conferir se o pedido foi atendido.
+
+- Comparem com o roteiro profissional do projeto.
 :::
 
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/roteiro-ia-profissional.md</code></p>
 
-## Quatro perguntas para a próxima reunião
+## Antes de levar para a reunião
 
-1. Qual é a pergunta econômica?
-2. Qual indicador, setor, unidade e convenção de sinal?
-3. Qual documento, edição e ano?
-4. Consigo refazer o gráfico a partir da fonte?
+- Consigo explicar a pergunta e a comparação?
+
+    - Indicador, setor, unidade, sinal, documento, edição e ano.
+
+- Outra pessoa consegue conferir e refazer o resultado?
+
+    - Dados de origem, código, instruções e versões dos pacotes disponíveis.
+
+- O material comunica o que a análise permite dizer?
+
+    - Gráficos legíveis, referências localizáveis e limites explícitos.
 
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/checklist-rigor.md</code></p>
 
 ::: notes
-5 min · retomada dos objetivos e quiz oral. Nenhuma resposta depende de memória do chat.
+5 min para este slide e o seguinte. Retomar as perguntas do HTML inicial e ouvir duas respostas breves. Relacionar documentação, auditabilidade e reprodutibilidade aos arquivos que acabamos de abrir. Os 30 min seguintes são para discussão e folga; não acrescentar obrigatoriamente os slides de complemento.
 :::
 
-## O que levar
+## Para continuar depois da aula
 
-Clone: [{{< meta params.url_github >}}]({{< meta params.url_github >}})<br>
-Portal: [{{< meta params.url_netlify >}}]({{< meta params.url_netlify >}})<br>
-Apresentação: [https://fiscal-monitor-2026.netlify.app/apresentacao/](https://fiscal-monitor-2026.netlify.app/apresentacao/)<br>
-Painel: [https://fiscal-monitor-2026.netlify.app/painel/](https://fiscal-monitor-2026.netlify.app/painel/)
+- Material do minicurso:
 
-**Prompt não é fonte.** O contrato define a pergunta; o CSV registra os dados; o Quarto mostra de onde veio cada gráfico.
+    - [Repositório no GitHub]({{< meta params.url_github >}}): arquivos, dados, código e instruções.
+    - [Portal]({{< meta params.url_netlify >}}): apresentação executiva, painel e links dos guias.
 
-Para casa: `03-relatorio-qmd/lab-lacunas.qmd`. Quem quiser a rota Python pode usar `scripts/preparar_lab.py`.
+- [Guias práticos](https://patrick-andrade.github.io/guias.html): Codex, Git e GitHub, Quarto e skills.
+
+    - Leituras curtas para retomar os recursos apresentados.
+
+- Para experimentar: `03-relatorio-qmd/lab-lacunas.qmd`.
+
+    - Com `uv` instalado, preparar o ambiente com `uv sync --locked`, na raiz do clone.
 
 ## Reconstruir por dois caminhos [se sobrar tempo]{.selo-gordura}
 
+- R e Python podem reconstruir o CSV executivo a partir dos mesmos brutos.
+
 ```bash
 Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
-python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
-python scripts/validar_contrato.py
+uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
+uv run python scripts/validar_contrato.py
 ```
 
-Compare a saída com o CSV do clone. A consulta `--consultar-api` permanece exploratória.
+- Comparem as saídas com o CSV do clone após cada execução.
 
-## Ambiente do professor [se sobrar tempo]{.selo-gordura}
+    - A consulta `--consultar-api` continua sendo exploratória.
 
-`renv.lock` fixa os pacotes R necessários à reconstrução e aos chunks do Quarto. O professor prepara o ambiente antes da aula.
+## Preparar o ambiente [se sobrar tempo]{.selo-gordura}
 
-`pyproject.toml` e `uv.lock` fixam a rota Python e o laboratório de lacunas.
+- Para repetir em outra máquina, seguir as instruções do projeto.
 
-<p class="cue"><strong>Abrir agora:</strong> <code>renv.lock</code></p>
+    - R: restaurar os pacotes registrados em `renv.lock`.
+    - Python: usar `uv sync --locked` e executar os comandos com `uv run`.
+
+- Ler o código antes de executar e conferir os arquivos gerados.
+
+    - Ter o ambiente pronto permite repetir o processo; ainda precisamos avaliar o conteúdo.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>README.md</code></p>
 
 ## O ano da Índia [se sobrar tempo]{.selo-gordura}
 
-Na tabela do FMI, o registro indiano pode representar um ano fiscal que termina no ano seguinte ao início. A legenda “2024” sozinha não torna a comparação homogênea.
+- Na tabela do FMI, o registro indiano segue um ano fiscal.
 
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.md</code></p>
+    - O período começa em um ano e termina no seguinte.
+    - A legenda “2024” sozinha não torna a comparação homogênea.
+
+- Confiram o calendário na fonte antes de comparar com um ano civil.
+
+<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.html</code></p>
 
 ## “Sustentável” exige mais [se sobrar tempo]{.selo-gordura}
 
 ![](imagens/que-isso-meu-filho-calma.jpg){fig-alt="Meme de reação para moderar uma inferência apressada" .meme}
 
-Seria preciso explicitar juros, crescimento, trajetória de resultado primário e cobertura. A atividade de hoje não calcula esse critério.
+- Seria preciso explicitar juros, crescimento, trajetória de resultado primário e cobertura.
+
+    - A atividade de hoje não calcula esse critério.
 
 <p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>

@@ -1,6 +1,6 @@
 # Roteiro de IA profissional
 
-Depois de observar o [prompt do júnior](../01-demanda-simulada/prompt-do-junior.md) e abrir a autópsia, use estes pedidos como exercício. O [`CONTRATO.md`](../CONTRATO.md) v1.4 continua sendo a referência; a resposta do modelo precisa passar pelo código e pelo CSV.
+Depois de observar o [prompt do júnior](../01-demanda-simulada/prompt-do-junior.md) e abrir a autópsia, use estes pedidos como exercício. O [`CONTRATO.md`](../CONTRATO.md) v1.5 continua sendo a referência; a resposta do modelo precisa passar pelo código e pelo CSV.
 
 ## Prompt 1 · Reconstruir dados
 
@@ -33,4 +33,4 @@ inspiração visual OECD Economic Outlook 2026/1. O Reveal.js deve gerar um inde
 autossuficiente para publicação estática. Valide os valores contra o CSV.
 ```
 
-Peça ao grupo que acrescente **uma trava verificável** ao prompt inicial. “Seja preciso” é pouco; “confira `indicator_code`, `vintage` e o sinal desta célula” pode ser testado.
+Peça ao grupo que acrescente **uma instrução verificável** ao prompt inicial: fonte ou arquivo a consultar, resultado esperado e forma de conferência. Por exemplo: conferir `indicator_code`, `vintage` e o sinal da célula usada no gráfico. Em outros projetos, o mesmo procedimento pode ser aplicado a uma citação num fichamento ou à tabela de um relatório.

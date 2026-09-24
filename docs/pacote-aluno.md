@@ -1,6 +1,6 @@
 # Pacote do aluno
 
-Canal principal: clone do [repositório público](https://github.com/patrick-andrade/prompt-nao-e-fonte), com contrato v1.4, brutos congelados, CSV executivo, derivado mundial, scripts, `.qmd`, docs e deck de aula. No curso, a autópsia em `01-demanda-simulada/instrutor/autopsia.md` só deve ser aberta **depois** do HTML simulado.
+Canal principal: clone do [repositório público](https://github.com/patrick-andrade/prompt-nao-e-fonte), com contrato v1.5, brutos congelados, CSV executivo, derivado mundial, scripts, `.qmd`, docs e deck de aula. No curso, a autópsia em `01-demanda-simulada/instrutor/autopsia.html` só deve ser aberta **depois** do HTML simulado.
 
 Para a Atividade 0, use clone ou **Code → Download ZIP** do GitHub, ambos completos. Na raiz:
 
@@ -8,6 +8,6 @@ Para a Atividade 0, use clone ou **Code → Download ZIP** do GitHub, ambos comp
 python scripts/validar_contrato.py
 ```
 
-O zip opcional produzido por `python scripts/empacotar_aluno.py` omite `aula/`, `instrutor/autopsia.md` e saídas; é material de leitura se o acesso ao clone falhar. Como o validador exige essas pastas, **não** use esse zip reduzido para a Atividade 0.
+O zip opcional produzido por `python scripts/empacotar_aluno.py` omite `aula/`, `instrutor/` e saídas; é material de leitura se o acesso ao clone falhar. Como o validador exige essas pastas, **não** use esse zip reduzido para a Atividade 0.
 
 O pacote inclui `baixar_fm.R`, a rota alternativa `baixar_fm.py`, `renv.lock`, `pyproject.toml` e `uv.lock`. R/Quarto são usados pelo professor; o aluno precisa apenas de navegador, editor e Python básico. O [portal](https://fiscal-monitor-2026.netlify.app/) oferece a [apresentação](https://fiscal-monitor-2026.netlify.app/apresentacao/) e o [painel](https://fiscal-monitor-2026.netlify.app/painel/); os HTMLs também ficam no clone completo, mas não no zip opcional reduzido.

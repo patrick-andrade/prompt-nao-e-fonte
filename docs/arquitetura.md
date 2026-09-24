@@ -1,6 +1,6 @@
 # Arquitetura do minicurso
 
-O [`CONTRATO.md`](../CONTRATO.md) v1.4 fixa três dimensões e distingue o recorte executivo do universo do painel.
+O [`CONTRATO.md`](../CONTRATO.md) v1.5 fixa três dimensões e distingue o recorte executivo do universo do painel.
 
 ```text
 01-demanda-simulada/          e-mail → prompt → HTML simulado → autópsia

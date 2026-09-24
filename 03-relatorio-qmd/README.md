@@ -15,4 +15,4 @@ O [template PPTX](template-referencia.pptx) mantém a saída interna; o [tema ex
 
 Para regenerar o template a partir da referência padrão do Pandoc: `uv run python scripts/gerar_template_pptx.py` na raiz do projeto.
 
-Nesta pasta também estão o [roteiro de IA profissional](roteiro-ia-profissional.md) e o [laboratório de lacunas](lab-lacunas.qmd). O contrato v1.4 está em [`CONTRATO.md`](../CONTRATO.md).
+Nesta pasta também estão o [roteiro de IA profissional](roteiro-ia-profissional.md) e o [laboratório de lacunas](lab-lacunas.qmd). O contrato v1.5 está em [`CONTRATO.md`](../CONTRATO.md).

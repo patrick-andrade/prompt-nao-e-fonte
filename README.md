@@ -1,6 +1,6 @@
 # Prompt não é fonte · Semana da Economia 2026
 
-Minicurso sobre análise fiscal, IA e reprodutibilidade. A turma compara uma apresentação visualmente convincente, mas descuidada das fontes, com outra que pode ser refeita a partir de dados congelados. A fonte da verdade é o [`CONTRATO.md`](CONTRATO.md) **v1.4**.
+Minicurso sobre exploração e comunicação de projetos com IA, com uma análise de economia aplicada como caso. O percurso apresenta arquivos, documentação, versionamento e procedimentos para conferir e reproduzir resultados. A turma compara uma apresentação visualmente convincente, mas descuidada das fontes, com outra que pode ser refeita a partir de dados congelados. A fonte da verdade é o [`CONTRATO.md`](CONTRATO.md) **v1.5**.
 
 | Dimensão | Pasta | Produto |
 | --- | --- | --- |
@@ -36,8 +36,9 @@ Após renderizar os artefatos, `uv run python scripts/verificar_artefatos.py` co
 ## Começar pela leitura
 
 - [`docs/ferramentas.md`](docs/ferramentas.md): ferramentas, extensões e quem lê cada arquivo.
-- [`docs/plano-aula-2h.md`](docs/plano-aula-2h.md): núcleo de 80 minutos e atividades opcionais.
+- [Guias práticos de Patrick Andrade](https://patrick-andrade.github.io/guias.html): Codex, Git e GitHub, Quarto e skills, para leitura depois da aula.
+- [`docs/plano-aula-2h.md`](docs/plano-aula-2h.md): 90 minutos de exposição e 30 minutos de discussão e folga.
 - [`docs/checklist-instrutor.md`](docs/checklist-instrutor.md): inspeção final no projetor.
 - [`docs/roteiro-netlify.md`](docs/roteiro-netlify.md): publicação do HTML estático.
 
-Na aula, abrir o HTML simulado **antes** de [`01-demanda-simulada/instrutor/autopsia.md`](01-demanda-simulada/instrutor/autopsia.md).
+Na aula, abrir o HTML simulado **antes** da [autópsia do instrutor](01-demanda-simulada/instrutor/autopsia.html), gerada de `01-demanda-simulada/instrutor/autopsia.qmd`.
