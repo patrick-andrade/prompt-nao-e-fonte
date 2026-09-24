@@ -13,6 +13,7 @@ format:
     css: estilos-aula.css
     slide-level: 2
     slide-number: true
+    scrollable: true
     footer: "Prof. Dr. Patrick Andrade, PUC-SP | Semana de Economia 2026 | Minicurso \"Prompt não é fonte\""
     output-file: index.html
     preview-links: false
@@ -23,10 +24,24 @@ execute:
 
 ## Introdução
 
-Bem-vindos ao minicurso "Prompt não é fonte".
+::: {.columns}
+::: {.column}
+
+Bem-vindos ao minicurso *Prompt não é fonte*
 
 Objetivo geral do curso:
-- Explorar a diferença entre uma apresentação convincente e uma análise auditável e reprodutível, com foco em dados e inteligência artificial aplicada a economia.
+
+- Explorar a diferença entre uma apresentação convincente (aparentemente) e uma análise auditável e reprodutível, com foco em dados e inteligência artificial aplicada a economia.
+
+:::
+::: {.column}
+
+Sobre mim | *Patrick Rodrigues Andrade*
+
+> Professor do Departamento de Economia da Pontifícia Universidade Católica de São Paulo (PUC-SP) e Analista de Políticas Públicas e Gestão Governamental na Prefeitura de São Paulo. Sua trajetória combina docência universitária, análise econômica e gestão pública. É doutor em Ciências Sociais e mestre em Economia Política pela PUC-SP, além de bacharel em Ciências Econômicas pela Universidade Federal do Espírito Santo. Na Prefeitura de São Paulo atua com planejamento governamental, orçamento público e gestão de projetos; na Secretaria Municipal da Saúde de São Paulo é responsável pela Unidade de Gestão Estratégica da Assessoria de Planejamento.
+
+:::
+:::
 
 
 ## Trilha do minicurso

@@ -34,6 +34,38 @@
   line-height: 1.13;
 }
 
+/* Introdução: manter a minibio integral e visível no quadro. */
+.reveal #introdução .columns {
+  display: grid;
+  grid-template-columns: 40% 58%;
+  gap: 2%;
+  align-items: start;
+}
+
+.reveal #introdução .column {
+  width: auto !important;
+  min-width: 0;
+}
+
+.reveal #introdução .column:first-child {
+  font-size: 0.82em;
+  line-height: 1.15;
+}
+
+.reveal #introdução .column:last-child {
+  font-size: 0.74em;
+  line-height: 1.15;
+}
+
+.reveal #introdução .column p {
+  margin: 0.18em 0;
+}
+
+.reveal #introdução blockquote {
+  margin: 0.2em 0;
+  padding-left: 0.55em;
+}
+
 .reveal .cue {
   display: block;
   margin-top: 0.65em;

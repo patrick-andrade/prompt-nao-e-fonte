@@ -6,6 +6,32 @@ O curso acompanha a elaboração de uma análise de economia aplicada, desde o p
 
 O mote **“prompt não é fonte”** aparece em uma situação de trabalho: uma apresentação pode parecer pronta para a reunião e ainda misturar conceitos, anos e convenções de sinal. Para examinar esses problemas, o repositório reúne a demanda simulada, os dados de origem, os scripts e os documentos que geram os produtos finais.
 
+## Primeiro passo no laboratório: clonar e abrir o projeto
+
+No VS Code, abra **Terminal → Novo Terminal**. O VS Code sem extensões adicionais basta para esta etapa; para usar `git clone`, o computador também precisa ter o Git instalado. No terminal PowerShell integrado, execute os comandos abaixo, um por vez:
+
+```powershell
+cd $env:USERPROFILE
+git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git
+cd .\prompt-nao-e-fonte
+code .
+```
+
+O que significa cada comando:
+
+- `cd $env:USERPROFILE`: muda o diretório atual para a pasta do usuário conectado (`C:\Users\Usuario`).
+- `git clone https://github.com/patrick-andrade/prompt-nao-e-fonte.git`: clona o repositório do GitHub para o diretório atual.
+- `cd .\prompt-nao-e-fonte`: muda o diretório atual para a pasta `prompt-nao-e-fonte`.
+- `code .`: abre a pasta atual como projeto no VS Code.
+
+Não é preciso entrar em uma conta GitHub para clonar o repositório público.
+
+*Recomendação:*
+
+Confira no explorador de arquivos do editor se aparecem este `README.md` e as pastas `01-demanda-simulada/`, `02-dados-fiscal-monitor/` e `03-relatorio-qmd/`.
+
+Se `code .` não abrir a pasta, use **Arquivo → Abrir Pasta** no VS Code e escolha `C:\Users\Usuario\prompt-nao-e-fonte`, trocando `Usuario` pelo login da máquina. Se `git` não estiver disponível, baixe o repositório completo no GitHub por **Code → Download ZIP**, extraia o ZIP na pasta do usuário e abra a pasta extraída pelo mesmo menu.
+
 ## Acessar os materiais
 
 - [Portal do minicurso](https://fiscal-monitor-2026.netlify.app/): produtos publicados e leituras complementares.
