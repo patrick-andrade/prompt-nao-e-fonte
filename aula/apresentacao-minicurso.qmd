@@ -99,8 +99,9 @@ Obrigada,<br>
 - Observação sobre a demanda:
   - Gestão deu destaque para a estética e presume domínio do conteúdo
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
-
+:::
 
 ## O que fazer? Da boa ideia à implementação
 
@@ -139,8 +140,9 @@ Preciso preparar uma apresentação curta e bonita para a diretoria sobre dívid
 
 :::
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/prompt-do-junior.md</code></p>
-
+:::
 
 ## O HTML parece pronto
 
@@ -148,9 +150,9 @@ Vamos abrir o arquivo `.html`
 
 Quais afirmações vocês conseguiriam defender na reunião?
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/entrega-slop/index.html</code></p>
 
-::: notes
 Não antecipar a autópsia. Pedir que a turma observe ano, rótulo, fonte e conclusão.
 :::
 
@@ -180,8 +182,9 @@ O que temos na apresentação?
     - É o "mesmo dado" mesmo?
     - Ou talvez existam estimativas e projeções misturadas com ano fiscal?
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.html</code></p>
-
+:::
 
 ## Autópsia do HTML: o que falta
 
@@ -192,12 +195,13 @@ O que temos na apresentação?
   - Para um saldo primário, positivo indica **superávit**
   - **Uma palavra trocada muda a leitura**
 
-::: {.callout-note title="Abrir"}
-`01-demanda-simulada/instrutor/autopsia.html`
-:::
 
 ::: {.callout-note title = "Fonte"}
 [BCB, estatísticas fiscais de janeiro de 2026](https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf); [metodologia](https://www.bcb.gov.br/content/estatisticas/Documents/notas_metodologicas/estatisticas-fiscais/estatisticasfiscais.pdf).
+:::
+
+::: notes
+Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`.
 :::
 
 ## 1º apontamento: cada arquivo tem um uso
@@ -227,7 +231,9 @@ A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos c
 | `renv.lock`, `uv.lock` | Versões fixadas das dependências |
 :::
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/ferramentas.md</code></p>
+:::
 
 ## Atividade 0: o contrato e sua checagem {.slide-atividade}
 
@@ -249,7 +255,9 @@ Um "contrato de IA"
     - São sinais de que o script conferiu a estrutura e as bases. 
 :::
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>scripts/validar_contrato.py</code></p>
+:::
 
 ## O que um contrato faz
 
@@ -262,9 +270,9 @@ Um "contrato de IA"
 - **Arquivo comum:** a apresentação final lê o **mesmo CSV** para todos os países.
 
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>CONTRATO.md</code></p>
 
-::: notes
 6 min · mostrar o recorte executivo e o schema. México é LatAm. China não entra no CSV executivo; poderá aparecer no painel mundial, que usa outro derivado da mesma edição. Não comparar o valor do BCB ao do FMI como se fosse o mesmo indicador.
 :::
 
@@ -325,9 +333,9 @@ Há ainda um **painel mundial**, que é um outro derivado do projeto.
 
 - No código, `jsonlite::fromJSON()` lê o JSON. Vamos localizar essa leitura e a gravação do CSV.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.R</code></p>
 
-::: notes
 Bloco de 18 min: script, harness, documentação, execução, Atividade 2, API e ambiente. Reservar 5 min para a atividade; distribuir os outros 13 min pela explicação e demonstração. Mostrar a rotina preparada, sem gerar código novo ao vivo. O script offline usa o bruto versionado.
 :::
 
@@ -362,7 +370,9 @@ Retomar a distinção entre modelo e harness já apresentada. Abrir o guia por c
 
     - Refazer o resultado ajuda a conferir o processo; a interpretação ainda precisa de revisão.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/dicionario-indicadores.md</code></p>
+:::
 
 ## Rodar e conferir
 
@@ -375,17 +385,20 @@ uv run python scripts/validar_contrato.py
 
 - `--offline` usa os dados guardados no projeto, sem consultar a internet.
 
-    - O ambiente do professor já está preparado.
     - O validador confere colunas, países, indicadores, edição e chaves repetidas, entre outras regras.
 
 - Passar no teste confirma essas regras. A leitura econômica exige conferir conceitos e fontes.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv</code></p>
+
+O ambiente do professor já está preparado para executar os comandos.
+:::
 
 ## Atividade 2: achem a linha {.slide-atividade}
 
 ::: {.atividade}
-[5 min · individual · navegador ou editor]{.atividade-meta}
+[Individual · navegador ou editor]{.atividade-meta}
 
 - No CSV, localizem `BRA` · `2025` · `GGXONLB_NGDP`.
 
@@ -398,6 +411,8 @@ uv run python scripts/validar_contrato.py
 :::
 
 ::: notes
+5 min para a atividade individual.
+
 Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de mostrar a fonte. Quem estiver só no navegador pode procurar a linha no GitHub. O CSV não informa o status de cada observação; não atribuir automaticamente a 2025 a condição de realizado.
 :::
 
@@ -413,7 +428,9 @@ Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de most
     - `--consultar-api` serve à exploração e não regrava o CSV de abril/2026.
     - Mudar a edição exige rever o contrato e gerar os resultados novamente.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/notas-vintage-2026-04.md</code></p>
+:::
 
 ## E os pacotes usados pelo código?
 
@@ -427,9 +444,13 @@ Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de most
     - `renv.lock`: pacotes R, gerenciados pelo `renv`.
     - `pyproject.toml` e `uv.lock`: dependências Python e versões resolvidas pelo `uv`.
 
-- Na aula, o ambiente já está preparado. Os comandos ficam disponíveis para repetir depois.
+- Os comandos ficam disponíveis para repetir depois.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>renv.lock</code></p>
+
+Na aula, usar o ambiente já preparado.
+:::
 
 ## Um `.qmd`, duas apresentações
 
@@ -444,9 +465,9 @@ Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de most
 | `.pptx` | Apresentação da reunião no PowerPoint |
 | `.html` com Reveal.js | Slides da reunião no navegador |
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
 
-::: notes
 Bloco de 20 min: Quarto e comunicação (7 min), Git e publicação (4 min), portal (2 min), painel (7 min). Mostrar um chunk, seu gráfico e as saídas. O produto tem 12 slides contando a capa; só lê o CSV executivo. O deck desta aula tem execução desabilitada e não lê o CSV.
 :::
 
@@ -500,7 +521,9 @@ Mostrar o histórico e a diferença de um arquivo de texto do próprio projeto, 
 
 - Antes do envio, conferir os arquivos escolhidos e o que pode ser público.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/roteiro-netlify.md</code></p>
+:::
 
 ## No navegador: dois percursos
 
@@ -514,13 +537,13 @@ Mostrar o histórico e a diferença de um arquivo de texto do próprio projeto, 
     - As páginas contêm os resultados preparados, sem consultar a API.
     - Sem rede, usamos os HTMLs locais; os guias ficam para depois.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/index.html</code></p>
+:::
 
 ## Demonstração guiada: ano e trajetória {.slide-atividade}
 
 ::: {.atividade}
-[7 min · professor conduz, turma interpreta]{.atividade-meta}
-
 1. Abram o painel em **2025** e leiam o total de economias com os dois indicadores.
 2. Localizem Brasil na dispersão e na tabela; interpretem o sinal do saldo primário.
 3. Selecionem Brasil para ver as trajetórias e abrir as linhas de origem.
@@ -528,9 +551,11 @@ Mostrar o histórico e a diferença de um arquivo de texto do próprio projeto, 
 5. Leiam fonte, edição e aviso de ano fiscal antes de comparar.
 :::
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>outputs/revealjs-netlify/painel/index.html</code></p>
 
-::: notes
+7 min · professor conduz, turma interpreta.
+
 O painel usa o snapshot congelado do DataMapper FM abril/2026, processado em R. O CSV executivo permanece separado. Em 2025, selecionar Eritrea (ERI) para mostrar a ausência dos dois indicadores; depois voltar a Brazil (BRA). Se a rede falhar, abrir a cópia local; não consultar a API durante a aula.
 :::
 
@@ -546,9 +571,9 @@ O painel usa o snapshot congelado do DataMapper FM abril/2026, processado em R. 
     - Num fichamento, conferir a passagem citada; num relatório, a origem da tabela.
     - É possível pedir ajuda ao agente para explicar o código e conferir a explicação no arquivo.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
 
-::: notes
 Bloco de 12 min: repertório de linguagens e projetos (3 min), skills e exemplo de arquivo (4 min), Atividade 3 (3 min), comparação com roteiro profissional (2 min). Abrir a rota Python para localizar entrada e saída, sem reconstruir novamente o CSV.
 :::
 
@@ -584,12 +609,14 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
     - Registrem no projeto as decisões que precisarão consultar depois.
     - Confiram se as instruções e os arquivos entregues ainda concordam.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>AGENTS.md</code></p>
+:::
 
 ## Atividade 3: uma instrução que dê para conferir {.slide-atividade}
 
 ::: {.atividade}
-[3 min · individual]{.atividade-meta}
+[Individual]{.atividade-meta}
 
 - Escrevam uma instrução para evitar **uma** falha do HTML inicial.
 
@@ -600,7 +627,11 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
 - Comparem com o roteiro profissional do projeto.
 :::
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/roteiro-ia-profissional.md</code></p>
+
+3 min para a atividade individual.
+:::
 
 ## Antes de levar para a reunião
 
@@ -616,9 +647,9 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
 
     - Gráficos legíveis, referências localizáveis e limites explícitos.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>docs/checklist-rigor.md</code></p>
 
-::: notes
 5 min para este slide e o seguinte. Retomar as perguntas do HTML inicial e ouvir duas respostas breves. Relacionar documentação, auditabilidade e reprodutibilidade aos arquivos que acabamos de abrir. Os 30 min seguintes são para discussão e folga; não acrescentar obrigatoriamente os slides de complemento.
 :::
 
@@ -637,7 +668,7 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
 
     - Com `uv` instalado, preparar o ambiente com `uv sync --locked`, na raiz do clone.
 
-## Reconstruir por dois caminhos [se sobrar tempo]{.selo-gordura}
+## Reconstruir por dois caminhos
 
 - R e Python podem reconstruir o CSV executivo a partir dos mesmos brutos.
 
@@ -651,7 +682,11 @@ uv run python scripts/validar_contrato.py
 
     - A consulta `--consultar-api` continua sendo exploratória.
 
-## Preparar o ambiente [se sobrar tempo]{.selo-gordura}
+::: notes
+Complemento opcional: apresentar somente se houver tempo.
+:::
+
+## Preparar o ambiente
 
 - Para repetir em outra máquina, seguir as instruções do projeto.
 
@@ -662,9 +697,13 @@ uv run python scripts/validar_contrato.py
 
     - Ter o ambiente pronto permite repetir o processo; ainda precisamos avaliar o conteúdo.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>README.md</code></p>
 
-## O ano da Índia [se sobrar tempo]{.selo-gordura}
+Complemento opcional: apresentar somente se houver tempo.
+:::
+
+## O ano da Índia
 
 - Na tabela do FMI, o registro indiano segue um ano fiscal.
 
@@ -673,9 +712,13 @@ uv run python scripts/validar_contrato.py
 
 - Confiram o calendário na fonte antes de comparar com um ano civil.
 
+::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.html</code></p>
 
-## “Sustentável” exige mais [se sobrar tempo]{.selo-gordura}
+Complemento opcional: apresentar somente se houver tempo.
+:::
+
+## “Sustentável” exige mais
 
 ![](imagens/que-isso-meu-filho-calma.jpg){fig-alt="Meme de reação para moderar uma inferência apressada" .meme}
 
@@ -684,3 +727,7 @@ uv run python scripts/validar_contrato.py
     - A atividade de hoje não calcula esse critério.
 
 <p class="meme-nota">Uso acadêmico, sem fins comerciais · minicurso PUC · Semana da Economia</p>
+
+::: notes
+Complemento opcional: apresentar somente se houver tempo.
+:::
