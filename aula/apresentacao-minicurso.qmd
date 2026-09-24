@@ -100,7 +100,7 @@ Obrigada,<br>
   - Gestão deu destaque para a estética e presume domínio do conteúdo
 
 ::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/briefing-supervisao.md</code></p>
+> Abrir agora: `01-demanda-simulada/briefing-supervisao.md`
 :::
 
 ## O que fazer? Da boa ideia à implementação
@@ -138,10 +138,7 @@ Preciso preparar uma apresentação curta e bonita para a diretoria sobre dívid
 - Parece um pedido plausível
     - Mas não fornece informações sobre a fonte dos dados ou a metodologia utilizada
 
-:::
-
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/prompt-do-junior.md</code></p>
+> Abrir agora: `01-demanda-simulada/prompt-do-junior.md`
 :::
 
 ## O HTML parece pronto
@@ -151,7 +148,7 @@ Vamos abrir o arquivo `.html`
 Quais afirmações vocês conseguiriam defender na reunião?
 
 ::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/entrega-slop/index.html</code></p>
+> Abrir agora: `01-demanda-simulada/entrega-slop/index.html`
 
 Não antecipar a autópsia. Pedir que a turma observe ano, rótulo, fonte e conclusão.
 :::
@@ -183,7 +180,7 @@ O que temos na apresentação?
     - Ou talvez existam estimativas e projeções misturadas com ano fiscal?
 
 ::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>01-demanda-simulada/instrutor/autopsia.html</code></p>
+> Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`
 :::
 
 ## Autópsia do HTML: o que falta
@@ -201,12 +198,13 @@ O que temos na apresentação?
 :::
 
 ::: notes
-Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`.
+> Abrir agora: `01-demanda-simulada/instrutor/autopsia.html`.
 :::
 
 ## 1º apontamento: cada arquivo tem um uso
 
 A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos convincentes
+
   - Não substituem a necessidade de **documentar o que foi feito**
   - Ao fim, para *melhor uso*, o *conhecimento do uso* dos recursos e boas práticas é essencial
 
@@ -231,9 +229,7 @@ A difusão dos modelos de linguagem natural e a facilidade de gerar conteúdos c
 | `renv.lock`, `uv.lock` | Versões fixadas das dependências |
 :::
 
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>docs/ferramentas.md</code></p>
-:::
+> Abrir agora: `docs/ferramentas.md`
 
 ## Atividade 0: o contrato e sua checagem {.slide-atividade}
 
@@ -256,29 +252,23 @@ Um "contrato de IA"
 :::
 
 ::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>scripts/validar_contrato.py</code></p>
+> Abrir agora: `scripts/validar_contrato.py`
 :::
 
 ## O que um contrato faz
 
-- **Recorte da comparação:**
+> Abrir agora: `CONTRATO.md`
 
+- **Recorte da comparação:**
     - `BRA → MEX → CHL → IND → IDN`, nessa ordem; anos 2000–2029; edição **FM abril/2026**.
     - `GGXWDG_NGDP` = dívida bruta do governo geral; `GGXONLB_NGDP` = saldo primário do governo geral.
-
 - **Regra de leitura:** no saldo do FMI, positivo indica superávit.
 - **Arquivo comum:** a apresentação final lê o **mesmo CSV** para todos os países.
-
-
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>CONTRATO.md</code></p>
-
-6 min · mostrar o recorte executivo e o schema. México é LatAm. China não entra no CSV executivo; poderá aparecer no painel mundial, que usa outro derivado da mesma edição. Não comparar o valor do BCB ao do FMI como se fosse o mesmo indicador.
-:::
 
 ## "One prompt, one kill": um pedido basta?
 
 Da *pergunta ao ChatGPT* para um *projeto*
+
 - Usar o potencial dos modelos de LLM atuais envolve **mais do que um prompt**
 
 ::: {.callout-note title="Modelo e harness"}
@@ -292,9 +282,11 @@ Da *pergunta ao ChatGPT* para um *projeto*
 O recorte executivo tem uma cadeia própria
 
 Para este projeto  
+
 - É preciso definir o recorte → reconstruir os dados → validar o CSV → gerar a apresentação
 
 Prática  
+
 - Ao abrir outro chat, indique `CONTRATO.md` (ou a pasta `docs/`), os arquivos já produzidos e escreva a próxima tarefa. O novo pedido precisa desse contexto.
 - Confira o resultado de cada etapa antes de seguir
   - O contrato orienta o trabalho e o validador testa parte do que foi combinado.
@@ -304,9 +296,11 @@ Prática
 ## Do AI slop (generativo) a para um projeto (determinístico)
 
 A apresentação gerada
+
 - O HTML do slop é uma peça da simulação (ele não lê o `.csv`)
 
 Prompt não é fonte
+
 - O contrato define a pergunta
 - Bases de dados entram como *inputs*
 - Scripts e notebooks são usados para processar os dados e gerar os resultados.
@@ -316,121 +310,125 @@ Prompt não é fonte
 | `data/raw/*.json` | Guarda o recorte bruto e a edição de abril/2026 |
 | `baixar_fm.R --offline` | Reconstrói o CSV contratado |
 | `mini-fiscal-monitor.qmd` | Lê o CSV e desenha a apresentação |
-
+| `scripts/validar_contrato.py` | Valida o contrato e os dados |
 
 ::: {.callout-note title="Observação"}
 Há ainda um **painel mundial**, que é um outro derivado do projeto.  
 - Ele não é parte do recorte executivo original (5 países), mas é útil para explorar a edição de abril/2026.
 :::
 
-## Abrir o script R antes de rodar
 
-- O arquivo `.R` guarda as instruções que o R vai executar.
+## Começando um projeto de análise de dados
 
-    - Entrada: arquivos `.json` com os dados guardados da edição de abril/2026.
-    - Processamento: selecionar países, anos e indicadores; organizar as colunas.
-    - Saída: `fm_weo_cache.csv`, a tabela que alimenta a apresentação.
+**ETL (*Extract, Transform, Load*)**
 
-- No código, `jsonlite::fromJSON()` lê o JSON. Vamos localizar essa leitura e a gravação do CSV.
+- Processo de extrair dados brutos, transformá-los e carregá-los em uma tabela pronta para análise.
 
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.R</code></p>
+Na pasta `02-dados-fiscal-monitor`, o script `scripts/baixar_fm.R --offline` reconstrói o CSV executivo:
 
-Bloco de 18 min: script, harness, documentação, execução, Atividade 2, API e ambiente. Reservar 5 min para a atividade; distribuir os outros 13 min pela explicação e demonstração. Mostrar a rotina preparada, sem gerar código novo ao vivo. O script offline usa o bruto versionado.
-:::
+- **Extrair:** `jsonlite::fromJSON()` lê os JSONs congelados da edição de abril/2026 em `data/raw/`
+- **Transformar:** o script seleciona os países, anos e indicadores do contrato e organiza as colunas
+- **Carregar:** `writeLines()` grava `data/processed/fm_weo_cache.csv`, usado na apresentação
 
-## Onde entra o harness nessa tarefa?
+> Abrir agora: `02-dados-fiscal-monitor/scripts/baixar_fm.R`
 
-- O ambiente liga a conversa aos arquivos e às ferramentas disponíveis.
 
-    - Neste projeto, o agente pode ler o contrato, ajudar a escrever o script e executar comandos, conforme as permissões.
-    - O resultado fica em arquivos que podemos abrir e conferir.
+## Onde entra o *harness* nessa fase do ETL?
 
-- O pedido precisa dizer qual arquivo usar, o que produzir e como conferir.
+Boa prática: criar um projeto no *harness* (ou na IDE)
 
+> IDE = *Integrated Development Environment* (ambiente de desenvolvimento integrado)
+
+O ambiente: liga a conversa aos arquivos e às ferramentas disponíveis.
+
+- Neste projeto: o agente pode ler o contrato, ajudar a escrever o script e executar comandos, conforme as permissões.
+- O resultado fica em arquivos que podemos abrir e conferir.
+
+Pedidos (*tasks*)
+
+- Indica qual arquivo usar, o que produzir e como conferir.
     - Antes de executar, vale pedir um plano e examinar as alterações propostas.
 
-- Para retomar depois: [Codex na Prática](https://patrick-andrade.github.io/guias/codex-na-pratica.html).
+::: {.callout-note}
+Boas práticas de desenvolvimento de software ajudam a organizar o trabalho com IA.
 
-::: notes
-Retomar a distinção entre modelo e harness já apresentada. Abrir o guia por cerca de 30 s e mostrar o exemplo de pasta. A demonstração usa arquivos preparados; não depende de uma resposta nova do agente. Não explicar planos comerciais nem atalhos específicos de aplicativo.
+Você não precisa ser programador para seguir essas práticas, mas precisa conhecer o que está disponível e como usar.
 :::
 
-## O que fica documentado?
+::: {.callout-tip title="Saiba mais"}
+Guia inicial: [Codex na Prática](https://patrick-andrade.github.io/guias/codex-na-pratica.html).
+:::
 
-- Documentação: registrar escolhas e instruções para continuar o trabalho.
 
-    - Aqui: contrato, dicionário dos indicadores e notas sobre a edição.
+## A documentação do projeto
 
-- Auditabilidade: permitir que outra pessoa confira o caminho do resultado.
+Documentação
 
+- Registrar escolhas e instruções para continuar o trabalho.
+    - Aqui: contrato, dicionário dos indicadores, plano de implementação, etc.
+
+Projeto e ETL
+
+- Auditabilidade: permitir que outra pessoa confira o caminho do resultado
     - Qual arquivo e qual linha sustentam o número do gráfico?
 
-- Reprodutibilidade: deixar dados, código e ambiente para repetir a produção.
+- Reprodutibilidade: deixar dados, código e ambiente para repetir a produção
+    - Refazer o resultado ajuda a conferir o processo
+    - Favorece ganhos de produtividade e aprendizado
+        - A interpretação e a análise podem ser revistas e aprimoradas
 
-    - Refazer o resultado ajuda a conferir o processo; a interpretação ainda precisa de revisão.
-
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/dicionario-indicadores.md</code></p>
+::: {.callout-note}
+Abrir agora: `02-dados-fiscal-monitor/dicionario-indicadores.md`
 :::
 
-## Rodar e conferir
+
+## O "E" do ETL: extração e checagem da coleta de dados
+
+Rodar e conferir
 
 - Executar a rotina preparada e depois conferir o arquivo produzido:
 
-```bash
-Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
-uv run python scripts/validar_contrato.py
+```powershell
+Rscript .\02-dados-fiscal-monitor\scripts\baixar_fm.R --offline
+uv run python .\scripts\validar_contrato.py
 ```
 
 - `--offline` usa os dados guardados no projeto, sem consultar a internet.
 
     - O validador confere colunas, países, indicadores, edição e chaves repetidas, entre outras regras.
 
-- Passar no teste confirma essas regras. A leitura econômica exige conferir conceitos e fontes.
 
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv</code></p>
+- Passar no teste confirma essas regras.
+    - *Obs.:* leitura econômica exige conferir conceitos e fontes
 
-O ambiente do professor já está preparado para executar os comandos.
-:::
 
 ## Atividade 2: achem a linha {.slide-atividade}
 
 ::: {.atividade}
 [Individual · navegador ou editor]{.atividade-meta}
 
-- No CSV, localizem `BRA` · `2025` · `GGXONLB_NGDP`.
+> Abrir agora: `02-dados-fiscal-monitor/data/processed/fm_weo_cache.csv`
 
-    - Leiam `value`, `unit`, `vintage` e `source`: valor, unidade, edição e fonte.
+- No CSV (`fm_weo_cache.csv`), localize `BRA` · `2025` · `GGXONLB_NGDP`.
+    - Leia `value`, `unit`, `vintage` e `source` (valor, unidade, edição e fonte)
     - Qual desses campos permite saber a edição utilizada?
-
-- O sinal do saldo do FMI tem a mesma interpretação do card do BCB?
-
-    - Expliquem a diferença considerando o conceito de cada série.
+    - O sinal do saldo do FMI tem a mesma interpretação do card do BCB?
 :::
 
-::: notes
-5 min para a atividade individual.
 
-Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de mostrar a fonte. Quem estiver só no navegador pode procurar a linha no GitHub. O CSV não informa o status de cada observação; não atribuir automaticamente a 2025 a condição de realizado.
-:::
+## API no processo de ETL
 
-## Consultar uma API e guardar uma edição
+API (interface de programação de aplicações)
 
-- Uma API permite que um programa faça pedidos a outro serviço.
+- Define como um programa pede e recebe dados de outro serviço.
 
-    - Aqui, o script pode pedir dados ao FMI usando o pacote R `imfapi`.
-    - A consulta corrente pode trazer uma edição diferente daquela usada neste trabalho.
+Neste código
+- `imfapi::imf_get()` consulta o Fiscal Monitor do FMI para países, indicadores, frequência anual e anos 2000–2029.
+- Uma API pode automatizar a extração de dados para um fluxo de ETL: extrair, transformar e carregar.
+- A consulta atual serve para exploração; não substitui os dados congelados de abril/2026.
 
-- Para refazer a comparação, guardamos os dados da edição escolhida.
+> Abrir agora: `02-dados-fiscal-monitor/scripts/baixar_fm.R`
 
-    - `--consultar-api` serve à exploração e não regrava o CSV de abril/2026.
-    - Mudar a edição exige rever o contrato e gerar os resultados novamente.
-
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/notas-vintage-2026-04.md</code></p>
-:::
 
 ## E os pacotes usados pelo código?
 
@@ -446,11 +444,8 @@ Deixar os estudantes encontrarem a célula. Evitar ditar o número antes de most
 
 - Os comandos ficam disponíveis para repetir depois.
 
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>renv.lock</code></p>
+> Abrir agora: `renv.lock` para ver as versões dos pacotes R. Na aula, usar o ambiente já preparado.
 
-Na aula, usar o ambiente já preparado.
-:::
 
 ## Um `.qmd`, duas apresentações
 
@@ -465,11 +460,8 @@ Na aula, usar o ambiente já preparado.
 | `.pptx` | Apresentação da reunião no PowerPoint |
 | `.html` com Reveal.js | Slides da reunião no navegador |
 
-::: notes
-<p class="cue"><strong>Abrir agora:</strong> <code>03-relatorio-qmd/mini-fiscal-monitor.qmd</code></p>
 
-Bloco de 20 min: Quarto e comunicação (7 min), Git e publicação (4 min), portal (2 min), painel (7 min). Mostrar um chunk, seu gráfico e as saídas. O produto tem 12 slides contando a capa; só lê o CSV executivo. O deck desta aula tem execução desabilitada e não lê o CSV.
-:::
+> Abrir agora: `03-relatorio-qmd/mini-fiscal-monitor.qmd` para ver o conteúdo da apresentação.
 
 ## Comunicar o resultado também dá trabalho
 
@@ -566,36 +558,44 @@ O painel usa o snapshot congelado do DataMapper FM abril/2026, processado em R. 
     - No R: localizar a leitura dos dados, a seleção de linhas e a construção do gráfico.
     - No Python: entender as verificações do contrato e a rota alternativa de reconstrução.
 
-- O mesmo cuidado vale para outros trabalhos com IA.
+O mesmo cuidado vale para outros trabalhos com IA:
 
-    - Num fichamento, conferir a passagem citada; num relatório, a origem da tabela.
-    - É possível pedir ajuda ao agente para explicar o código e conferir a explicação no arquivo.
+- Num fichamento, conferir a passagem citada; num relatório, a origem da tabela.
+- É possível pedir ao agente que explique o código e conferir a explicação no arquivo.
 
-::: notes
+
+::: {.callout-tip title="Saiba mais do projeto"}
 <p class="cue"><strong>Abrir agora:</strong> <code>02-dados-fiscal-monitor/scripts/baixar_fm.py</code></p>
-
-Bloco de 12 min: repertório de linguagens e projetos (3 min), skills e exemplo de arquivo (4 min), Atividade 3 (3 min), comparação com roteiro profissional (2 min). Abrir a rota Python para localizar entrada e saída, sem reconstruir novamente o CSV.
 :::
 
-## E quando o procedimento se repete?
+## Reprodutibilidade, reutilização e automação
 
-- Uma *skill* guarda instruções reutilizáveis para uma tarefa.
+E quando um procedimento se repete?
 
-    - O arquivo `SKILL.md` descreve quando usar e quais passos seguir.
-    - A pasta pode incluir exemplos ou scripts de apoio.
+- É possível utilizar ou criar uma *skill* para orientar a tarefa.
 
-- Nesta revisão da aula, usamos duas:
+Uma *skill* guarda instruções reutilizáveis para uma tarefa.
 
-    - `humanizer`: revisar marcas de texto de IA sem inventar fatos.
-    - `apresentacao-bullets`: organizar ideias e explicações nos níveis dos bullets.
+- O arquivo `SKILL.md` descreve quando usar e quais passos seguir.
+- A pasta pode incluir exemplos ou scripts de apoio.
 
-- Vamos ver um exemplo em [Skills na Prática](https://patrick-andrade.github.io/guias/skills-na-pratica.html).
 
-::: notes
-Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo de SKILL.md. Explicar nome, descrição e instruções sem instalar nada. As duas skills usadas nesta revisão pertencem ao ambiente do instrutor; não pressupor que estejam instaladas no clone dos alunos. A skill orienta o procedimento, e o resultado continua sujeito a conferência.
+::: {.callout-tip title="Saiba mais"}
+Para esta apresentação, utilizei duas *skills*:
+
+- A `humanizer` (de outro criador) para revisar marcas de texto de IA sem inventar fatos.
+- A `apresentacao-bullets` (criada por mim) para organizar ideias e explicações nos níveis dos bullets.
+
+Veja o guia [Skills na Prática](https://patrick-andrade.github.io/guias/skills-na-pratica.html).
 :::
 
-## Instruções em arquivos: qual usar?
+## O projeto não está ficando muito complexo?
+
+Boas práticas de organização e documentação ajudam a controlar a complexidade.
+
+- Complexidade é inerente a projetos de análise de dados, mesmo que o resultado final seja uma apresentação curta.
+
+Instruções em arquivos: qual usar?
 
 | Arquivo | O que registra neste trabalho |
 | --- | --- |
@@ -604,10 +604,11 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
 | `SKILL.md` | Procedimento reutilizável para uma tarefa |
 | `README.md` | Apresentação do projeto e como começar |
 
-- Ao retomar o trabalho, indiquem os arquivos relevantes e a próxima tarefa.
+Ao retomar um trabalho com IA:
 
-    - Registrem no projeto as decisões que precisarão consultar depois.
-    - Confiram se as instruções e os arquivos entregues ainda concordam.
+- Indiquem os arquivos relevantes e a próxima tarefa.
+- Registrem no projeto as decisões que precisarão consultar depois.
+- Confiram se as instruções e os arquivos entregues ainda concordam.
 
 ::: notes
 <p class="cue"><strong>Abrir agora:</strong> <code>AGENTS.md</code></p>
@@ -672,10 +673,10 @@ Abrir a seção “O que vai no arquivo da skill?” do guia e mostrar o exemplo
 
 - R e Python podem reconstruir o CSV executivo a partir dos mesmos brutos.
 
-```bash
-Rscript 02-dados-fiscal-monitor/scripts/baixar_fm.R --offline
-uv run python 02-dados-fiscal-monitor/scripts/baixar_fm.py --offline
-uv run python scripts/validar_contrato.py
+```powershell
+Rscript .\02-dados-fiscal-monitor\scripts\baixar_fm.R --offline
+uv run python .\02-dados-fiscal-monitor\scripts\baixar_fm.py --offline
+uv run python .\scripts\validar_contrato.py
 ```
 
 - Comparem as saídas com o CSV do clone após cada execução.
